@@ -41,6 +41,7 @@ dnfInstall=(
   	ghostty
    	yazi
 	mpv
+	btop
 )
 
 sudo dnf install -y "${dnfInstall[@]}"
