@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-username=$(whoami)
+username="${SUDO_USER:-$(whoami)}"
 
 checkpoint() {
 	while true; do
