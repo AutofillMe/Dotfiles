@@ -1,0 +1,4 @@
+shell-integration = zsh
+theme = "Catppuccin Mocha"
+font-family = "NotoSans NF Reg"
+confirm-close-surface = false
