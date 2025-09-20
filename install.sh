@@ -45,8 +45,15 @@ dnfInstall=(
 sudo dnf install -y "${dnfInstall[@]}"
 
 # Install Noto Nerdfont
-curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip --output /home/"$username"/Downloads/Noto.zip
-wait
+FILE="/home/'$username'/Downloads/Noto.zip"
+
+if [[ -f "$FILE" ]]; then
+    echo "File already exists: $FILE. Skipping download..."
+else
+    echo "Downloading..."
+    curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip -o "$FILE"
+	wait
+fi
 unzip /home/"$username"/Downloads/Noto.zip -d /home/"$username"/Downloads/Nerd-Noto/
 sudo mkdir /usr/share/fonts/nerds-noto/
 sudo mv /home/"$username"/Downloads/Nerd-Noto/*.ttf /usr/share/fonts/nerds-noto/
