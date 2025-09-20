@@ -13,3 +13,9 @@ Then, after accepting all defaults:
 ```
 ssh-add ~/.ssh/id_rsa
 ```
+
+# Fix Right-Click Terminal to Ghostty
+Run `kcmshell6 componentchooser` and choose `Ghostty`
+
+# Fix Default Text Editor
+Run `kcmshell6 componentchooser` and choose `Neovim`
