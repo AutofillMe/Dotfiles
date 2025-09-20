@@ -92,7 +92,10 @@ stow .
 cd ~
 
 # Ask uninstall
-checkpoint "Uninstall?"
+checkpoint "Swtich Shell and Uninstall?"
+
+# Change shell
+chsh -s $(which zsh)
 
 # Uninstall stuff I dont want
 dnfRemove=(
