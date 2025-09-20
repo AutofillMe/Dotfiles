@@ -101,7 +101,7 @@ cd /home/"$username"
 checkpoint "Swtich Shell and Uninstall?"
 
 # Change shell
-chsh -s $(which zsh)
+chsh -s /usr/bin/zsh
 
 # Uninstall stuff I dont want
 dnfRemove=(
