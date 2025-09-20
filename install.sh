@@ -42,6 +42,7 @@ dnfInstall=(
    	yazi
 	mpv
 	btop
+	flameshot
 )
 
 sudo dnf install -y "${dnfInstall[@]}"
@@ -119,6 +120,7 @@ dnfRemove=(
 	starship
 	neochat
 	kate
+	spectacle
 )
 
 sudo dnf remove -y "${dnfRemove[@]}"
