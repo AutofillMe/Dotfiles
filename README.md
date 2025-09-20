@@ -18,7 +18,9 @@ Then, after accepting all defaults:
 ssh-add ~/.ssh/id_rsa
 ```
 
-Finally, print the public key to the screen using ```cat ~/.ssh/id_rsa.pub``` and copy and paste into GitHub
+Finally, print the public key to the screen using
+```cat ~/.ssh/id_rsa.pub```
+and copy and paste into GitHub
 
 # Fix Right-Click Terminal to Ghostty
 Run `kcmshell6 componentchooser` and choose `Ghostty`
