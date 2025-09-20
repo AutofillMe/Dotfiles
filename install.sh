@@ -50,7 +50,7 @@ dnfInstall=(
 sudo dnf install -y "${dnfInstall[@]}"
 
 # Install Noto Nerdfont
-FILE="/home/'$username'/Downloads/Noto.zip"
+FILE="/home/$username/Downloads/Noto.zip"
 
 if [[ -f "$FILE" ]]; then
     echo "File already exists: $FILE. Skipping download..."
@@ -58,12 +58,12 @@ else
     echo "Downloading..."
     curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip -o "$FILE"
 fi
-unzip /home/"$username"/Downloads/Noto.zip -d /home/"$username"/Downloads/Nerd-Noto/
+unzip /home/$username/Downloads/Noto.zip -d /home/$username/Downloads/Nerd-Noto/
 sudo mkdir /usr/share/fonts/nerds-noto/
-sudo mv /home/"$username"/Downloads/Nerd-Noto/*.ttf /usr/share/fonts/nerds-noto/
+sudo mv /home/$username/Downloads/Nerd-Noto/*.ttf /usr/share/fonts/nerds-noto/
 
-rm -vf /home/"$username"/Downloads/Noto.zip
-rm -rvf /home/"$username"/Downloads/Nerd-Noto/
+rm -vf /home/$username/Downloads/Noto.zip
+rm -rvf /home/$username/Downloads/Nerd-Noto/
 
 # Refresh Font Cache
 fc-cache -fv
@@ -76,21 +76,21 @@ checkpoint "Did the font install?"
 sudo sed -i.bak 's/property real timeout: *[0-9]\+/property real timeout: 5/' /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/logout/Logout.qml
 
 # Install rmtrash
-git clone https://github.com/PhrozenByte/rmtrash /home/"$username"/Downloads/rmtrash/
-sudo mv /home/"$username"/Downloads/rmtrash/* /usr/local/bin/
-rm -rf /home/"$username"/Downloads/rmtrash/
+git clone https://github.com/PhrozenByte/rmtrash /home/$username/Downloads/rmtrash/
+sudo mv /home/$username/Downloads/rmtrash/* /usr/local/bin/
+rm -rf /home/$username/Downloads/rmtrash/
 
 # Install btop theme
-curl -L https://github.com/catppuccin/btop/releases/latest/download/themes.tar.gz -o /home/"$username"/Downloads/btop.tar.gz
-tar -xzf /home/"$username"/Downloads/btop.tar.gz -C /home/"$username"/Downloads/btop
+curl -L https://github.com/catppuccin/btop/releases/latest/download/themes.tar.gz -o /home/$username/Downloads/btop.tar.gz
+tar -xzf /home/$username/Downloads/btop.tar.gz -C /home/$username/Downloads/btop
 mkdir ~/.config/btop/themes
-mv /home/"$username"/Downloads/btop/themes/catppuccin_mocha.theme ~/.config/btop/themes/catppuccin_mocha.theme
-rm -rf /home/"$username"/Downloads/btop
-rm /home/"$username"/Downloads/btop.tar.gz
+mv /home/$username/Downloads/btop/themes/catppuccin_mocha.theme ~/.config/btop/themes/catppuccin_mocha.theme
+rm -rf /home/$username/Downloads/btop
+rm /home/$username/Downloads/btop.tar.gz
 
 # Final NVChad Install
-git clone https://github.com/NvChad/starter /home/"$username"/.config/nvim
-rm -rf /home/"$username"/.config/nvim/.git
+git clone https://github.com/NvChad/starter /home/$username/.config/nvim
+rm -rf /home/$username/.config/nvim/.git
 
 # Ask tealdeer update
 checkpoint "Ready for tldr --update?"
@@ -105,10 +105,10 @@ echo "All is well, please open up nvim and run :MasonInstallAll"
 checkpoint "Stow?"
 
 # Clone my dotfiles
-rm -f /home/"$username"/.config/konsolerc
-cd /home/"$username"/.dotfiles
+rm -f /home/$username/.config/konsolerc
+cd /home/$username/.dotfiles
 stow .
-cd /home/"$username"
+cd /home/$username
 
 # Ask uninstall
 checkpoint "Swtich Shell and Uninstall?"
@@ -127,4 +127,4 @@ dnfRemove=(
 
 sudo dnf remove -y "${dnfRemove[@]}"
 
-rm -rf /home/"$username"/.dotfiles/.git
+rm -rf /home/$username/.dotfiles/.git
