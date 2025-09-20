@@ -42,6 +42,9 @@ dnfInstall=(
 
 sudo dnf install -y "${dnfInstall[@]}"
 
+# Wait for installs
+checkpoint "Install done?"
+
 # Install Noto Nerdfont
 curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip --output ~/Downloads/Noto.zip
 unzip ~/Downloads/Noto.zip -d ~/Downloads/Nerd-Noto/
