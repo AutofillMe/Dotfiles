@@ -40,6 +40,7 @@ dnfInstall=(
  	node
   	ghostty
    	yazi
+	mpv
 )
 
 sudo dnf install -y "${dnfInstall[@]}"
@@ -107,6 +108,8 @@ chsh -s /usr/bin/zsh
 dnfRemove=(
 	brave-browser
 	starship
+	neochat
+	kate
 )
 
 sudo dnf remove -y "${dnfRemove[@]}"
