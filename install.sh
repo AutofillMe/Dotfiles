@@ -52,7 +52,6 @@ if [[ -f "$FILE" ]]; then
 else
     echo "Downloading..."
     curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip -o "$FILE"
-	wait
 fi
 unzip /home/"$username"/Downloads/Noto.zip -d /home/"$username"/Downloads/Nerd-Noto/
 sudo mkdir /usr/share/fonts/nerds-noto/
@@ -73,13 +72,11 @@ sudo sed -i.bak 's/property real timeout: *[0-9]\+/property real timeout: 5/' /u
 
 # Install rmtrash
 git clone https://github.com/PhrozenByte/rmtrash /home/"$username"/Downloads/rmtrash/
-wait
 sudo mv /home/"$username"/Downloads/rmtrash/* /usr/local/bin/
 rm -rf /home/"$username"/Downloads/rmtrash/
 
 # Final NVChad Install
 git clone https://github.com/NvChad/starter /home/"$username"/.config/nvim
-wait
 rm -rf /home/"$username"/.config/nvim/.git
 
 # Ask tealdeer update
