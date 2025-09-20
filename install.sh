@@ -69,12 +69,6 @@ git clone https://github.com/PhrozenByte/rmtrash ~/Downloads/rmtrash/
 sudo mv ~/Downloads/rmtrash/* /usr/local/bin/
 rm -rf ~/Downloads/rmtrash/
 
-# Download Catppuccin Theme
-git clone https://github.com/catppuccin/konsole.git ~/Downloads/catppuccin/
-sudo mkdir -p ~/.local/share/konsole/
-sudo mv ~/Downloads/catppuccin/themes/catppuccin-mocha.colorscheme ~/.local/share/konsole/
-rm -rf ~/Downloads/catppuccin/
-
 # Final NVChad Install
 git clone https://github.com/NvChad/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
