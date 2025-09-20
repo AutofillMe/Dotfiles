@@ -38,14 +38,6 @@ dnfInstall=(
 
 sudo dnf install -y "${dnfInstall[@]}"
 
-# Uninstall stuff I dont want
-dnfRemove=(
-	brave-browser
-	starship
-)
-
-sudo dnf remove -y "${dnfRemove[@]}"
-
 # Install Noto Nerdfont
 curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip --output ~/Downloads/Noto.zip
 unzip ~/Downloads/Noto.zip -d ~/Downloads/Nerd-Noto/
@@ -87,7 +79,7 @@ rm -rf ~/Downloads/catppuccin/
 git clone https://github.com/NvChad/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
-# Check if the font installed
+# Ask tealdeer update
 while true; do
 	read -rp "Ready for tldr --update? [y/n]" ans
 	case $ans in
@@ -103,7 +95,7 @@ tldr --update
 # We did it
 echo "All is well, please open up nvim and run :MasonInstallAll"
 
-# Check if the font installed
+# Ask before stowing
 while true; do
 	read -rp "Stow? [y/n]" ans
 	case $ans in
@@ -118,3 +110,21 @@ rm ~/.config/konsolerc
 cd ~/.dotfiles
 stow .
 cd ~
+
+# Ask uninstall
+while true; do
+	read -rp "Unisntall? [y/n]" ans
+	case $ans in
+		[Yy]* ) break;;
+		[Nn]* ) exit 2;;
+		* ) echo "Please answer Y/y for Yes or N/n for No";;
+	esac
+done
+
+# Uninstall stuff I dont want
+dnfRemove=(
+	brave-browser
+	starship
+)
+
+sudo dnf remove -y "${dnfRemove[@]}"
