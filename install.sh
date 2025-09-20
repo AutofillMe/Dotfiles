@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+username=$(whoami)
+
 checkpoint() {
 	while true; do
 		read -rp "$1 [y/n]" ans
@@ -43,14 +45,14 @@ dnfInstall=(
 sudo dnf install -y "${dnfInstall[@]}"
 
 # Install Noto Nerdfont
-curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip --output /home/crilp/Downloads/Noto.zip
+curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip --output /home/"$username"/Downloads/Noto.zip
 wait
-unzip ~/Downloads/Noto.zip -d ~/Downloads/Nerd-Noto/
+unzip /home/"$username"/Downloads/Noto.zip -d /home/"$username"/Downloads/Nerd-Noto/
 sudo mkdir /usr/share/fonts/nerds-noto/
-sudo mv ~/Downloads/Nerd-Noto/*.ttf /usr/share/fonts/nerds-noto/
+sudo mv /home/"$username"/Downloads/Nerd-Noto/*.ttf /usr/share/fonts/nerds-noto/
 
-rm -vf ~/Downloads/Noto.zip
-rm -rvf ~/Downloads/Nerd-Noto/
+rm -vf /home/"$username"/Downloads/Noto.zip
+rm -rvf /home/"$username"/Downloads/Nerd-Noto/
 
 # Refresh Font Cache
 fc-cache -fv
@@ -63,15 +65,15 @@ checkpoint "Did the font install?"
 sudo sed -i.bak 's/property real timeout: *[0-9]\+/property real timeout: 5/' /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/logout/Logout.qml
 
 # Install rmtrash
-git clone https://github.com/PhrozenByte/rmtrash ~/Downloads/rmtrash/
+git clone https://github.com/PhrozenByte/rmtrash /home/"$username"/Downloads/rmtrash/
 wait
-sudo mv ~/Downloads/rmtrash/* /usr/local/bin/
-rm -rf ~/Downloads/rmtrash/
+sudo mv /home/"$username"/Downloads/rmtrash/* /usr/local/bin/
+rm -rf /home/"$username"/Downloads/rmtrash/
 
 # Final NVChad Install
-git clone https://github.com/NvChad/starter ~/.config/nvim
+git clone https://github.com/NvChad/starter /home/"$username"/.config/nvim
 wait
-rm -rf ~/.config/nvim/.git
+rm -rf /home/"$username"/.config/nvim/.git
 
 # Ask tealdeer update
 checkpoint "Ready for tldr --update?"
@@ -86,10 +88,10 @@ echo "All is well, please open up nvim and run :MasonInstallAll"
 checkpoint "Stow?"
 
 # Clone my dotfiles
-rm -f ~/.config/konsolerc
-cd ~/.dotfiles
+rm -f /home/"$username"/.config/konsolerc
+cd /home/"$username"/.dotfiles
 stow .
-cd ~
+cd /home/"$username"
 
 # Ask uninstall
 checkpoint "Swtich Shell and Uninstall?"
@@ -105,4 +107,4 @@ dnfRemove=(
 
 sudo dnf remove -y "${dnfRemove[@]}"
 
-rm -rf ~/.dotfiles/.git
+rm -rf /home/"$username"/.dotfiles/.git
