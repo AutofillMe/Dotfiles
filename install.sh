@@ -77,6 +77,14 @@ git clone https://github.com/PhrozenByte/rmtrash /home/"$username"/Downloads/rmt
 sudo mv /home/"$username"/Downloads/rmtrash/* /usr/local/bin/
 rm -rf /home/"$username"/Downloads/rmtrash/
 
+# Install btop theme
+curl -L https://github.com/catppuccin/btop/releases/latest/download/themes.tar.gz -o /home/"$username"/Downloads/btop.tar.gz
+tar -xzf /home/"$username"/Downloads/btop.tar.gz -C /home/"$username"/Downloads/btop
+mkdir ~/.config/btop/themes
+mv /home/"$username"/Downloads/btop/themes/catppuccin_mocha.theme ~/.config/btop/themes/catppuccin_mocha.theme
+rm -rf /home/"$username"/Downloads/btop
+rm /home/"$username"/Downloads/btop.tar.gz
+
 # Final NVChad Install
 git clone https://github.com/NvChad/starter /home/"$username"/.config/nvim
 rm -rf /home/"$username"/.config/nvim/.git
