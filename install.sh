@@ -1,16 +1,20 @@
 #!/usr/bin/env bash
 
+checkpoint() {
+	while true; do
+		read -rp "$1 [y/n]" ans
+		case $ans in
+			[Yy]* ) break;;
+			[Nn]* ) exit 1;;
+			* ) echo "Please answer Y for Yes or N for No";;
+		esac
+	done
+}
+
 # Make sure this is running on Nobara
 echo "This is a custom script for use in Nobara Linux 42.  I cannot garuntee it will work in other distros."
 
-while true; do
-	read -rp "Are you sure that you want to continue? [y/n]" yn
-	case $yn in
-		[Yy]* ) break;;
-		[Nn]* ) exit 1;;
-		* ) echo "Please answer Y for Yes or N for No";;
-	esac
-done
+checkpoint "Are you sure that you want to continue?"
 
 # Add needed COPRs
 sudo dnf copr enable lihaohong/yazi -y
@@ -52,14 +56,7 @@ fc-cache -fv
 fc-list | rg "NerdFont"
 
 # Check if the font installed
-while true; do
-	read -rp "Did the font install? [y/n]" ans
-	case $ans in
-		[Yy]* ) break;;
-		[Nn]* ) exit 2;;
-		* ) echo "Please answer Y/y for Yes or N/n for No";;
-	esac
-done
+checkpoint "Did the font install?"
 
 # Chnage logout timer
 sudo sed -i.bak 's/property real timeout: *[0-9]\+/property real timeout: 5/' /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/logout/Logout.qml
@@ -80,14 +77,7 @@ git clone https://github.com/NvChad/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
 # Ask tealdeer update
-while true; do
-	read -rp "Ready for tldr --update? [y/n]" ans
-	case $ans in
-		[Yy]* ) break;;
-		[Nn]* ) exit 2;;
-		* ) echo "Please answer Y/y for Yes or N/n for No";;
-	esac
-done
+checkpoint "Ready for tldr --update?"
 
 # Quick tealdeer update
 tldr --update
@@ -96,30 +86,16 @@ tldr --update
 echo "All is well, please open up nvim and run :MasonInstallAll"
 
 # Ask before stowing
-while true; do
-	read -rp "Stow? [y/n]" ans
-	case $ans in
-		[Yy]* ) break;;
-		[Nn]* ) exit 2;;
-		* ) echo "Please answer Y/y for Yes or N/n for No";;
-	esac
-done
+checkpoint "Stow?"
 
 # Clone my dotfiles
-rm ~/.config/konsolerc
+rm -f ~/.config/konsolerc
 cd ~/.dotfiles
 stow .
 cd ~
 
 # Ask uninstall
-while true; do
-	read -rp "Unisntall? [y/n]" ans
-	case $ans in
-		[Yy]* ) break;;
-		[Nn]* ) exit 2;;
-		* ) echo "Please answer Y/y for Yes or N/n for No";;
-	esac
-done
+checkpoint "Uninstall?"
 
 # Uninstall stuff I dont want
 dnfRemove=(
