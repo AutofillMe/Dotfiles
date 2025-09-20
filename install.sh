@@ -42,11 +42,9 @@ dnfInstall=(
 
 sudo dnf install -y "${dnfInstall[@]}"
 
-# Wait for installs
-checkpoint "Install done?"
-
 # Install Noto Nerdfont
 curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip --output ~/Downloads/Noto.zip
+wait
 unzip ~/Downloads/Noto.zip -d ~/Downloads/Nerd-Noto/
 sudo mkdir /usr/share/fonts/nerds-noto/
 sudo mv ~/Downloads/Nerd-Noto/*.ttf /usr/share/fonts/nerds-noto/
@@ -66,11 +64,13 @@ sudo sed -i.bak 's/property real timeout: *[0-9]\+/property real timeout: 5/' /u
 
 # Install rmtrash
 git clone https://github.com/PhrozenByte/rmtrash ~/Downloads/rmtrash/
+wait
 sudo mv ~/Downloads/rmtrash/* /usr/local/bin/
 rm -rf ~/Downloads/rmtrash/
 
 # Final NVChad Install
 git clone https://github.com/NvChad/starter ~/.config/nvim
+wait
 rm -rf ~/.config/nvim/.git
 
 # Ask tealdeer update
@@ -104,3 +104,5 @@ dnfRemove=(
 )
 
 sudo dnf remove -y "${dnfRemove[@]}"
+
+rm -rf ~/.dotfiles/.git
