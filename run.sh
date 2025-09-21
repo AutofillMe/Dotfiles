@@ -112,7 +112,7 @@ tealdeer_update() {
     tldr --update
 }
 
-stow() {
+run_stow() {
     # Ask before stowing
     checkpoint "Ready for GNU Stow?"
 
@@ -153,7 +153,7 @@ echo "6) rmtrash_install"
 echo "7) btop_theme_install"
 echo "8) NVChad_install"
 echo "9) tealdeer_update"
-echo "10) stow"
+echo "10) run_stow"
 echo "11) dnf_uninstall"
 echo "12) cleanup"
 read -p "Enter your choice: " start
@@ -177,7 +177,7 @@ for (( i=start; i<=12; i++ )); do
         7) btop_theme_install ;;
         8) NVChad_install ;;
         9) tealdeer_update ;;
-        10) stow ;;
+        10) run_stow ;;
         11) dnf_uninstall ;;
         12) cleanup ;;
     esac
