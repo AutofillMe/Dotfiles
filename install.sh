@@ -2,8 +2,6 @@
 
 username="${SUDO_USER:-$(whoami)}"
 
-set -e
-
 checkpoint() {
 	while true; do
 		read -rp "$1 [y/n]" ans
