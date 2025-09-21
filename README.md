@@ -24,8 +24,8 @@ cat ~/.ssh/id_rsa.pub
 ```
 and copy and paste into GitHub
 
-# Fix Right-Click Terminal to Ghostty
-Run `kcmshell6 componentchooser` and choose `Ghostty`
+# Fix Right-Click Terminal to Ghostty and Other Defaults
 
-# Fix Default Text Editor
-Run `kcmshell6 componentchooser` and choose `Neovim`
+```
+kcmshell6 componentchooser
+```
