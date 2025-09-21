@@ -1,5 +1,21 @@
 #!/usr/bin/env zsh
 
+checkpoint() {
+	while true; do
+		read -rp "$1 [y/n]" ans
+		case $ans in
+			[Yy]* ) break;;
+			[Nn]* ) exit 1;;
+			* ) echo "Please answer Y for Yes or N for No";;
+		esac
+	done
+}
+
+# Make sure this is running on Nobara
+echo "Run this in Ghostty after running install.sh."
+
+checkpoint "Are you sure that you want to continue?"
+
 # Change shell
 chsh -s /usr/bin/zsh
 
