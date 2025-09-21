@@ -29,7 +29,6 @@ dnfInstall=(
 	fzf
 	speedtest-cli
 	tealdeer
-	fastfetch
 	bat
 	trash-cli
 	ripgrep
