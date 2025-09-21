@@ -2,7 +2,8 @@
 
 checkpoint() {
 	while true; do
-		read -rp "$1 [y/n]" ans
+		echo -n "$1 [y/n]: "
+		read ans
 		case $ans in
 			[Yy]* ) break;;
 			[Nn]* ) exit 1;;
