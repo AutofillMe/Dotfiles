@@ -112,9 +112,6 @@ cd /home/$username
 # Ask uninstall
 checkpoint "Swtich Shell and Uninstall?"
 
-# Change shell
-chsh -s /usr/bin/zsh
-
 # Uninstall stuff I dont want
 dnfRemove=(
 	brave-browser
