@@ -81,3 +81,6 @@ alias lta="lsd --tree -A --depth=4"
 alias ldot="lsd -ld .* --group-dirs=first"
 alias rm="rmtrash"
 alias rmdir="rmdirtrash"
+
+# Exports
+export MANPAGER='nvim +Man!'
