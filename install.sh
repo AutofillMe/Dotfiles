@@ -83,10 +83,9 @@ rm -rf /home/$username/Downloads/rmtrash/
 curl -L https://github.com/catppuccin/btop/releases/latest/download/themes.tar.gz -o /home/$username/Downloads/btop.tar.gz
 mkdir /home/$username/Downloads/btop
 tar -xzf /home/$username/Downloads/btop.tar.gz -C /home/$username/Downloads/btop
-mkdir /home/$username/.config/btop/themes
+mkdir -p /home/$username/.config/btop/themes
 mv /home/$username/Downloads/btop/themes/catppuccin_mocha.theme /home/$username/.config/btop/themes/catppuccin_mocha.theme
-rm -rf /home/$username/Downloads/btop
-rm /home/$username/Downloads/btop.tar.gz
+rm -rf /home/$username/Downloads/btop*
 
 # Final NVChad Install
 git clone https://github.com/NvChad/starter /home/$username/.config/nvim
