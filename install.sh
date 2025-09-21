@@ -108,7 +108,7 @@ stow .
 cd /home/$username
 
 # Ask uninstall
-checkpoint "Swtich Shell and Uninstall?"
+checkpoint "Uninstall stuff?"
 
 # Uninstall stuff I dont want
 dnfRemove=(
