@@ -158,10 +158,17 @@ echo "11) dnf_uninstall"
 echo "12) cleanup"
 read -p "Enter your choice: " start
 
-# Validate input: check if it's a number between 1 and 5
-if ! [[ "$start" =~ ^[0-12]$ ]]; then
-    echo "Invalid input: Please enter a number between 1 and 5, or 'all'."
-    exit 0
+# Validate input: check if it's a number between 0 and 12 -------------
+# First check: check if number
+if ! [[ "$start" =~ ^[0-9]+$ ]]; then
+    echo "Invalid input: Must be a number."
+    exit 1
+fi
+
+# Second check: check if between 0 and 12
+if (( start < 0 || start > 12 )); then
+    echo "Invalid input: Must be between 0 and 12."
+    exit 1
 fi
 
 # Run tasks starting from selected number
