@@ -18,6 +18,12 @@ echo "This is a custom script for use in Nobara Linux 42.  I cannot garuntee it 
 
 checkpoint "Are you sure that you want to continue?"
 
+all_tasks() {
+	# All tasks placeholder
+	echo "Running all tasks..."
+	sleep 2
+}
+
 copr_install() {
     # Add needed COPRs
     sudo dnf copr enable lihaohong/yazi -y
@@ -158,26 +164,10 @@ if ! [[ "$start" =~ ^[0-12]$ ]]; then
     exit 0
 fi
 
-# Run all tasks if user enters "all"
-if [[ "$start" == "0" ]]; then
-    copr_install
-    dnf_install
-    nerd_font_install
-    font_check
-    logout_delay
-    rmtrash_install
-    btop_theme_install
-    NVChad_install
-    tealdeer_update
-    stow
-    dnf_uninstall
-    cleanup
-    exit 1
-fi
-
 # Run tasks starting from selected number
 for (( i=start; i<=12; i++ )); do
     case $i in
+		0) all_tasks ;;
         1) copr_install ;;
         2) dnf_install ;;
         3) nerd_font_install ;;
