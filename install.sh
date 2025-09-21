@@ -104,7 +104,7 @@ echo "All is well, please open up nvim and run :MasonInstallAll"
 checkpoint "Stow?"
 
 # Clone my dotfiles
-rm -f /home/$username/.config/konsolerc
+sudo rm -f /home/$username/.config/konsolerc
 cd /home/$username/.dotfiles
 stow .
 cd /home/$username
