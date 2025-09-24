@@ -142,7 +142,8 @@ cleanup() {
 }
 
 # Prompt which task checkpoint they would like to run
-echo "Which task(s) would you like to run?"
+echo "Where would you like to start the script?"
+echo "The script will start at the selected task then continue down the list."
 echo "0) All Tasks"
 echo "1) copr_install"
 echo "2) dnf_install"
