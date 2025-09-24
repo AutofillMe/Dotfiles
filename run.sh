@@ -69,8 +69,8 @@ nerd_font_install() {
 
 font_check() {
     # Refresh Font Cache
-    fc-cache -fv
-    fc-list | rg "NerdFont"
+    fc-cache -f
+    fc-list | rg "NerdFont" --color=always | tail
 
     # Check if the font installed
     checkpoint "Do you see NerdFont more than twice?"
