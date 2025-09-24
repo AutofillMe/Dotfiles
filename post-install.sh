@@ -21,4 +21,4 @@ checkpoint "Are you sure that you want to continue?"
 chsh -s /usr/bin/zsh
 
 # Remove bash files
-rm ~/.bash*
+sudo rm -f ~/.bash*
