@@ -139,6 +139,7 @@ dnf_uninstall() {
 cleanup() {
     # Final cleanup
     rm -rf /home/$username/.dotfiles/.git
+	echo "Please close then reopen konsole, then run nvim and change the defaults."
 }
 
 # Prompt which task checkpoint they would like to run
