@@ -40,12 +40,14 @@ all_tasks() {
 }
 
 copr_install() {
+	echo "Adding needed COPR repos..."
     # Add needed COPRs
     sudo dnf copr enable lihaohong/yazi -y
     sudo dnf copr enable scottames/ghostty -y
 }
 
 dnf_install() {
+	echo "Installing Packages..."
     # Install cli tools and packages
     dnfInstall=(
         fzf
@@ -72,6 +74,7 @@ dnf_install() {
 }
 
 nerd_font_install() {
+	echo "Installing Nerd Font..."
     # Install Noto Nerdfont
     curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip -o /home/$username/Downloads/Noto.zip
     unzip /home/$username/Downloads/Noto.zip -d /home/$username/Downloads/Nerd-Noto/
@@ -83,6 +86,7 @@ nerd_font_install() {
 }
 
 font_check() {
+	echo "Performing Font Update and Check..."
     # Refresh Font Cache
     fc-cache -f
     fc-list | rg "NerdFont" --color=always | tail
@@ -92,11 +96,13 @@ font_check() {
 }
 
 logout_delay() {
+	echo "Setting Logout Delay..."
     # Chnage logout timer from 30 seconds to 5 seconds
     sudo sed -i.bak 's/property real timeout: *[0-9]\+/property real timeout: 5/' /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/logout/Logout.qml
 }
 
 rmtrash_install() {
+	echo "Installing rmtrash..."
     # Install rmtrash
     git clone https://github.com/PhrozenByte/rmtrash /home/$username/Downloads/rmtrash/
     sudo mv /home/$username/Downloads/rmtrash/* /usr/local/bin/
@@ -104,6 +110,7 @@ rmtrash_install() {
 }
 
 btop_theme_install() {
+	echo "Installing btop Theme..."
     # Install btop theme
     curl -L https://github.com/catppuccin/btop/releases/latest/download/themes.tar.gz -o /home/$username/Downloads/btop.tar.gz
     mkdir /home/$username/Downloads/btop
@@ -114,14 +121,14 @@ btop_theme_install() {
 }
 
 NVChad_install() {
-    # Final NVChad Install
+	echo "Install NVChad"
+    # NVChad Starter Install
     git clone https://github.com/NvChad/starter /home/$username/.config/nvim
     rm -rf /home/$username/.config/nvim/.git
 }
 
 tealdeer_update() {
-    # Ask tealdeer update
-    checkpoint "Ready for tldr --update?"
+	echo "Running tealdeer init..."
 
     # Quick tealdeer update
     tldr --update
@@ -139,6 +146,7 @@ run_stow() {
 }
 
 dnf_uninstall() {
+	echo "Uninstalling Junk..."
     # Uninstall programs I dont want or have alternatives to
     dnfRemove=(
         brave-browser
@@ -152,6 +160,7 @@ dnf_uninstall() {
 }
 
 cleanup() {
+	echo "Running final cleanup..."
     # Final cleanup
     rm -rf /home/$username/.dotfiles/.git
 	echo "Please close then reopen konsole, then run nvim and change the defaults."
