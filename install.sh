@@ -13,6 +13,21 @@ checkpoint() {
 	done
 }
 
+valid_input_checkpoint() {
+	val=$1
+	# First check: check if number
+	if ! [[ "$val" =~ ^[0-9]+$ ]]; then
+	    echo "Invalid input: Must be a number."
+	    exit 2
+	fi
+	
+	# Second check: check if between 0 and 12
+	if (( val < 0 || val > 12 )); then
+	    echo "Invalid input: Must be between 0 and 12."
+	    exit 2
+	fi
+}
+
 # Make sure this is running on Nobara
 echo "This is a custom script for use in Nobara Linux 42.  I cannot garuntee it will work in other distros."
 
@@ -160,18 +175,8 @@ echo "11) dnf_uninstall"
 echo "12) cleanup"
 read -p "Enter your choice: " start
 
-# Validate input: check if it's a number between 0 and 12 -------------
-# First check: check if number
-if ! [[ "$start" =~ ^[0-9]+$ ]]; then
-    echo "Invalid input: Must be a number."
-    exit 1
-fi
-
-# Second check: check if between 0 and 12
-if (( start < 0 || start > 12 )); then
-    echo "Invalid input: Must be between 0 and 12."
-    exit 1
-fi
+# Validate input: check if it's a number between 0 and 12
+valid_input_checkpoint start
 
 # Run tasks starting from selected number
 for (( i=start; i<=12; i++ )); do
