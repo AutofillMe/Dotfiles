@@ -2,6 +2,10 @@
 
 username="${SUDO_USER:-$(whoami)}"
 
+# Set up logging
+log_file="/home/$username/.nobara-setup.log"
+exec > >(tee "$log_file") 2>&1
+
 checkpoint() {
 	while true; do
 		read -rp "$1 [y/n]: " ans
