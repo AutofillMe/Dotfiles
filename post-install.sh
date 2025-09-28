@@ -22,3 +22,4 @@ chsh -s /usr/bin/zsh
 
 # Remove bash files
 rm -f ~/.bash*
+rm ~/.config/starship.toml
