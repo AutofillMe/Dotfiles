@@ -77,7 +77,8 @@ nerd_font_install() {
 	echo "Installing Nerd Font..."
     # Install Noto Nerdfont
     curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip -o /home/$username/Downloads/Noto.zip
-    unzip /home/$username/Downloads/Noto.zip -d /home/$username/Downloads/Nerd-Noto/
+	echo "Unzipping file..."
+    unzip -q /home/$username/Downloads/Noto.zip -d /home/$username/Downloads/Nerd-Noto/
     sudo mkdir /usr/share/fonts/nerds-noto/
     sudo mv /home/$username/Downloads/Nerd-Noto/*.ttf /usr/share/fonts/nerds-noto/
 
