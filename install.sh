@@ -176,7 +176,7 @@ echo "12) cleanup"
 read -p "Enter your choice: " start
 
 # Validate input: check if it's a number between 0 and 12
-valid_input_checkpoint start
+valid_input_checkpoint "$start"
 
 # Run tasks starting from selected number
 for (( i=start; i<=12; i++ )); do
