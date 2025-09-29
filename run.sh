@@ -3,7 +3,7 @@
 username="${SUDO_USER:-$(whoami)}"
 
 # Set up logging
-log_file="/home/$username/.nobara-setup.log"
+log_file="/home/$username/.dotfile-script.log"
 exec > >(tee "$log_file") 2>&1
 
 checkpoint() {
@@ -19,7 +19,7 @@ checkpoint() {
 
 valid_input_checkpoint() {
     local tasks=$1
-    # Validate and execute selected tasks
+    # Validate user input to be a number and between 0 and 12
     local index
     for index in "${tasks[@]}"; do
         if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index > 12 )); then
@@ -29,10 +29,9 @@ valid_input_checkpoint() {
     done
 }
 
-
-
+# MAIN SCRIPT -----------------------------------------------------------------------------------------------
 # Make sure this is running on Nobara
-echo "This is a custom script for use in Nobara Linux 42.  I cannot garuntee it will work in other distros."
+echo "This is a custom script for use in Nobara Linux 42.  I cannot guarantee it will work in other distros."
 
 checkpoint "Are you sure that you want to continue?"
 
@@ -105,7 +104,11 @@ font_check() {
 	echo "Performing Font Update and Check..."
     # Refresh Font Cache
     fc-cache -f
-    fc-list | rg "NerdFont" --color=always | tail
+    if command -v rg &>/dev/null; then
+	    fc-list | rg "NerdFont" --color=always | tail
+	else
+	    fc-list | grep "NerdFont" | tail
+	fi
 
     # Check if the font installed
     checkpoint "Do you see NerdFont more than twice?"
@@ -201,10 +204,25 @@ echo "12) cleanup"
 read -p "Enter your choice: " -a selected_tasks
 
 # Validate input: check if it's a number between 0 and 12
-valid_input_checkpoint "$selected_tasks"
+valid_input_checkpoint "${selected_tasks[@]}"
+
+task_functions=(
+	all_tasks
+	copr_install
+	dnf_install
+	nerd_font_install
+	font_check
+	logout_delay
+	rmtrash_install
+	btop_theme_install
+	NVChad_install
+	tealdeer_update
+	run_stow
+	dnf_uninstall
+	cleanup
+)
 
 # Run tasks
-for index in "${selected_tasks[@]}"; do
-    fn="${task_functions[$index]}"
-    "$fn"
+for iter in "${selected_tasks[@]}"; do
+	"${task_functions[$iter]}"
 done
