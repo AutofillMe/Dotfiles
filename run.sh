@@ -18,7 +18,7 @@ checkpoint() {
 }
 
 valid_input_checkpoint() {
-    local tasks=$1
+	local tasks=("$@")
     # Validate user input to be a number and between 0 and 12
     local index
     for index in "${tasks[@]}"; do
@@ -223,6 +223,6 @@ task_functions=(
 )
 
 # Run tasks
-for iter in "${selected_tasks[@]}"; do
-	"${task_functions[$iter]}"
+for index in "${selected_tasks[@]}"; do
+	"${task_functions[$index]}"
 done
