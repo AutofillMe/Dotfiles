@@ -2,3 +2,4 @@ install.sh
 post-install.sh
 \.git
 README.md
+run.sh
