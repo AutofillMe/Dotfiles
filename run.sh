@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+trap "echo 'Script interrupted. Exiting...'; exit 1" INT
+
 username="${SUDO_USER:-$(whoami)}"
 
 # Set up logging
