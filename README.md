@@ -29,3 +29,10 @@ and copy and paste into GitHub
 ```
 kcmshell6 componentchooser
 ```
+
+# Other Customizations
+- Remove Icon Bounce
+- Posy Cursor
+- Triangle Splash
+- Where is my SDDM
+- Disable Mouse Shake
