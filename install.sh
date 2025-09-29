@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+trap "echo 'Script interrupted. Exiting...'; exit 1" INT
+
 username="${SUDO_USER:-$(whoami)}"
 
 # Set up logging
-log_file="/home/$username/.nobara-setup.log"
+log_file="/home/$username/.dotfile-script.log"
 exec > >(tee "$log_file") 2>&1
 
 checkpoint() {
@@ -18,29 +20,39 @@ checkpoint() {
 }
 
 valid_input_checkpoint() {
-	val=$1
-	# First check: check if number
-	if ! [[ "$val" =~ ^[0-9]+$ ]]; then
-	    echo "Invalid input: Must be a number."
-	    exit 2
-	fi
-	
-	# Second check: check if between 0 and 12
-	if (( val < 0 || val > 12 )); then
-	    echo "Invalid input: Must be between 0 and 12."
-	    exit 2
-	fi
+	local tasks=("$@")
+    # Validate user input to be a number and between 0 and 12
+    local index
+    for index in "${tasks[@]}"; do
+        if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index > 12 )); then
+            echo "Invalid task number: $index"
+            exit 1
+        fi
+    done
 }
 
+# MAIN SCRIPT -----------------------------------------------------------------------------------------------
 # Make sure this is running on Nobara
-echo "This is a custom script for use in Nobara Linux 42.  I cannot garuntee it will work in other distros."
+echo "This is a custom script for use in Nobara Linux 42.  I cannot guarantee it will work in other distros."
 
 checkpoint "Are you sure that you want to continue?"
 
 all_tasks() {
 	# All tasks placeholder
 	echo "Running all tasks..."
-	sleep 2
+    sleep 2
+	copr_install
+	dnf_install
+	nerd_font_install
+	font_check
+	logout_delay
+	rmtrash_install
+	btop_theme_install
+	NVChad_install
+	tealdeer_update
+	run_stow
+	dnf_uninstall
+	cleanup
 }
 
 copr_install() {
@@ -48,6 +60,7 @@ copr_install() {
     # Add needed COPRs
     sudo dnf copr enable lihaohong/yazi -y
     sudo dnf copr enable scottames/ghostty -y
+	echo "Done."
 }
 
 dnf_install() {
@@ -75,6 +88,7 @@ dnf_install() {
     )
 
     sudo dnf install -y "${dnfInstall[@]}"
+	echo "Done."
 }
 
 nerd_font_install() {
@@ -88,22 +102,30 @@ nerd_font_install() {
 
     rm -vf /home/$username/Downloads/Noto.zip
     rm -rvf /home/$username/Downloads/Nerd-Noto/
+	echo "Done."
 }
 
 font_check() {
 	echo "Performing Font Update and Check..."
     # Refresh Font Cache
     fc-cache -f
-    fc-list | rg "NerdFont" --color=always | tail
+    if command -v rg &>/dev/null; then
+	    fc-list | rg "NerdFont" --color=always | tail
+	else
+	    fc-list | grep "NerdFont" | tail
+	fi
 
     # Check if the font installed
     checkpoint "Do you see NerdFont more than twice?"
+	echo # Added to add newline for log file clarity
+	echo "Done."
 }
 
 logout_delay() {
 	echo "Setting Logout Delay..."
     # Chnage logout timer from 30 seconds to 5 seconds
     sudo sed -i.bak 's/property real timeout: *[0-9]\+/property real timeout: 5/' /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/logout/Logout.qml
+	echo "Done."
 }
 
 rmtrash_install() {
@@ -112,6 +134,7 @@ rmtrash_install() {
     git clone https://github.com/PhrozenByte/rmtrash /home/$username/Downloads/rmtrash/
     sudo mv /home/$username/Downloads/rmtrash/* /usr/local/bin/
     rm -rf /home/$username/Downloads/rmtrash/
+	echo "Done."
 }
 
 btop_theme_install() {
@@ -123,6 +146,7 @@ btop_theme_install() {
     mkdir -p /home/$username/.config/btop/themes
     mv /home/$username/Downloads/btop/themes/catppuccin_mocha.theme /home/$username/.config/btop/themes/catppuccin_mocha.theme
     rm -rf /home/$username/Downloads/btop*
+	echo "Done."
 }
 
 NVChad_install() {
@@ -130,6 +154,7 @@ NVChad_install() {
     # NVChad Starter Install
     git clone https://github.com/NvChad/starter /home/$username/.config/nvim
     rm -rf /home/$username/.config/nvim/.git
+	echo "Done."
 }
 
 tealdeer_update() {
@@ -137,17 +162,20 @@ tealdeer_update() {
 
     # Quick tealdeer update
     tldr --update
+	echo "Done."
 }
 
 run_stow() {
     # Ask before stowing
     checkpoint "Ready for GNU Stow?"
+	echo # Added to add newline for log file clarity
 
     # Clone my dotfiles
     sudo rm -f /home/$username/.config/konsolerc
     cd /home/$username/.dotfiles
     stow .
     cd /home/$username
+	echo "Done."
 }
 
 dnf_uninstall() {
@@ -162,6 +190,7 @@ dnf_uninstall() {
     )
 
     sudo dnf remove -y "${dnfRemove[@]}"
+	echo "Done."
 }
 
 cleanup() {
@@ -172,8 +201,8 @@ cleanup() {
 }
 
 # Prompt which task checkpoint they would like to run
-echo "Where would you like to start the script?"
-echo "The script will start at the selected task then continue down the list."
+echo "Which tasks would you like to execute?"
+echo "Provide the input as a spaced list of numbers."
 echo "0) All Tasks"
 echo "1) copr_install"
 echo "2) dnf_install"
@@ -187,26 +216,28 @@ echo "9) tealdeer_update"
 echo "10) run_stow"
 echo "11) dnf_uninstall"
 echo "12) cleanup"
-read -p "Enter your choice: " start
+read -p "Enter your choice: " -a selected_tasks
 
 # Validate input: check if it's a number between 0 and 12
-valid_input_checkpoint "$start"
+valid_input_checkpoint "${selected_tasks[@]}"
 
-# Run tasks starting from selected number
-for (( i=start; i<=12; i++ )); do
-    case $i in
-		0) all_tasks ;;
-        1) copr_install ;;
-        2) dnf_install ;;
-        3) nerd_font_install ;;
-        4) font_check ;;
-        5) logout_delay ;;
-        6) rmtrash_install ;;
-        7) btop_theme_install ;;
-        8) NVChad_install ;;
-        9) tealdeer_update ;;
-        10) run_stow ;;
-        11) dnf_uninstall ;;
-        12) cleanup ;;
-    esac
+task_functions=(
+	all_tasks
+	copr_install
+	dnf_install
+	nerd_font_install
+	font_check
+	logout_delay
+	rmtrash_install
+	btop_theme_install
+	NVChad_install
+	tealdeer_update
+	run_stow
+	dnf_uninstall
+	cleanup
+)
+
+# Run tasks
+for index in "${selected_tasks[@]}"; do
+	"${task_functions[$index]}"
 done
