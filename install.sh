@@ -37,6 +37,8 @@ echo "This is a custom script for use in Nobara Linux 42.  I cannot guarantee it
 
 checkpoint "Are you sure that you want to continue?"
 
+echo
+
 all_tasks() {
 	# All tasks placeholder
 	echo "Running all tasks..."
