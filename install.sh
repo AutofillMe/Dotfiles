@@ -191,6 +191,7 @@ dnf_uninstall() {
         neochat
         kate
         spectacle
+		plasma-systemmonitor
     )
 
     sudo dnf remove -y "${dnfRemove[@]}"
