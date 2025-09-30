@@ -4,4 +4,4 @@
 	name = AutofillMe
 	email = 113013764+AutofillMe@users.noreply.github.com
 [core]
-        editor = nvim
+    editor = nvim
