@@ -1,2 +1,2 @@
 require("crilp.opts")
-require("crilp.maps")
+require("crilp.remaps")
