@@ -88,7 +88,6 @@ dnf_install() {
     )
 
     sudo dnf install -y "${dnfInstall[@]}"
-	echo "Done."
 }
 
 nerd_font_install() {
@@ -193,7 +192,6 @@ dnf_uninstall() {
     )
 
     sudo dnf remove -y "${dnfRemove[@]}"
-	echo "Done."
 }
 
 cleanup() {
