@@ -1,14 +1,15 @@
-local map = vim.keymap.set
+local opt = vim.opt
 
-map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save" })
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
 
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
+opt.smartindent = true
 
-map("x", "<leader>p", [["_dP]], { desc = "Paste without replace" })
+opt.hlsearch = false
+opt.incsearch = true
 
-map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system buffer" })
-map("n", "<leader>Y", [["+Y]], { desc = "Yank line to system buffer" })
+opt.colorcolumn = "80"
 
-map("n", "<leader>rr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Find and Replace" })
-map("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "chmod +x <file>" })
+opt.scrolloff = 8
