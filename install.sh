@@ -154,8 +154,8 @@ NVChad_install() {
     git clone https://github.com/NvChad/starter /home/$username/.config/nvim
     rm -rf /home/$username/.config/nvim/.git
 	# Add in custom maps and opts
-	echo "require(crilp)" >> ~/.config/nvim/init.lua
-	mkdir -p ~/.config/nvim/lua/crilp
+	echo 'require("crilp")' >> /home/$username/.config/nvim/init.lua
+	mkdir -p /home/$username/.config/nvim/lua/crilp
 	echo "Done."
 }
 
