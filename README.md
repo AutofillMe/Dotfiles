@@ -1,10 +1,6 @@
 # Dotfiles
 Stores dotfiles for use with GNU stow
 
-```
-git clone git@github.com:AutofillMe/Dotfiles.git ~/.dotfiles
-```
-
 # Setup SSH
 To generate a SSH key in order to be able to clone this repo, first on local machine:
 
@@ -24,6 +20,13 @@ cat ~/.ssh/id_rsa.pub
 ```
 and copy and paste into GitHub
 
+# Clone Repo
+Download repo after setting up SSH
+
+```
+git clone git@github.com:AutofillMe/Dotfiles.git ~/.dotfiles
+```
+
 # Fix Right-Click Terminal to Ghostty and Other Defaults
 
 ```
@@ -36,3 +39,4 @@ kcmshell6 componentchooser
 - Triangle Splash
 - Where is my SDDM
 - Disable Mouse Shake
+- Breeze Dark Theme
