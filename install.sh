@@ -52,14 +52,6 @@ valid_input_checkpoint() {
     done
 }
 
-# MAIN SCRIPT -----------------------------------------------------------------------------------------------
-# Make sure this is running on Nobara
-echo "This is a custom script for use in Nobara Linux 42.  I cannot guarantee it will work in other distros."
-
-checkpoint "Are you sure that you want to continue?"
-
-echo
-
 all_tasks() {
 	# All tasks placeholder
 	echo "Running all tasks..."
@@ -230,6 +222,14 @@ cleanup() {
     rm -rf "$user_home/.dotfiles/.git"
 	echo "Please close then reopen your terminal, then run nvim and change the defaults."
 }
+
+# MAIN SCRIPT -----------------------------------------------------------------------------------------------
+# Make sure this is running on Nobara
+echo "This is a custom script for use in Nobara Linux 42.  I cannot guarantee it will work in other distros."
+
+checkpoint "Are you sure that you want to continue?"
+
+echo
 
 # Prompt which task checkpoint they would like to run
 echo "Which tasks would you like to execute?"
