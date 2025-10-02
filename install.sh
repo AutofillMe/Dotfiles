@@ -2,8 +2,9 @@
 
 trap "echo 'Script interrupted. Exiting...'; exit 1" INT
 
+# Make sure the script is not being run as root, as it may have unintended consequences
 if [ "$EUID" -eq 0 ]; then
-    echo "⚠️ Do not run this script as root or with sudo."
+    echo "Do not run this script as root or with sudo."
     echo "Run it as a normal user instead."
     exit 1
 fi
@@ -115,14 +116,14 @@ dnf_install() {
 nerd_font_install() {
 	echo "Installing Nerd Font..."
     # Install Noto Nerdfont
-    curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip -o $user_home/Downloads/Noto.zip
+    curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip -o "$user_home/Downloads/Noto.zip"
 	echo "Unzipping file..."
-    unzip -q $user_home/Downloads/Noto.zip -d $user_home/Downloads/Nerd-Noto/
+    unzip -q "$user_home/Downloads/Noto.zip" -d "$user_home/Downloads/Nerd-Noto/"
     sudo mkdir -p /usr/share/fonts/nerds-noto/
-    sudo mv $user_home/Downloads/Nerd-Noto/*.ttf /usr/share/fonts/nerds-noto/
+    sudo mv "$user_home/Downloads/Nerd-Noto/*.ttf /usr/share/fonts/nerds-noto/"
 
-    rm -vf $user_home/Downloads/Noto.zip
-    rm -rvf $user_home/Downloads/Nerd-Noto/
+    rm -vf "$user_home/Downloads/Noto.zip"
+    rm -rvf "$user_home/Downloads/Nerd-Noto/"
 	echo "Done."
 }
 
@@ -158,32 +159,32 @@ logout_delay() {
 rmtrash_install() {
 	echo "Installing rmtrash..."
     # Install rmtrash
-    git clone https://github.com/PhrozenByte/rmtrash $user_home/Downloads/rmtrash/
+    git clone https://github.com/PhrozenByte/rmtrash "$user_home/Downloads/rmtrash/"
     sudo install -m 755 "$user_home/Downloads/rmtrash/rmtrash" /usr/local/bin/
-    rm -rf $user_home/Downloads/rmtrash/
+    rm -rf "$user_home/Downloads/rmtrash/"
 	echo "Done."
 }
 
 btop_theme_install() {
 	echo "Installing btop Theme..."
     # Install btop theme
-    curl -L https://github.com/catppuccin/btop/releases/latest/download/themes.tar.gz -o $user_home/Downloads/btop.tar.gz
-    mkdir $user_home/Downloads/btop
-    tar -xzf $user_home/Downloads/btop.tar.gz -C $user_home/Downloads/btop
+    curl -L https://github.com/catppuccin/btop/releases/latest/download/themes.tar.gz -o "$user_home/Downloads/btop.tar.gz"
+    mkdir "$user_home/Downloads/btop"
+    tar -xzf "$user_home/Downloads/btop.tar.gz" -C "$user_home/Downloads/btop"
     mkdir -p $user_home/.config/btop/themes
-    mv $user_home/Downloads/btop/themes/catppuccin_mocha.theme $user_home/.config/btop/themes/catppuccin_mocha.theme
-    rm -rf $user_home/Downloads/btop*
+    mv "$user_home/Downloads/btop/themes/catppuccin_mocha.theme" "$user_home/.config/btop/themes/catppuccin_mocha.theme"
+    rm -rf "$user_home/Downloads/btop*"
 	echo "Done."
 }
 
 NVChad_install() {
 	echo "Install NVChad"
     # NVChad Starter Install
-    git clone https://github.com/NvChad/starter $user_home/.config/nvim
-    rm -rf $user_home/.config/nvim/.git
+    git clone https://github.com/NvChad/starter "$user_home/.config/nvim"
+    rm -rf "$user_home/.config/nvim/.git"
 	# Add in custom maps and opts
-	echo 'require("crilp")' >> $user_home/.config/nvim/init.lua
-	mkdir -p $user_home/.config/nvim/lua/crilp
+	echo 'require("crilp")' >> "$user_home/.config/nvim/init.lua"
+	mkdir -p "$user_home/.config/nvim/lua/crilp"
 	echo "Done."
 }
 
@@ -201,10 +202,10 @@ run_stow() {
 	echo # Added to add newline for log file clarity
 
     # Clone my dotfiles
-    sudo rm -f $user_home/.config/konsolerc
-    cd $user_home/.dotfiles
+    sudo rm -f "$user_home/.config/konsolerc"
+    cd "$user_home/.dotfiles"
     stow .
-    cd $user_home
+    cd "$user_home"
 	echo "Done."
 }
 
@@ -226,7 +227,7 @@ dnf_uninstall() {
 cleanup() {
 	echo "Running final cleanup..."
     # Final cleanup
-    rm -rf $user_home/.dotfiles/.git
+    rm -rf "$user_home/.dotfiles/.git"
 	echo "Please close then reopen your terminal, then run nvim and change the defaults."
 }
 
