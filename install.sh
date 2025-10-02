@@ -172,7 +172,7 @@ btop_theme_install() {
     mkdir "$user_home/Downloads/btop"
     tar -xzf "$user_home/Downloads/btop.tar.gz" -C "$user_home/Downloads/btop"
     mkdir -p $user_home/.config/btop/themes
-    mv "$user_home/Downloads/btop/themes/catppuccin_mocha.theme" "$user_home/.config/btop/themes/catppuccin_mocha.theme"
+    mv "$user_home/Downloads/btop/themes/catppuccin_mocha.theme" "$user_home/.config/btop/themes/CatppuccinMocha.theme"
     rm -rf "$user_home/Downloads/btop*"
 	echo "Done."
 }
