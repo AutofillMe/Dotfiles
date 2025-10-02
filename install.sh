@@ -120,7 +120,7 @@ nerd_font_install() {
 	echo "Unzipping file..."
     unzip -q "$user_home/Downloads/Noto.zip" -d "$user_home/Downloads/Nerd-Noto/"
     sudo mkdir -p /usr/share/fonts/nerds-noto/
-    sudo mv "$user_home/Downloads/Nerd-Noto/*.ttf /usr/share/fonts/nerds-noto/"
+    sudo mv "$user_home/Downloads/Nerd-Noto/"*.ttf /usr/share/fonts/nerds-noto/
 
     rm -vf "$user_home/Downloads/Noto.zip"
     rm -rvf "$user_home/Downloads/Nerd-Noto/"
