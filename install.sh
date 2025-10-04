@@ -219,7 +219,6 @@ dnf_uninstall() {
 cleanup() {
 	echo "Running final cleanup..."
     # Final cleanup
-    rm -rf "$user_home/.dotfiles/.git"
 	echo "Please close then reopen your terminal, then run nvim and change the defaults."
 }
 
