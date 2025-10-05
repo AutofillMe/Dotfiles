@@ -1,26 +1,29 @@
 #!/usr/bin/env bash
 
-trap "echo 'Script interrupted. Exiting...'; exit 1" INT
-
-username="${SUDO_USER:-$(whoami)}"
-
-# Set up logging
-log_file="/home/$username/.dotfile-script.log"
-exec > >(tee "$log_file") 2>&1
+#----------------------------------------------------------
+# Stores functions used in install.sh
+#----------------------------------------------------------
 
 checkpoint() {
 	while true; do
 		read -rp "$1 [y/n]: " ans
 		case $ans in
-			[Yy]* ) break;;
-			[Nn]* ) exit 1;;
-			* ) echo "Please answer Y for Yes or N for No";;
+			[Yy]* ) break ;;
+			[Nn]* ) exit 1 ;;
+			* ) echo "Please answer Y for Yes or N for No" ;;
 		esac
 	done
 }
 
 valid_input_checkpoint() {
 	local tasks=("$@")
+
+	# Check if user selected any tasks at all
+	if [ ${#tasks[@]} -eq 0 ]; then
+		echo "No tasks selected. Exiting..."
+		exit 1
+	fi
+	
     # Validate user input to be a number and between 0 and 12
     local index
     for index in "${tasks[@]}"; do
@@ -30,12 +33,6 @@ valid_input_checkpoint() {
         fi
     done
 }
-
-# MAIN SCRIPT -----------------------------------------------------------------------------------------------
-# Make sure this is running on Nobara
-echo "This is a custom script for use in Nobara Linux 42.  I cannot guarantee it will work in other distros."
-
-checkpoint "Are you sure that you want to continue?"
 
 all_tasks() {
 	# All tasks placeholder
@@ -88,20 +85,19 @@ dnf_install() {
     )
 
     sudo dnf install -y "${dnfInstall[@]}"
-	echo "Done."
 }
 
 nerd_font_install() {
 	echo "Installing Nerd Font..."
     # Install Noto Nerdfont
-    curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip -o /home/$username/Downloads/Noto.zip
+    curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip -o "$user_home/Downloads/Noto.zip"
 	echo "Unzipping file..."
-    unzip -q /home/$username/Downloads/Noto.zip -d /home/$username/Downloads/Nerd-Noto/
-    sudo mkdir /usr/share/fonts/nerds-noto/
-    sudo mv /home/$username/Downloads/Nerd-Noto/*.ttf /usr/share/fonts/nerds-noto/
+    unzip -q "$user_home/Downloads/Noto.zip" -d "$user_home/Downloads/Nerd-Noto/"
+    sudo mkdir -p /usr/share/fonts/nerds-noto/
+    sudo mv "$user_home/Downloads/Nerd-Noto/"*.ttf /usr/share/fonts/nerds-noto/
 
-    rm -vf /home/$username/Downloads/Noto.zip
-    rm -rvf /home/$username/Downloads/Nerd-Noto/
+    rm -vf "$user_home/Downloads/Noto.zip"
+    rm -rvf "$user_home/Downloads/Nerd-Noto/"
 	echo "Done."
 }
 
@@ -123,37 +119,46 @@ font_check() {
 
 logout_delay() {
 	echo "Setting Logout Delay..."
-    # Chnage logout timer from 30 seconds to 5 seconds
+    # Change logout timer from 30 seconds to 5 seconds
     sudo sed -i.bak 's/property real timeout: *[0-9]\+/property real timeout: 5/' /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/logout/Logout.qml
+	
+	# Make sure the file is as expected
+	if ! grep -q "property real timeout: 5" /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/logout/Logout.qml; then
+   		echo "Warning: logout delay change may not have applied."
+	fi
+	
 	echo "Done."
 }
 
 rmtrash_install() {
 	echo "Installing rmtrash..."
     # Install rmtrash
-    git clone https://github.com/PhrozenByte/rmtrash /home/$username/Downloads/rmtrash/
-    sudo mv /home/$username/Downloads/rmtrash/* /usr/local/bin/
-    rm -rf /home/$username/Downloads/rmtrash/
+    git clone https://github.com/PhrozenByte/rmtrash "$user_home/Downloads/rmtrash/"
+    sudo install -m 755 "$user_home/Downloads/rmtrash/rmtrash" /usr/local/bin/
+    rm -rf "$user_home/Downloads/rmtrash/"
 	echo "Done."
 }
 
 btop_theme_install() {
 	echo "Installing btop Theme..."
     # Install btop theme
-    curl -L https://github.com/catppuccin/btop/releases/latest/download/themes.tar.gz -o /home/$username/Downloads/btop.tar.gz
-    mkdir /home/$username/Downloads/btop
-    tar -xzf /home/$username/Downloads/btop.tar.gz -C /home/$username/Downloads/btop
-    mkdir -p /home/$username/.config/btop/themes
-    mv /home/$username/Downloads/btop/themes/catppuccin_mocha.theme /home/$username/.config/btop/themes/catppuccin_mocha.theme
-    rm -rf /home/$username/Downloads/btop*
+    curl -L https://github.com/catppuccin/btop/releases/latest/download/themes.tar.gz -o "$user_home/Downloads/btop.tar.gz"
+    mkdir "$user_home/Downloads/btop"
+    tar -xzf "$user_home/Downloads/btop.tar.gz" -C "$user_home/Downloads/btop"
+    mkdir -p $user_home/.config/btop/themes
+    mv "$user_home/Downloads/btop/themes/catppuccin_mocha.theme" "$user_home/.config/btop/themes/CatppuccinMocha.theme"
+    rm -rf "$user_home/Downloads/btop*"
 	echo "Done."
 }
 
 NVChad_install() {
 	echo "Install NVChad"
     # NVChad Starter Install
-    git clone https://github.com/NvChad/starter /home/$username/.config/nvim
-    rm -rf /home/$username/.config/nvim/.git
+    git clone https://github.com/NvChad/starter "$user_home/.config/nvim"
+    rm -rf "$user_home/.config/nvim/.git"
+	# Add in custom maps and opts
+	echo 'require("crilp")' >> "$user_home/.config/nvim/init.lua"
+	mkdir -p "$user_home/.config/nvim/lua/crilp"
 	echo "Done."
 }
 
@@ -171,10 +176,10 @@ run_stow() {
 	echo # Added to add newline for log file clarity
 
     # Clone my dotfiles
-    sudo rm -f /home/$username/.config/konsolerc
-    cd /home/$username/.dotfiles
+    sudo rm -f "$user_home/.config/konsolerc"
+    cd "$user_home/.dotfiles"
     stow .
-    cd /home/$username
+    cd "$user_home"
 	echo "Done."
 }
 
@@ -187,57 +192,14 @@ dnf_uninstall() {
         neochat
         kate
         spectacle
+		plasma-systemmonitor
     )
 
     sudo dnf remove -y "${dnfRemove[@]}"
-	echo "Done."
 }
 
 cleanup() {
 	echo "Running final cleanup..."
     # Final cleanup
-    rm -rf /home/$username/.dotfiles/.git
-	echo "Please close then reopen konsole, then run nvim and change the defaults."
+	echo "Please close then reopen your terminal, then run nvim and change the defaults."
 }
-
-# Prompt which task checkpoint they would like to run
-echo "Which tasks would you like to execute?"
-echo "Provide the input as a spaced list of numbers."
-echo "0) All Tasks"
-echo "1) copr_install"
-echo "2) dnf_install"
-echo "3) nerd_font_install"
-echo "4) font_check"
-echo "5) logout_delay"
-echo "6) rmtrash_install"
-echo "7) btop_theme_install"
-echo "8) NVChad_install"
-echo "9) tealdeer_update"
-echo "10) run_stow"
-echo "11) dnf_uninstall"
-echo "12) cleanup"
-read -p "Enter your choice: " -a selected_tasks
-
-# Validate input: check if it's a number between 0 and 12
-valid_input_checkpoint "${selected_tasks[@]}"
-
-task_functions=(
-	all_tasks
-	copr_install
-	dnf_install
-	nerd_font_install
-	font_check
-	logout_delay
-	rmtrash_install
-	btop_theme_install
-	NVChad_install
-	tealdeer_update
-	run_stow
-	dnf_uninstall
-	cleanup
-)
-
-# Run tasks
-for index in "${selected_tasks[@]}"; do
-	"${task_functions[$index]}"
-done
