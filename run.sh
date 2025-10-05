@@ -201,5 +201,17 @@ dnf_uninstall() {
 cleanup() {
 	echo "Running final cleanup..."
     # Final cleanup
-	echo "Please close then reopen your terminal, then run nvim and change the defaults."
+	echo "Please close then reopen your terminal, then run nvim and change the default theme."
+	sleep 3
+	echo "Closing terminal in 3 seconds"
+	sleep 1
+	echo "3..."
+	sleep 1
+	echo "2..."
+	sleep 1
+	echo "1..."
+	sleep 1
+	echo "Exiting..."
+	sleep 2
+	exit
 }
