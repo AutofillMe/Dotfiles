@@ -14,7 +14,7 @@ user_home=$HOME
 echo "Running as user: $USER"
 echo "Home directory: $user_home"
 source "$user_home/.dotfiles/run.sh"
-checkpoint "Is the user and home directory correct? [y/n]"
+checkpoint "Is the user and home directory correct?"
 
 # Just in case it doesnt exist (It should)
 mkdir -p "$user_home/Downloads"
@@ -27,7 +27,7 @@ exec > >(tee "$log_file") 2>&1
 # Make sure this is running on Nobara
 echo "This is a custom script for use in Nobara Linux 42.  I cannot guarantee it will work in other distros."
 
-checkpoint "Are you sure that you want to continue? [y/n]"
+checkpoint "Are you sure that you want to continue?"
 
 echo
 
