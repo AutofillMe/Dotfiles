@@ -81,6 +81,9 @@ alias lta="lsd --tree -A --depth=4 --group-dirs=first"
 alias ldot="lsd -ld .* --group-dirs=first"
 alias rm="rmtrash"
 alias rmdir="rmdirtrash"
+alias dinstall="dnf install -y"
+alias dsearch="dnf search"
+alias dremove="dnf remove -y"
 
 # Exports
 export MANPAGER='nvim +Man!'
