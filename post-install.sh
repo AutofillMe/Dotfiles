@@ -23,3 +23,20 @@ chsh -s /usr/bin/zsh
 # Remove bash files
 rm -f ~/.bash*
 rm ~/.config/starship.toml
+
+# Exit and reboot
+echo "Rebooting in 5 seconds..."
+sleep 1
+echo "5..."
+sleep 1
+echo "4..."
+sleep 1
+echo "3..."
+sleep 1
+echo "2..."
+sleep 1
+echo "1..."
+sleep 1
+echo "Rebooting..."
+sleep 2
+reboot
