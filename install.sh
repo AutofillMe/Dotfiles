@@ -4,7 +4,7 @@ trap "echo 'Script interrupted. Exiting...'; exit 1" INT
 
 # Make sure the script is not being run as root, as it may have unintended consequences
 if [ "$EUID" -eq 0 ]; then
-    echo "Do not run this script as root or with sudo."
+    echo "Do not run this script as root or with sudo, as it may have unintended consequences."
     echo "Run it as a normal user instead."
     exit 1
 fi
