@@ -5,9 +5,9 @@ checkpoint() {
 		echo -n "$1 [y/n]: "
 		read ans
 		case $ans in
-			[Yy]* ) break;;
-			[Nn]* ) exit 1;;
-			* ) echo "Please answer Y for Yes or N for No";;
+			[Yy]* ) break ;;
+			[Nn]* ) exit 1 ;;
+			* ) echo "Please answer Y for Yes or N for No" ;;
 		esac
 	done
 }
