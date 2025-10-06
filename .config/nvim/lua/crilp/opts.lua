@@ -15,3 +15,18 @@ opt.colorcolumn = "80"
 opt.scrolloff = 8
 
 opt.updatetime = 50
+
+-- Sets how neovim will display certain whitespace characters in the editor.
+vim.o.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Preview substitutions live, as you type!
+vim.o.inccommand = 'split'
+
+-- Show which line your cursor is on
+vim.o.cursorline = true
+
+-- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+-- See `:help 'confirm'`
+vim.o.confirm = true
