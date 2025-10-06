@@ -36,10 +36,11 @@ checkpoint "Are you sure that you want to continue?"
 chsh -s /usr/bin/zsh
 
 # Fix NVChad configs and add python and c lsp and format
-sed -i 's/-- event/c\event = { "BufWritePre" },' $user_home/.config/nvim/lua/plugins/init.lua
+sed -i '/-- event/c\event = { "BufWritePre" },' $user_home/.config/nvim/lua/plugins/init.lua
 sed -i 's/-- //' $user_home/.config/nvim/lua/configs/conform.lua
-sed -i '/html = { "prettier" },/a\python = { "isort", "black" },\c = { "clang-format" },' $user_home/.config/nvim/lua/configs/conform.lua
-sed -i 's/"html", "cssls"/&, "pyright", "clangd"' $user_home/.config/nvim/lua/configs/lspconfig.lua
+sed -i '/html = { "prettier" },/a\    python = { "isort", "black" },\    c = { "clang-format" },' $user_home/.config/nvim/lua/configs/conform.lua
+sed -i 's/"html", "cssls"/&, "pyright", "clangd"/' $user_home/.config/nvim/lua/configs/lspconfig.lua
+sed -i 's/onedark/catppuccin/' $user_home/.config/nvim/lua/chadrc.lua
 
 # Remove bash files
 rm -f $user_home/.bash*
