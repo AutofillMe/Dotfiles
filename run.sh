@@ -152,7 +152,7 @@ btop_theme_install() {
 }
 
 NVChad_install() {
-	echo "Install NVChad"
+	echo "Installing NVChad"
     # NVChad Starter Install
     git clone https://github.com/NvChad/starter "$user_home/.config/nvim"
     rm -rf "$user_home/.config/nvim/.git"
