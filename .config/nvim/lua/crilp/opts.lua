@@ -13,3 +13,5 @@ opt.incsearch = true
 opt.colorcolumn = "80"
 
 opt.scrolloff = 8
+
+opt.updatetime = 50
