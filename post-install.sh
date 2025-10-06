@@ -1,9 +1,8 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 checkpoint() {
 	while true; do
-		echo -n "$1 [y/n]: "
-		read ans
+		read -rp "$1 [y/n]: " ans
 		case $ans in
 			[Yy]* ) break ;;
 			[Nn]* ) exit 1 ;;
@@ -11,6 +10,22 @@ checkpoint() {
 		esac
 	done
 }
+
+trap "echo 'Script interrupted. Exiting...'; exit 1" INT
+
+# Make sure the script is not being run as root, as it may have unintended consequences
+if [ "$EUID" -eq 0 ]; then
+    echo "Do not run this script as root or with sudo, as it may have unintended consequences."
+    echo "Run it as a normal user instead."
+    exit 1
+fi
+
+# Set user home directory and validates by printing to terminal
+user_home=$HOME
+echo "Running as user: $USER"
+echo "Home directory: $user_home"
+source "$user_home/.dotfiles/run.sh"
+checkpoint "Is the user and home directory correct?"
 
 # Make sure this is running on Nobara
 echo "Run this in Ghostty after running install.sh."
@@ -20,9 +35,15 @@ checkpoint "Are you sure that you want to continue?"
 # Change shell
 chsh -s /usr/bin/zsh
 
+# Fix NVChad configs and add python and c lsp and format
+sed -i 's/-- event/c\event = { "BufWritePre" },' $user_home/.config/nvim/lua/plugins/init.lua
+sed -i 's/-- //' $user_home/.config/nvim/lua/configs/conform.lua
+sed -i '/html = { "prettier" },/a\python = { "isort", "black" },\c = { "clang-format" },' $user_home/.config/nvim/lua/configs/conform.lua
+sed -i 's/"html", "cssls"/&, "pyright", "clangd"' $user_home/.config/nvim/lua/configs/lspconfig.lua
+
 # Remove bash files
-rm -f ~/.bash*
-rm ~/.config/starship.toml
+rm -f $user_home/.bash*
+rm $user_home/.config/starship.toml
 
 # Exit and reboot
 echo "Rebooting in 5 seconds..."
