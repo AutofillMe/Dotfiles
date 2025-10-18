@@ -39,7 +39,7 @@ chsh -s /usr/bin/zsh
 sed -i '/-- event/c\    event = { "BufWritePre" },' $user_home/.config/nvim/lua/plugins/init.lua
 sed -i $'0,/{/s|{|{\\\n  {\\\n    "folke/todo-comments.nvim",\\\n    event = "VimEnter",\\\n    dependencies = { "nvim-lua/plenary.nvim" },\\\n    opts = { signs = false }\n  },|' $user_home/.config/nvim/lua/plugins/init.lua
 sed -i 's/-- //' $user_home/.config/nvim/lua/configs/conform.lua
-sed -i '/html = { "prettier" },/a\    python = { "isort", "black" },\    c = { "clang-format" },' $user_home/.config/nvim/lua/configs/conform.lua
+sed -i '/html = { "prettier" },/a\    python = { "isort", "black" },\\\\n    c = { "clang-format" },' $user_home/.config/nvim/lua/configs/conform.lua
 sed -i 's/"html", "cssls"/&, "pyright", "clangd"/' $user_home/.config/nvim/lua/configs/lspconfig.lua
 sed -i 's/onedark/catppuccin/' $user_home/.config/nvim/lua/chadrc.lua
 
