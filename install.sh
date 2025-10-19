@@ -33,7 +33,7 @@ echo
 
 # Prompt which task checkpoint they would like to run
 echo "Which tasks would you like to execute?"
-echo "Provide the input as a spaced list of numbers."
+echo "Provide the input as a spaced list of numbers or just type 0 for all tasks."
 echo "0) All Tasks"
 echo "1) copr_install"
 echo "2) dnf_install"
