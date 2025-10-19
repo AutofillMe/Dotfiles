@@ -36,7 +36,7 @@ kcmshell6 componentchooser
 # Other Customizations
 - Remove Icon Bounce
 - Posy Cursor
-- Triangle Splash
+- WatchDogs Splash
 - Where is my SDDM
 - Disable Mouse Shake
 - Breeze Dark Theme
