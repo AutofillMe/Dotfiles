@@ -67,10 +67,12 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # Aliases
 alias zshrc="nvim ~/.zshrc"
+alias ..="cd .."
 alias c="clear"
 alias cat="bat -P"
 alias vim="nvim"
 alias vi="nvim"
+alias v="nvim"
 alias grep="rg"
 alias ls="lsd --group-dirs=first"
 alias la="lsd -A --group-dirs=first"
@@ -84,6 +86,7 @@ alias rmdir="rmdirtrash"
 alias dinstall="dnf install -y"
 alias dsearch="dnf search"
 alias dremove="dnf remove -y"
+alias gs="git status"
 
 # Exports
 export MANPAGER='nvim +Man!'
