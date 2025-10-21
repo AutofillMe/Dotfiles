@@ -201,9 +201,6 @@ dnf_uninstall() {
 cleanup() {
 	echo "Running final cleanup..."
 
-	# Change shell
-	chsh -s /usr/bin/zsh
-
 	# Final cleanup
 	echo "Please close then reopen your terminal, then run nvim and :MasonInstallAll."
 	sleep 3
