@@ -24,7 +24,6 @@ fi
 user_home=$HOME
 echo "Running as user: $USER"
 echo "Home directory: $user_home"
-source "$user_home/.dotfiles/run.sh"
 checkpoint "Is the user and home directory correct?"
 
 # Make sure this is running on Nobara
