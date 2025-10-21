@@ -1,3 +1,23 @@
+# XDG Exports
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_CACHE_HOME="$HOME"/.cache
+export XDG_STATE_HOME="$HOME"/.local/state
+
+# NPM Exports
+export NPM_CONFIG_INIT_MODULE="$XDG_CONFIG_HOME"/npm/config/npm-init.js
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
+export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR"/npm
+
+# Personal Exports
+export MANPAGER='nvim +Man!'
+
+# Move .zcompdump
+if [[ ! -d $XDG_CACHE_HOME/zsh ]]; then
+   mkdir -p XDG_CACHE_HOME"/zsh
+fi
+compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -42,8 +62,8 @@ bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
 # History
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
+HISTSIZE=10000
+HISTFILE="$HOME"/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
@@ -64,9 +84,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-
-# Exports
-export MANPAGER='nvim +Man!'
 
 # Aliases
 source ~/.aliases
