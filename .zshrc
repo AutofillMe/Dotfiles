@@ -12,12 +12,6 @@ export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR"/npm
 # Personal Exports
 export MANPAGER='nvim +Man!'
 
-# Move .zcompdump
-if [[ ! -d $XDG_CACHE_HOME/zsh ]]; then
-   mkdir -p "$XDG_CACHE_HOME"/zsh
-fi
-compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -50,8 +44,18 @@ zinit light Aloxaf/fzf-tab
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::sudo
 
-# Load completions
-autoload -Uz compinit && compinit
+# Load Completions
+autoload -Uz compinit
+
+# Move .zcompdump
+if [[ ! -d $XDG_CACHE_HOME/zsh ]]; then
+   mkdir -p "$XDG_CACHE_HOME"/zsh
+fi
+if [[ -n $ZDOTDIR && -f "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION" ]]; then
+  compinit -C -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+else
+  compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+fi
 
 zinit cdreplay -q
 
