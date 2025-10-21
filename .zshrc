@@ -68,6 +68,9 @@ eval "$(zoxide init --cmd cd zsh)"
 # Aliases
 alias zshrc="nvim ~/.zshrc"
 alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
 alias c="clear"
 alias cat="bat -P"
 alias vim="nvim"
@@ -87,6 +90,22 @@ alias dinstall="dnf install -y"
 alias dsearch="dnf search"
 alias dremove="dnf remove -y"
 alias gs="git status"
+alias reload="source ~/.zshrc"
+alias mkdir="mkdir -p"
+alias dl="cd ~/Downloads"
+
+# Print each PATH entry on a separate line (optionally pass -s to show blank lines)
+alias path='echo "$PATH" | tr ":" "\n"'
 
 # Exports
 export MANPAGER='nvim +Man!'
+
+# Functions
+note() {
+    if [ ! -f $HOME/notes.txt ]; then
+        touch $HOME/notes.txt
+    fi
+    echo "date: $(date)" >> $HOME/notes.txt
+    echo "$@" >> $HOME/notes.txt
+    echo ""
+}
