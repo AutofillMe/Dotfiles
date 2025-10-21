@@ -41,7 +41,7 @@ alias path='echo "$PATH" | tr ":" "\n"'
 
 # Functions ----------------------------------------------
 note() {
-    if [ ! -f $HOME/notes.txt ]; then
+    if [[ ! -f $HOME/notes.txt ]]; then
         touch $HOME/notes.txt
     fi
     echo "date: $(date)" >> $HOME/notes.txt
