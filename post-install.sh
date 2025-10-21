@@ -61,7 +61,7 @@ sed -i '0,/{/s|{|{\
         shfmt = {\
             prepend_args = { "-i", "4" },\
         },\
-    }|' $user_home/.config/nvim/lua/configs/conform.lua
+    },|' $user_home/.config/nvim/lua/configs/conform.lua
 
 # Remove bash files
 rm -f $user_home/.bash*
