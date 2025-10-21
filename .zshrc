@@ -67,3 +67,6 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # Exports
 export MANPAGER='nvim +Man!'
+
+# Aliases
+source ~/.aliases
