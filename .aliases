@@ -1,0 +1,50 @@
+# Aliases ----------------------------------------------
+# System
+alias zshrc="nvim ~/.zshrc"
+alias reload="source ~/.zshrc"
+alias c="clear"
+alias cat="bat -P"
+alias mkdir="mkdir -p"
+alias vim="nvim"
+alias vi="nvim"
+alias v="nvim"
+alias grep="rg"
+alias gs="git status"
+
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias dl="cd ~/Downloads"
+
+# ls
+alias ls="lsd --group-dirs=first"
+alias la="lsd -A --group-dirs=first"
+alias ll="lsd -lh --group-dirs=first"
+alias lla="lsd -lAh --group-dirs=first"
+alias lt="lsd --tree --depth=4 --group-dirs=first"
+alias lta="lsd --tree -A --depth=4 --group-dirs=first -I .git"
+alias ldot="lsd -ld .* --group-dirs=first"
+
+# rm
+alias rm="rmtrash"
+alias rmdir="rmdirtrash"
+
+# dnf
+alias dinstall="dnf install -y"
+alias dsearch="dnf search"
+alias dremove="dnf remove -y"
+
+# Print each PATH entry on a separate line (optionally pass -s to show blank lines)
+alias path='echo "$PATH" | tr ":" "\n"'
+
+# Functions ----------------------------------------------
+note() {
+    if [ ! -f $HOME/notes.txt ]; then
+        touch $HOME/notes.txt
+    fi
+    echo "date: $(date)" >> $HOME/notes.txt
+    echo "$@" >> $HOME/notes.txt
+    echo ""
+}
