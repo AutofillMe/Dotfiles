@@ -201,7 +201,11 @@ dnf_uninstall() {
 cleanup() {
 	echo "Running final cleanup..."
 
+	# Install flatpaks to replace removed packages
+	flatpak install --user app.zen_browser.zen -y
+	flatpak install --user io.missioncenter.MissionCenter -y
+
 	# Final cleanup
-	echo "Please close then reopen your terminal, then run nvim and :MasonInstallAll."
-	sleep 3
+	echo "Please close then reopen your terminal, then open nvim to let lazy run inital configurations."
+	sleep 2
 }
