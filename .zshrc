@@ -65,47 +65,5 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-# Aliases
-alias zshrc="nvim ~/.zshrc"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias c="clear"
-alias cat="bat -P"
-alias vim="nvim"
-alias vi="nvim"
-alias v="nvim"
-alias grep="rg"
-alias ls="lsd --group-dirs=first"
-alias la="lsd -A --group-dirs=first"
-alias ll="lsd -lh --group-dirs=first"
-alias lla="lsd -lAh --group-dirs=first"
-alias lt="lsd --tree --depth=4 --group-dirs=first"
-alias lta="lsd --tree -A --depth=4 --group-dirs=first -I .git"
-alias ldot="lsd -ld .* --group-dirs=first"
-alias rm="rmtrash"
-alias rmdir="rmdirtrash"
-alias dinstall="dnf install -y"
-alias dsearch="dnf search"
-alias dremove="dnf remove -y"
-alias gs="git status"
-alias reload="source ~/.zshrc"
-alias mkdir="mkdir -p"
-alias dl="cd ~/Downloads"
-
-# Print each PATH entry on a separate line (optionally pass -s to show blank lines)
-alias path='echo "$PATH" | tr ":" "\n"'
-
 # Exports
 export MANPAGER='nvim +Man!'
-
-# Functions
-note() {
-    if [ ! -f $HOME/notes.txt ]; then
-        touch $HOME/notes.txt
-    fi
-    echo "date: $(date)" >> $HOME/notes.txt
-    echo "$@" >> $HOME/notes.txt
-    echo ""
-}
