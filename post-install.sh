@@ -32,7 +32,7 @@ echo "Run this in Ghostty after running install.sh."
 checkpoint "Are you sure that you want to continue?"
 
 # Change shell
-# chsh -s /usr/bin/zsh
+chsh -s /usr/bin/zsh
 
 # Fix NVChad configs and add python and c lsp and format
 sed -i '/-- event/c\    event = { "BufWritePre" },' $user_home/.config/nvim/lua/plugins/init.lua
