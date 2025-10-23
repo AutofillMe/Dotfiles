@@ -13,15 +13,20 @@ fi
 user_home=$HOME
 echo "Running as user: $USER"
 echo "Home directory: $user_home"
-source "$user_home/.dotfiles/run.sh"
 checkpoint "Is the user and home directory correct?"
 
-# Just in case it doesnt exist (It should)
-mkdir -p "$user_home/Downloads"
+# Source all functions
+source "$user_home/.dotfiles/run.sh"
 
 # Set up logging
-log_file="$user_home/.dotfile-script.log"
-exec > >(tee "$log_file") 2>&1
+log_dir="$user_home/.cache/script-logs"
+mkdir -p "$log_dir"
+# Keep only the last 5 log files
+ls -t "$log_dir"/*.log 2>/dev/null | tail -n +6 | xargs -r rm --
+# Make log file
+timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+log_file="$log_dir/run-$timestamp.log"
+exec > >(tee >(awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0 >> "'"$log_file"'"; fflush(); }')) 2>&1
 
 # MAIN SCRIPT -----------------------------------------------------------------------------------------------
 # Make sure this is running on Nobara
