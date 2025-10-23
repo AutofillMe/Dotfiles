@@ -1,5 +1,9 @@
 local opt = vim.opt
 
+vim.scriptencoding = "utf-8"
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
+
 opt.tabstop = 4
 opt.softtabstop = 4
 opt.shiftwidth = 4
@@ -7,7 +11,9 @@ opt.expandtab = true
 
 opt.smartindent = true
 
-opt.hlsearch = false
+opt.backup = false
+
+opt.hlsearch = true
 opt.incsearch = true
 
 opt.colorcolumn = "80"
