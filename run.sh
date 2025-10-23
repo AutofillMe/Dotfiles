@@ -205,6 +205,10 @@ cleanup() {
 	flatpak install --user app.zen_browser.zen -y
 	flatpak install --user io.missioncenter.MissionCenter -y
 
+	# Change default term to ghostty
+	sed -i '/TerminalApplication/c\TerminalApplication=/usr/bin/ghostty --gtk-single-instance=true' $user_home/.config/kdeglobals
+	sed -i '/TerminalService/c\Terminalservice=com.mitchellh.ghotty.desktop' $user_home/.config/kdeglobals
+
 	# Final cleanup
 	echo "Please close then reopen your terminal, then open nvim to let lazy run inital configurations."
 	sleep 2
