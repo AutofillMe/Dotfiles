@@ -3,5 +3,5 @@ post-install.sh
 \.git
 run.sh
 ogami_leaves.jpg
-^/README*$
-^/LICENSE*$
+README.md
+LICENSE
