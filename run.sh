@@ -82,6 +82,8 @@ dnf_install() {
         mpv
         btop
         flameshot
+		lolcat
+		figlet
     )
 
     sudo dnf install -y "${dnfInstall[@]}"
