@@ -1,4 +1,4 @@
 shell-integration = zsh
-theme = "Catppuccin Mocha"
+theme = Catppuccin-Mocha.conf
 font-family = "NotoSans NF Reg"
 confirm-close-surface = false
