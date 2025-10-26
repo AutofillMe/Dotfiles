@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 -- Blackhole
-map("n", "x", '"_x')
+map("n", "x", '"_x', { desc = "Cut letter to void" })
 
 -- Ctrl + s to save work
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save" })
