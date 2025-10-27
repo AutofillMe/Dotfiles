@@ -20,25 +20,6 @@ checkpoint() {
 	done
 }
 
-valid_input_checkpoint() {
-	local tasks=("$@")
-
-	# Check if user selected any tasks at all
-	if [ ${#tasks[@]} -eq 0 ]; then
-		echo "No tasks selected. Exiting..."
-		exit 2
-	fi
-	
-    # Validate user input to be a number and between 0 and 12
-    local index
-    for index in "${tasks[@]}"; do
-        if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index > 12 )); then
-            echo "Invalid task number: $index"
-            exit 3
-        fi
-    done
-}
-
 all_tasks() {
 	# All tasks placeholder
 	echo "Running all tasks..."
