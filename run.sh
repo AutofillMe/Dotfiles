@@ -72,6 +72,7 @@ dnf_install() {
 		figlet
 		git-delta
 		fd-find
+		tokei
     )
 
     sudo dnf install -y "${dnfInstall[@]}"
