@@ -5,3 +5,14 @@
 	email = 113013764+AutofillMe@users.noreply.github.com
 [core]
     editor = nvim
+	pager = delta
+[interactive]
+	difffilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true
+	side-by-side = true
+[merge]
+	conflictStyle = zdiff3
+[diff]
+	colorMoved = default
