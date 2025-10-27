@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 
+script_version="1.0"
+
 trap "echo 'Script interrupted. Exiting...'; exit 1" INT
+
+for i in "$@"; do
+    case $i in
+        -v|--version ) echo "crilp's Nobara setup script ver. $script_version"; exit 0 ;;
+        -h|--help ) echo "idk man"; exit 0 ;;
+        * ) echo "Unknown option: $i"; exit 1 ;;
+    esac
+done
 
 # Make sure the script is not being run as root, as it may have unintended consequences
 if [ "$EUID" -eq 0 ]; then
