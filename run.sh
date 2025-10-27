@@ -84,6 +84,8 @@ dnf_install() {
         flameshot
 		lolcat
 		figlet
+		git-delta
+		fd-find
     )
 
     sudo dnf install -y "${dnfInstall[@]}"
