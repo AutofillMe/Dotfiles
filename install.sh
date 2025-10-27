@@ -92,3 +92,5 @@ fi
 for index in "${selected_tasks[@]}"; do
 	"${task_functions[$index]}"
 done
+
+echo "Script completed.  Took $SECONDS seconds to complete."
