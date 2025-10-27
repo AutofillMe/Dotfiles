@@ -6,7 +6,7 @@ validate_input() {
 	# Check if user selected any tasks at all
 	if [ ${#tasks[@]} -eq 0 ]; then
 		echo "No tasks selected. Exiting..."
-		exit 2
+		exit 1
 	fi
 	
     # Validate user input to be a number and between 0 and 12
@@ -14,7 +14,7 @@ validate_input() {
     for index in "${tasks[@]}"; do
         if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index > 12 )); then
             echo "Invalid task number: $index"
-            exit 3
+            exit 1
         fi
     done
 }
@@ -100,8 +100,8 @@ if [[ " ${selected_tasks[*]} " =~ " 0 " ]]; then
 fi
 
 # Run tasks
-for index in "${selected_tasks[@]}"; do
-	"${task_functions[$index]}"
+for task_index in "${selected_tasks[@]}"; do
+	"${task_functions[${task_index}]}"
 done
 
-echo "Script completed.  Took $SECONDS seconds to complete."
+echo "Script completed.  Took ${SECONDS} seconds to complete."
