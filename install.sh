@@ -87,7 +87,7 @@ echo "Provide the input as a spaced list of numbers or just type 0 for all tasks
 count=1
 for task in ${task_functions[@]}; do
 	echo "${count}) ${task}"
-	((count++)
+	((count++))
 done
 read -rp "Enter your choice: " -a selected_tasks
 
