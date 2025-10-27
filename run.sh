@@ -4,6 +4,11 @@
 # Stores functions used in install.sh
 #----------------------------------------------------------
 
+confirm() {
+	read -rp "${1:-Are you sure? [y/N]} " ans
+	[[ "$ans" =~ ^([yY][eE][sS]|[yY])$ ]]
+}
+
 checkpoint() {
 	while true; do
 		read -rp "$1 [y/n]: " ans
@@ -21,7 +26,7 @@ valid_input_checkpoint() {
 	# Check if user selected any tasks at all
 	if [ ${#tasks[@]} -eq 0 ]; then
 		echo "No tasks selected. Exiting..."
-		exit 1
+		exit 2
 	fi
 	
     # Validate user input to be a number and between 0 and 12
@@ -29,7 +34,7 @@ valid_input_checkpoint() {
     for index in "${tasks[@]}"; do
         if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index > 12 )); then
             echo "Invalid task number: $index"
-            exit 1
+            exit 3
         fi
     done
 }
