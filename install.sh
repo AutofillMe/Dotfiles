@@ -42,7 +42,6 @@ fi
 user_home=$HOME
 echo "Running as user: $USER"
 echo "Home directory: $user_home"
-checkpoint "Is the user and home directory correct?"
 
 # Source all functions
 source "$user_home/.dotfiles/run.sh"
