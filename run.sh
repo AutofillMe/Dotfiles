@@ -196,11 +196,13 @@ cleanup() {
 	flatpak install --user app.zen_browser.zen -y
 	flatpak install --user io.missioncenter.MissionCenter -y
 
-	# Change default term to ghostty
-	sed -i '/TerminalApplication/c\TerminalApplication=/usr/bin/ghostty --gtk-single-instance=true' $user_home/.config/kdeglobals
-	sed -i '/TerminalService/c\Terminalservice=com.mitchellh.ghotty.desktop' $user_home/.config/kdeglobals
+	# Change default term to ghostty (not working)
+	# sed -i '/TerminalApplication/c\TerminalApplication=/usr/bin/ghostty --gtk-single-instance=true' ${user_home}/.config/kdeglobals
+	# sed -i '/TerminalService/c\Terminalservice=com.mitchellh.ghotty.desktop' ${user_home}/.config/kdeglobals
+
+	# Select new defaults
+	kcmshell6 componentchooser
 
 	# Final cleanup
-	echo "Please close then reopen your terminal, then open nvim to let lazy run inital configurations."
-	sleep 2
+	echo "Rebooting, then open neovim and run :MasonInstallAll."
 }
