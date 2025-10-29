@@ -83,7 +83,7 @@ task_functions=(
 
 echo "Which tasks would you like to execute?"
 echo "Provide the input as a spaced list of numbers or just type 0 for all tasks."
-count=1
+count=0
 for task in ${task_functions[@]}; do
 	echo "${count}) ${task}"
 	((count++))
