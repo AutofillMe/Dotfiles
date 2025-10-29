@@ -33,13 +33,6 @@ cat ~/.ssh/id_rsa.pub
 ```
 and copy and paste into GitHub
 
-
-# Fix Right-Click Terminal to Ghostty and Other Defaults
-
-```
-kcmshell6 componentchooser
-```
-
 # Other Customizations
 - Remove Icon Bounce
 - Posy Cursor
