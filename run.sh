@@ -72,6 +72,7 @@ dnf_install() {
         git-delta
         fd-find
         tokei
+        vlc
     )
 
     sudo dnf install -y "${dnfInstall[@]}"
