@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
 checkpoint() {
-	while true; do
-		read -rp "$1 [y/n]: " ans
-		case ${ans} in
-			[Yy]* ) break ;;
-			[Nn]* ) exit 1 ;;
-			* ) echo "Please answer Y for Yes or N for No" ;;
-		esac
-	done
+    while true; do
+        read -rp "$1 [y/n]: " ans
+        case ${ans} in
+        [Yy]*) break ;;
+        [Nn]*) exit 1 ;;
+        *) echo "Please answer Y for Yes or N for No" ;;
+        esac
+    done
 }
 
 trap "echo 'Script interrupted. Exiting...'; exit 1" INT
 
 # Make sure the script is not being run as root, as it may have unintended consequences
 if [ "${EUID}" -eq 0 ]; then
-    echo "Do not run this script as root or with sudo, as it may have unintended consequences."
-    echo "Run it as a normal user instead."
+    echo "Do not run this script as root or with sudo, as it may have unintended consequences." >&2
+    echo "Run it as a normal user instead." >&2
     exit 1
 fi
 

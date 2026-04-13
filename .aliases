@@ -1,3 +1,4 @@
+# vim: set filetype=zsh:
 # Aliases ----------------------------------------------
 # System
 alias zshrc="nvim ~/.zshrc"
@@ -12,6 +13,8 @@ alias v="nvim"
 alias grep="rg"
 alias gs="git status"
 alias ff="fastfetch"
+alias py="python3"
+alias python="python3"
 
 # Navigation
 alias ..="cd .."
@@ -21,18 +24,13 @@ alias .....="cd ../../../.."
 alias dl="cd ~/Downloads"
 
 # ls
-alias ls="lsd --group-dirs=first"
-alias la="lsd -A --group-dirs=first"
-alias ll="lsd -lh --group-dirs=first"
-alias lla="lsd -lAh --group-dirs=first"
-alias lt="lsd --tree --depth=4 --group-dirs=first"
-alias lta="lsd --tree -A --depth=4 --group-dirs=first -I .git"
-alias ldot="lsd -ld .* --group-dirs=first"
-alias lf="yazi"
-
-# rm
-alias rm="rmtrash"
-alias rmdir="rmdirtrash"
+alias ls="lsd --group-dirs=first -I .DS_Store"
+alias la="lsd -A --group-dirs=first -I .DS_Store"
+alias ll="lsd -lh --group-dirs=first -I .DS_Store"
+alias lla="lsd -lAh --group-dirs=first -I .DS_Store"
+alias lt="lsd --tree --depth=4 --group-dirs=first -I .DS_Store"
+alias lta="lsd --tree -A --depth=4 --group-dirs=first -I .git -I .DS_Store"
+alias ldot="lsd -ld .* --group-dirs=first -I .DS_Store"
 
 # dnf
 alias dinstall="dnf install -y"
@@ -99,3 +97,5 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+alias lf="y"

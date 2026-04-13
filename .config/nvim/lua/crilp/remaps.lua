@@ -10,6 +10,10 @@ map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save" })
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Stay center when searching
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+
 -- Paste without replace
 map("x", "<leader>p", [["_dP]], { desc = "Paste without replace" })
 
@@ -23,7 +27,7 @@ map("n", "<leader>z", "<cmd>!chmod +x %<CR>", { silent = true, desc = "chmod +x 
 
 -- goto definition split from @ProgrammingHeadache
 map("n", "gs", function()
-    vim.cmd("vsplit")
-    vim.cmd("wincmd l")
-    vim.lsp.buf.definition()
-  end, { desc = "Goto Def and Split" })
+	vim.cmd("vsplit")
+	vim.cmd("wincmd l")
+	vim.lsp.buf.definition()
+end, { desc = "Goto Def and Split" })
