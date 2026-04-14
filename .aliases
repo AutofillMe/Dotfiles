@@ -15,6 +15,7 @@ alias gs="git status"
 alias ff="fastfetch"
 alias py="python3"
 alias python="python3"
+alias rm='echo "EMERGENCY USE ONLY"; false'
 
 # Navigation
 alias ..="cd .."
