@@ -1,18 +1,8 @@
 # Dotfiles
-Stores dotfiles for use with GNU stow
+Stores dotfiles for use with GNU stow on Nobara Linux 43 (Fedora)
 
-# Clone Repo
-Download repo after setting up SSH
-
-```
-git clone git@github.com:AutofillMe/Dotfiles.git ~/.dotfiles
-```
-
-or via HTTPS
-
-```
-git clone https://github.com/AutofillMe/Dotfiles.git ~/.dotfiles
-```
+**!!!WARNING!!!**
+This is built for use in Fedora (dnf) based distros and has configs specific to Nobara 43.  I cannot guaruntee that it will work on any other distro, or even newer versions of Nobara.
 
 # Setup SSH
 To generate a SSH key in order to be able to clone this repo, first on local machine:
@@ -33,10 +23,23 @@ cat ~/.ssh/id_rsa.pub
 ```
 and copy and paste into GitHub
 
-# Other Customizations
-- Remove Icon Bounce
-- Posy Cursor
-- WatchDogs Splash
-- Where is my SDDM
-- Disable Mouse Shake
-- Breeze Dark Theme
+# Clone Repo
+Download repo after setting up SSH
+
+```
+git clone git@github.com:AutofillMe/Dotfiles.git ~/.dotfiles
+```
+
+or via HTTPS
+
+```
+git clone https://github.com/AutofillMe/Dotfiles.git ~/.dotfiles
+```
+
+# Other Customization Automation TODO:
+- [ ] Remove Icon Bounce
+- [ ] Posy Cursor
+- [ ] WatchDogs Splash
+- [ ] Where is my SDDM
+- [ ] Disable Mouse Shake
+- [ ] Breeze Dark Theme
