@@ -2,3 +2,4 @@ shell-integration = zsh
 theme = Catppuccin-Mocha.conf
 font-family = "NotoSans NF Reg"
 confirm-close-surface = false
+shell-integration-features = ssh-env,ssh-terminfo
