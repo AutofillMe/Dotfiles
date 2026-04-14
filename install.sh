@@ -9,10 +9,10 @@ validate_input() {
         exit 1
     fi
 
-    # Validate user input to be a number and between 0 and 11
+    # Validate user input to be a number and between 0 and 10
     local index
     for index in "${tasks[@]}"; do
-        if ! [[ "$index" =~ ^[0-9]+$ ]] || ((index < 0 || index > 11)); then
+        if ! [[ "$index" =~ ^[0-9]+$ ]] || ((index < 0 || index > 10)); then
             echo "Invalid task number: $index" >&2
             exit 1
         fi
@@ -115,7 +115,6 @@ task_functions=(
     nerd_font_install
     font_check
     logout_delay
-    btop_theme_install
     NVChad_install
     tealdeer_update
     run_stow
@@ -132,7 +131,7 @@ for task in ${task_functions[@]}; do
 done
 read -rp "Enter your choice: " -a selected_tasks
 
-# Validate input: check if it's a number between 0 and 12
+# Validate input: check if it's a number between 0 and 10
 validate_input "${selected_tasks[@]}"
 
 # If user selects 0 and other tasks, changes selected task to just 0 to reduce redundancy
