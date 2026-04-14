@@ -29,7 +29,6 @@ all_tasks() {
     nerd_font_install
     font_check
     logout_delay
-    btop_theme_install
     NVChad_install
     tealdeer_update
     run_stow
@@ -118,18 +117,6 @@ logout_delay() {
         echo "Warning: logout delay change may not have applied." >&2
     fi
 
-    echo "Done."
-}
-
-btop_theme_install() {
-    echo "Installing btop Theme..."
-    # Install btop theme
-    curl -L https://github.com/catppuccin/btop/releases/latest/download/themes.tar.gz -o "$user_home"/Downloads/btop.tar.gz
-    mkdir "$user_home"/Downloads/btop
-    tar -xzf "$user_home"/Downloads/btop.tar.gz -C "$user_home"/Downloads/btop
-    mkdir -p "$user_home"/.config/btop/themes
-    mv "$user_home"/Downloads/btop/themes/catppuccin_mocha.theme "$user_home"/.config/btop/themes/CatppuccinMocha.theme
-    rm -rf "$user_home"/Downloads/btop*
     echo "Done."
 }
 
