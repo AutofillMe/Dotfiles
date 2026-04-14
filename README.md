@@ -1,7 +1,7 @@
 # Dotfiles
 Stores dotfiles for use with GNU stow on Nobara Linux 43 (Fedora)
 
-**!!!WARNING!!!**
+**!!!WARNING!!!** \
 This is built for use in Fedora (dnf) based distros and has configs specific to Nobara 43.  I cannot guaruntee that it will work on any other distro, or even newer versions of Nobara.
 
 # Setup SSH
