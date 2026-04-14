@@ -52,8 +52,9 @@ note() {
     local OPTIND OPTARG opt
     while getopts ":c:" opt; do
         case "$opt" in
-            c) local steps=${OPTARG}; note_chop steps; return ;;
-            *) echo "invalid option"; return 1 ;;
+            c) note_chop ${OPTARG}; return ;;
+            :) echo "Missing argument for -${OPTARG}"; return ;;
+            \?) echo "Invalid argument -${OPTARG}"; return 1 ;;
         esac
     done
     shift $((OPTIND - 1))
@@ -81,7 +82,7 @@ note_chop() {
     total=$(wc -l < "$HOME/notes.txt")
 
     # If file is shorter then empty it
-    if (( total <= skip )); then
+    if (( skip >= total )); then
         : > "$HOME/notes.txt"
         return 0
     fi
