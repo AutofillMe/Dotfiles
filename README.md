@@ -36,10 +36,13 @@ or via HTTPS
 git clone https://github.com/AutofillMe/Dotfiles.git ~/.dotfiles
 ```
 
-# Other Customization Automation TODO:
+# Other Customization Automation:
+
+> TODO
+
 - [ ] Remove Icon Bounce
-- [ ] Posy Cursor
-- [ ] WatchDogs Splash
-- [ ] Where is my SDDM
+- [ ] Download & Install Posy Cursor
+- [ ] Download & Install WatchDogs Splash
+- [ ] Download & Install Where is my SDDM
 - [ ] Disable Mouse Shake
 - [ ] Breeze Dark Theme
