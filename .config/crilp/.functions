@@ -1,0 +1,71 @@
+note() {
+    # Check if file exits
+    if [[ ! -f $HOME/notes.txt ]]; then
+        touch $HOME/notes.txt
+    fi
+
+    # Parse clear options
+    local OPTIND OPTARG opt
+    while getopts ":c:" opt; do
+        case "$opt" in
+            c) note_chop ${OPTARG}; return ;;
+            :) echo "Missing argument for -${OPTARG}"; return ;;
+            \?) echo "Invalid argument -${OPTARG}"; return 1 ;;
+        esac
+    done
+    shift $((OPTIND - 1))
+    
+    # If no args are passed, cats notes
+    if [[ $# -eq 0 ]]; then
+        cat $HOME/notes.txt
+        return
+    fi
+
+    # Add notes
+    echo "date: $(date)" >> $HOME/notes.txt
+    echo "$@" >> $HOME/notes.txt
+    echo
+}
+
+note_chop() {
+    local items=$1
+
+    # Calculate how many lines to skip
+    local skip=$(( items * 2 ))
+
+    # Count total lines
+    local total
+    total=$(wc -l < "$HOME/notes.txt")
+
+    # If file is shorter then empty it
+    if (( skip >= total )); then
+        : > "$HOME/notes.txt"
+        return
+    fi
+
+    # Otherwise skip N lines safely
+    tail -n +"$((skip + 1))" "$HOME/notes.txt" > "$HOME/notes.tmp" &&
+    mv "$HOME/notes.tmp" "$HOME/notes.txt"
+}
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+swap() {
+    # Make sure only 2 files are being swapped
+    if [[ $# -ne 2 ]]; then
+        echo "Can only swap 2 files"
+        echo "Usage:"
+        echo "    swap <path/to/file1> <path/to/file2>"
+        return
+    fi
+
+    local file1=$1
+    local file2=$2
+    mv "${file1}" "$PWD/file1.tmp" && mv "${file2}" "${file1}" && mv "$PWD/file1.tmp" "${file2}"
+}
