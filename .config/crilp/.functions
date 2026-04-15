@@ -1,3 +1,4 @@
+# vim: set filetype=zsh:
 note() {
     # Check if file exits
     if [[ ! -f $HOME/notes.txt ]]; then
