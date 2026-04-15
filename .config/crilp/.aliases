@@ -1,0 +1,36 @@
+# vim: set filetype=zsh:
+# System
+alias zshrc="nvim ~/.zshrc"
+alias reload="source ~/.zshrc"
+alias c="clear"
+alias cat="bat -P"
+alias mkdir="mkdir -p"
+alias n="nvim"
+alias vim="nvim"
+alias vi="nvim"
+alias v="nvim"
+alias grep="rg"
+alias gs="git status"
+alias ff="fastfetch"
+alias py="python3"
+alias python="python3"
+# alias rm='echo "EMERGENCY USE ONLY"; false'
+
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias dl="cd ~/Downloads"
+
+# ls
+alias ls="lsd --group-dirs=first -I .DS_Store"
+alias la="lsd -A --group-dirs=first -I .DS_Store"
+alias ll="lsd -lh --group-dirs=first -I .DS_Store"
+alias lla="lsd -lAh --group-dirs=first -I .DS_Store"
+alias lt="lsd --tree --depth=4 --group-dirs=first -I .DS_Store"
+alias lta="lsd --tree -A --depth=4 --group-dirs=first -I .git -I .DS_Store"
+alias ldot="lsd -ld .* --group-dirs=first -I .DS_Store"
+
+# Print each PATH entry on a separate line (optionally pass -s to show blank lines)
+alias path='echo "$PATH" | tr ":" "\n"'
