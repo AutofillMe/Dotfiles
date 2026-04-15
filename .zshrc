@@ -90,5 +90,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-# Aliases
-source ~/.aliases
+# Source my Aliases and Functions
+source ${HOME}/.config/crilp/.functions
+source ${HOME}/.config/crilp/.aliases
