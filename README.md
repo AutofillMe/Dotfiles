@@ -46,3 +46,4 @@ git clone https://github.com/AutofillMe/Dotfiles.git ~/.dotfiles
 - [ ] Download & Install Where is my SDDM
 - [ ] Disable Mouse Shake
 - [ ] Breeze Dark Theme
+- [ ] Add kzones
