@@ -103,6 +103,10 @@ exec > >(
 # Make sure this is running on Nobara
 echo "This is a custom script for use in Nobara Linux (Fedora).  I cannot guarantee it will work in other distros."
 
+if ! command -v dnf &>/dev/null; then
+    echo "Could not find command: dnf.  This will break many of the tasks in this script."
+fi
+
 checkpoint "Are you sure that you want to continue?"
 
 echo
