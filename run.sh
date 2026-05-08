@@ -74,11 +74,7 @@ dnf_install() {
         vlc
     )
 
-    if command -v dnf &>/dev/null; then
-        sudo dnf install -y "${dnfInstall[@]}"
-    else
-        echo "Could not find command: dnf.  No packages were installed."
-    fi
+    sudo dnf install -y "${dnfInstall[@]}"
 }
 
 nerd_font_install() {
