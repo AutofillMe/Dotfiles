@@ -91,5 +91,5 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 # Source my Aliases and Functions
-source ${HOME}/.config/crilp/.functions
-source ${HOME}/.config/crilp/.aliases
+source ${XDG_CONFIG_HOME}/crilp/.functions
+source ${XDG_CONFIG_HOME}/crilp/.aliases
