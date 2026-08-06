@@ -54,7 +54,7 @@ while getopts ":hv-:" opt; do
                     echo "Unknown option: -$OPTARG" >&2
                     exit 1
                     ;;
-            esac
+            esac ;;
         :)
             echo "Missing argument for -$OPTARG" >&2
             exit 1
