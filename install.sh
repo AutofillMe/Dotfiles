@@ -23,7 +23,7 @@ show_help() {
     echo "Usage: install.sh [-h] [-v] [--help] [--version]"
 }
 
-script_version="1.2"
+script_version="1.4"
 
 trap "echo 'Script interrupted. Exiting...'; exit 1" INT
 
@@ -89,14 +89,19 @@ ls -t "$log_dir"/*.log 2>/dev/null | tail -n +6 | xargs -r rm --
 # Make log file
 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 log_file="$log_dir/$timestamp.log"
+# Save original stdout/stderr for logging
+exec 3>&1 4>&2
+# Redirect stdout
 exec > >(
-  awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush(); }' \
-  | tee -a "$log_file"
-) \
-2> >(
-  awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush(); }' \
-  | tee -a "$log_file" \
-  | awk '{ print "\033[31m" $0 "\033[0m"; fflush(); }' >&2
+    tee >(
+        awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush(); }' >> "$log_file"
+    ) >&3
+)
+# Redirect stderr
+exec 2> >(
+    tee >(
+        awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush(); }' >> "$log_file"
+    ) | awk '{ print "\033[31m" $0 "\033[0m"; fflush(); }' >&4
 )
 
 # MAIN SCRIPT -----------------------------------------------------------------------------------------------
