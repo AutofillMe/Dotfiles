@@ -5,17 +5,19 @@
 #----------------------------------------------------------
 
 confirm() {
-    read -rp "${1:-Are you sure? [y/N]} " ans
+    printf "%s" "${1:-Are you sure? [Y/N]} "
+    read -r ans
     [[ "$ans" =~ ^([yY][eE][sS]|[yY])$ ]]
 }
 
 checkpoint() {
     while true; do
-        read -rp "$1 [y/n]: " ans
+        printf "%s [y/n]: " "$1"
+        read -r ans
         case $ans in
-        [Yy]*) break ;;
-        [Nn]*) exit 1 ;;
-        *) echo "Please answer Y for Yes or N for No" ;;
+            [Yy]*) break ;;
+            [Nn]*) exit 1 ;;
+            *) echo "Please answer Y for Yes or N for No" ;;
         esac
     done
 }
