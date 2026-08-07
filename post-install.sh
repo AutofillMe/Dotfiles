@@ -36,6 +36,7 @@ chsh -s /usr/bin/zsh
 
 # Fix NVChad configs and add python and c lsp and format
 sed -i '/-- event/c\    event = { "BufWritePre" },' ${user_home}/.config/nvim/lua/plugins/init.lua
+# Add todo-comments
 sed -i '0,/{/s|{|{\
   {\
     "folke/todo-comments.nvim",\
@@ -43,6 +44,15 @@ sed -i '0,/{/s|{|{\
     dependencies = { "nvim-lua/plenary.nvim" },\
     opts = { signs = false }\
   },|' ${user_home}/.config/nvim/lua/plugins/init.lua
+# Add live-server
+sed -i '0,/{/s|{|{\
+  {\
+        "barrettruth/live-server.nvim",\
+        cmd = { "LiveServer", "LiveServerStart", "LiveServerStop", "LiveServerToggle" },\
+        config = function()\
+            vim.g.live_server = {}\
+        end,\
+    },|' ${user_home}/.config/nvim/lua/plugins/init.lua
 sed -i 's/-- //' ${user_home}/.config/nvim/lua/configs/conform.lua
 sed -i '/html = { "prettier" },/a\        python = { "isort", "black" },\n\        c = { "clang-format" },\n\        cpp = { "clang-format" },\n\        sh = { "shfmt" },' ${user_home}/.config/nvim/lua/configs/conform.lua
 sed -i 's/"html", "cssls"/&, "pyright", "clangd"/' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
