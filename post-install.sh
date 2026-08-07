@@ -53,6 +53,19 @@ sed -i '0,/{/s|{|{\
             vim.g.live_server = {}\
         end,\
     },|' ${user_home}/.config/nvim/lua/plugins/init.lua
+# Add tree-sitter context
+sed -i '0,/{/s|{|{\
+  {\
+        "nvim-treesitter/nvim-treesitter-context",\
+        event = "BufRead",\
+        config = function()\
+            require("treesitter-context").setup {\
+                enable = true,\
+                max_lines = 5,\
+                mode = "cursor",\
+            }\
+        end,\
+    },|' ${user_home}/.config/nvim/lua/plugins/init.lua
 sed -i 's/-- //' ${user_home}/.config/nvim/lua/configs/conform.lua
 sed -i '/html = { "prettier" },/a\        python = { "isort", "black" },\n\        c = { "clang-format" },\n\        cpp = { "clang-format" },\n\        sh = { "shfmt" },' ${user_home}/.config/nvim/lua/configs/conform.lua
 sed -i 's/"html", "cssls"/&, "pyright", "clangd"/' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
