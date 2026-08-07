@@ -183,5 +183,5 @@ cleanup() {
     kcmshell6 componentchooser
 
     # Final cleanup
-    echo "Rebooting, then open neovim and run :MasonInstallAll."
+    echo "Please reboot, then open neovim and run :MasonInstallAll."
 }
