@@ -37,3 +37,7 @@ map("n", "gs", function()
     vim.cmd "wincmd l"
     vim.lsp.buf.definition()
 end, { desc = "LSP Goto Def and Split" })
+
+-- live-server
+map("n", "<leader>lss", "<cmd>LiveServerStart %<CR>", { silent = true, desc = "Start Live Server" })
+map("n", "<leader>lst", "<cmd>LiveServerStop %<CR>", { silent = true, desc = "Start Live Server" })
