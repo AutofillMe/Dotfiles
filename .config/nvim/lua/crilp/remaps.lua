@@ -41,3 +41,8 @@ end, { desc = "LSP Goto Def and Split" })
 -- live-server
 map("n", "<leader>lss", "<cmd>LiveServerStart %<CR>", { silent = true, desc = "Start Live Server" })
 map("n", "<leader>lst", "<cmd>LiveServerStop %<CR>", { silent = true, desc = "Start Live Server" })
+
+-- treesitter-context
+map("n", "<leader>tc", function()
+    require("treesitter-context").toggle()
+end, { desc = "Toggle Treesitter Context" })
