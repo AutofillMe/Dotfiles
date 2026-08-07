@@ -125,8 +125,12 @@ logout_delay() {
 NVChad_install() {
     echo "Installing NVChad"
     # NVChad Starter Install
-    git clone https://github.com/NvChad/starter "$user_home"/.config/nvim
-    rm -rf "$user_home"/.config/nvim/.git
+    if git clone --single-branch -q https://github.com/NvChad/starter "$user_home"/.config/nvim; then
+        rm -rf "$user_home"/.config/nvim/.git
+    else
+        echo "Failed to clone $repo" >&2
+        return 1
+    fi
     # Add in custom maps and opts
     echo 'require("crilp")' >>"$user_home"/.config/nvim/init.lua
     mkdir -p "$user_home"/.config/nvim/lua/crilp
@@ -147,7 +151,6 @@ run_stow() {
     echo # Added to add newline for log file clarity
 
     # Clone my dotfiles
-    sudo rm -f "$user_home"/.config/konsolerc
     cd "$user_home"/.dotfiles
     stow .
     cd "$user_home"
