@@ -1,8 +1,8 @@
 # Dotfiles
-Stores dotfiles for use with GNU stow on Nobara Linux 43 (Fedora)
+Stores dotfiles for use with GNU stow on Nobara Linux 42 (Fedora)
 
 > [!Caution]
-> This is built for use in Fedora (dnf) based distros and has configs specific to Nobara 43.  I cannot guaruntee that it will work on any other distro, or even newer versions of Nobara.
+> This is built for use in Fedora (dnf) based distros and has configs specific to Nobara 42.  I cannot guaruntee that it will work on any other distro, or even newer versions of Nobara.
 
 # Setup SSH
 To generate a SSH key in order to be able to clone this repo, first on local machine:
