@@ -86,6 +86,9 @@ sed -i '0,/{/s|{|{\
         },\
     },|' ${user_home}/.config/nvim/lua/configs/conform.lua
 
+# npm should be installed by now...need to double check later
+npm install -g tree-sitter-cli
+
 # Remove bash files
 rm -f ${user_home}/.bash*
 rm ${user_home}/.config/starship.toml
