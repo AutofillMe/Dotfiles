@@ -87,7 +87,10 @@ echo "Running as user: $USER"
 echo "Home directory: $user_home"
 
 # Source all functions
-source "$user_home/.dotfiles/run.sh"
+source "$user_home/.dotfiles/run.sh" || {
+    echo "Failed to source $user_home/.dotfiles/run.sh" >&2
+    exit 1
+}
 
 # Set up logging
 log_dir="$user_home/.cache/script-logs"
