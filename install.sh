@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-script_version="1.5"
+script_version="1.6"
 
 validate_input() {
     local tasks=("$@")
     
     # Last arg is the index count, pop and assign to own var
-    local count="${tasks[-1]}"
+    local max_index="${tasks[-1]}"
     tasks=("${tasks[@]:0:${#tasks[@]}-1}") # Re-index array
 
     # Check if user selected any tasks at all
@@ -18,7 +18,7 @@ validate_input() {
     # Validate user input to be a number and between 0 and count
     local index
     for index in "${tasks[@]}"; do
-        if ! [[ "$index" =~ ^[0-9]+$ ]] || ((index < 0 || index > $count )); then
+        if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index > max_index )); then
             echo "Invalid task number: $index" >&2
             exit 1
         fi
@@ -141,16 +141,16 @@ task_functions=(
 
 echo "Which tasks would you like to execute?"
 echo "Provide the input as a spaced list of numbers or just type 0 for all tasks."
-count=0
-for task in ${task_functions[@]}; do
-    echo "${count}) ${task}"
-    ((count++))
+max_index=-1
+for task in "${task_functions[@]}"; do
+    (( max_index++ ))
+    echo "${max_index}) ${task}"
 done
 printf "Enter your choice: "
 read -r -a selected_tasks
 
-# Validate input: check if it's a number between 0 and count (set above)
-validate_input "${selected_tasks[@]}" "$count"
+# Validate input: check if it's a number between 0 and max_index (set above)
+validate_input "${selected_tasks[@]}" "$max_index"
 
 # If user selects 0 and other tasks, changes selected task to just 0 to reduce redundancy
 if [[ " ${selected_tasks[*]} " =~ " 0 " ]]; then
