@@ -7,7 +7,7 @@ validate_input() {
     
     # Last arg is the index count, pop and assign to own var
     local max_index="${tasks[-1]}"
-    tasks=("${tasks[@]:0:${#tasks[@]}-1}") # Re-index array
+    tasks=("${tasks[@]:0:$(( ${#tasks[@]} - 1 ))}") # Re-index array
 
     # Check if user selected any tasks at all
     if [ ${#tasks[@]} -eq 0 ]; then
