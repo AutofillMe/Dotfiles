@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+script_version="1.5"
+
 validate_input() {
     local tasks=("$@")
     
@@ -24,10 +26,12 @@ validate_input() {
 }
 
 show_help() {
-    echo "Usage: install.sh [-h] [-v] [--help] [--version]"
+    echo "Usage: install.sh"
+    echo "            -h [--help]:"
+    echo "                show help"
+    echo "            -v [--version]:"
+    echo "                show version"
 }
-
-script_version="1.4"
 
 trap "echo 'Script interrupted. Exiting...'; exit 1" INT
 
