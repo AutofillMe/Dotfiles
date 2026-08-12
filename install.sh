@@ -2,6 +2,10 @@
 
 validate_input() {
     local tasks=("$@")
+    
+    # Last arg is the index count, pop and assign to own var
+    local count="${tasks[-1]}"
+    tasks=("${tasks[@]:0:${#tasks[@]}-1}") # Re-index array
 
     # Check if user selected any tasks at all
     if [ ${#tasks[@]} -eq 0 ]; then
@@ -9,10 +13,10 @@ validate_input() {
         exit 1
     fi
 
-    # Validate user input to be a number and between 0 and 10
+    # Validate user input to be a number and between 0 and count
     local index
     for index in "${tasks[@]}"; do
-        if ! [[ "$index" =~ ^[0-9]+$ ]] || ((index < 0 || index > 10)); then
+        if ! [[ "$index" =~ ^[0-9]+$ ]] || ((index < 0 || index > $count )); then
             echo "Invalid task number: $index" >&2
             exit 1
         fi
@@ -47,11 +51,11 @@ while getopts ":hv-:" opt; do
                     exit 0
                     ;;
                 :)
-                    echo "Missing argument for -$OPTARG" >&2
+                    echo "Missing argument for --$OPTARG" >&2
                     exit 1
                     ;;
                 \?)
-                    echo "Unknown option: -$OPTARG" >&2
+                    echo "Unknown option: --$OPTARG" >&2
                     exit 1
                     ;;
             esac ;;
@@ -138,10 +142,11 @@ for task in ${task_functions[@]}; do
     echo "${count}) ${task}"
     ((count++))
 done
-read -rp "Enter your choice: " -a selected_tasks
+printf "Enter your choice: "
+read -r -a selected_tasks
 
-# Validate input: check if it's a number between 0 and 10
-validate_input "${selected_tasks[@]}"
+# Validate input: check if it's a number between 0 and count (set above)
+validate_input "${selected_tasks[@]}" "$count"
 
 # If user selects 0 and other tasks, changes selected task to just 0 to reduce redundancy
 if [[ " ${selected_tasks[*]} " =~ " 0 " ]]; then
