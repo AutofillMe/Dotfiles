@@ -15,10 +15,10 @@ validate_input() {
         exit 1
     fi
 
-    # Validate user input to be a number and between 0 and max_index - 1 (due to 0 indexed list)
+    # Validate user input to be a number and between 0 and max_index
     local index
     for index in "${tasks[@]}"; do
-        if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index > (( max_index - 1 )) )); then
+        if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index > max_index )); then
             echo "Invalid task number: $index" >&2
             exit 1
         fi
@@ -149,6 +149,7 @@ for task in "${task_functions[@]}"; do
     echo "${max_index}) ${task}"
     (( max_index++ ))
 done
+(( max_index-- )) # Retain zero-indexed count
 printf "Enter your choice: "
 read -r -a selected_tasks
 
