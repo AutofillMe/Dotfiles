@@ -41,8 +41,8 @@ all_tasks() {
 copr_install() {
     echo "Adding needed COPR repos..."
     # Add needed COPRs
-    sudo dnf copr enable lihaohong/yazi -y
-    sudo dnf copr enable scottames/ghostty -y
+    sudo dnf copr enable lihaohong/yazi -y >&3
+    sudo dnf copr enable scottames/ghostty -y >&3
     echo "Done."
 }
 
@@ -76,13 +76,13 @@ dnf_install() {
         vlc
     )
 
-    sudo dnf install -y "${dnfInstall[@]}"
+    sudo dnf install -y "${dnfInstall[@]}" >&3
 }
 
 nerd_font_install() {
     echo "Installing Nerd Font..."
     # Install Noto Nerdfont
-    curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip -o "$user_home"/Downloads/Noto.zip
+    curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip -o "$user_home"/Downloads/Noto.zip >&3
     echo "Unzipping file..."
     unzip -q "$user_home"/Downloads/Noto.zip -d "$user_home"/Downloads/Nerd-Noto/
     sudo mkdir -p /usr/share/fonts/nerds-noto/
@@ -141,7 +141,7 @@ tealdeer_update() {
     echo "Running tealdeer init..."
 
     # Quick tealdeer update
-    tldr --update
+    tldr --update >&3
     echo "Done."
 }
 
@@ -169,7 +169,7 @@ dnf_uninstall() {
         plasma-systemmonitor
     )
 
-    sudo dnf remove -y "${dnfRemove[@]}"
+    sudo dnf remove -y "${dnfRemove[@]}" >&3
 }
 
 cleanup() {
