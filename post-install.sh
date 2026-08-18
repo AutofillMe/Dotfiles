@@ -66,6 +66,15 @@ sed -i '0,/{/s|{|{\
             }\
         end,\
     },|' ${user_home}/.config/nvim/lua/plugins/init.lua
+sed -i '0,/{/s|{|{\
+  {\
+        "folke/which-key.nvim",\
+        event = "VeryLazy",\
+        opts = function()\
+            dofile(vim.g.base46_cache .. "whichkey")\
+            return {}\
+        end,\
+    },|' ${user_home}/.config/nvim/lua/plugins/init.lua
 sed -i 's/-- //' ${user_home}/.config/nvim/lua/configs/conform.lua
 sed -i '/html = { "prettier" },/a\        python = { "isort", "black" },\n\        c = { "clang-format" },\n\        cpp = { "clang-format" },\n\        sh = { "shfmt" },' ${user_home}/.config/nvim/lua/configs/conform.lua
 sed -i 's/"html", "cssls"/&, "pyright", "clangd"/' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
