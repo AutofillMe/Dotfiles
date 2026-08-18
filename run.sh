@@ -77,6 +77,7 @@ dnf_install() {
     )
 
     sudo dnf install -y "${dnfInstall[@]}" >&3
+    echo "Done"
 }
 
 nerd_font_install() {
