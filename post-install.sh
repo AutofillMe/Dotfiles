@@ -98,12 +98,12 @@ sed -i 's/"html", "cssls"/&, "pyrefly", "clangd"/' ${user_home}/.config/nvim/lua
 sed -i 's/onedark/catppuccin/' ${user_home}/.config/nvim/lua/chadrc.lua
 
 # npm should be installed by now...need to double check later
-npm install -g tree-sitter-cli
+sudo npm install -g tree-sitter-cli
 
 # Remove bash files
-rm -f ${user_home}/.bash*
-rm ${user_home}/.config/starship.toml
-rm ${user_home}/.zcompdump
+sudo rm -f ${user_home}/.bash*
+sudo rm ${user_home}/.config/starship.toml
+sudo rm ${user_home}/.zcompdump
 
 # Exit and reboot
 echo "Rebooting in 5 seconds..."
