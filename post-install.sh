@@ -87,7 +87,13 @@ sed -i 's/"html", "css"/&, "c", "cpp", "python"/' ${user_home}/.config/nvim/lua/
 
 # other nvim files -------------------------------------------------------------------------------------
 sed -i 's/-- //' ${user_home}/.config/nvim/lua/configs/conform.lua
-sed -i '/html = { "prettier" },/a\        python = { "ruff-format" },\n\        c = { "clang-format" },\n\        cpp = { "clang-format" },\n\        sh = { "beautysh" },' ${user_home}/.config/nvim/lua/configs/conform.lua
+sed -i '/html = { "prettier" },/a\
+        python = { "ruff-format" },\
+        c = { "clang-format" },\
+        cpp = { "clang-format" },\
+        sh = { "beautysh" },\
+        json = { "jq" },\
+        jsonc = { "jq" },'${user_home}/.config/nvim/lua/configs/conform.lua
 sed -i 's/"html", "cssls"/&, "pyrefly", "clangd"/' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
 sed -i 's/onedark/catppuccin/' ${user_home}/.config/nvim/lua/chadrc.lua
 
