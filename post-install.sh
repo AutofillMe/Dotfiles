@@ -46,12 +46,9 @@ sed -i '0,/{/s|{|{\
   },|' ${user_home}/.config/nvim/lua/plugins/init.lua
 # Add live-server
 sed -i '0,/{/s|{|{\
-  {\
+    {\
         "barrettruth/live-server.nvim",\
         cmd = { "LiveServer", "LiveServerStart", "LiveServerStop", "LiveServerToggle" },\
-        config = function()\
-            vim.g.live_server = {}\
-        end,\
     },|' ${user_home}/.config/nvim/lua/plugins/init.lua
 # Add tree-sitter context
 sed -i '0,/{/s|{|{\
@@ -66,6 +63,7 @@ sed -i '0,/{/s|{|{\
             }\
         end,\
     },|' ${user_home}/.config/nvim/lua/plugins/init.lua
+# initialize whichkey to show on first space bar press
 sed -i '0,/{/s|{|{\
   {\
         "folke/which-key.nvim",\
@@ -76,8 +74,8 @@ sed -i '0,/{/s|{|{\
         end,\
     },|' ${user_home}/.config/nvim/lua/plugins/init.lua
 sed -i 's/-- //' ${user_home}/.config/nvim/lua/configs/conform.lua
-sed -i '/html = { "prettier" },/a\        python = { "isort", "black" },\n\        c = { "clang-format" },\n\        cpp = { "clang-format" },\n\        sh = { "shfmt" },' ${user_home}/.config/nvim/lua/configs/conform.lua
-sed -i 's/"html", "cssls"/&, "pyright", "clangd"/' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
+sed -i '/html = { "prettier" },/a\        python = { "ruff" },\n\        c = { "clang-format" },\n\        cpp = { "clang-format" },\n\        sh = { "shfmt" },' ${user_home}/.config/nvim/lua/configs/conform.lua
+sed -i 's/"html", "cssls"/&, "pyrefly", "clangd"/' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
 sed -i 's/onedark/catppuccin/' ${user_home}/.config/nvim/lua/chadrc.lua
 sed -i '0,/{/s|{|{\
   formatters = {\
