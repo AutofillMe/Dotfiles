@@ -103,17 +103,10 @@ log_file="$log_dir/$timestamp.log"
 # Save original stdout/stderr for logging
 exec 3>&1 4>&2
 # Redirect stdout
-exec > >(
-    tee >(
-        awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush(); }' >> "$log_file"
-    ) >&3
-)
+exec > >(tee >(awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush() }' >> "$log_file") >&3)
 # Redirect stderr
-exec 2> >(
-    tee >(
-        awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush(); }' >> "$log_file"
-    ) | awk '{ print "\033[31m" $0 "\033[0m"; fflush(); }' >&4
-)
+exec 2> >(tee >(awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush() }' >> "$log_file") >&4)
+
 
 # MAIN SCRIPT -----------------------------------------------------------------------------------------------
 # Make sure this is running on Nobara
