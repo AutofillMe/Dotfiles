@@ -39,6 +39,7 @@ chsh -s /usr/bin/zsh
 sed -i '/-- event/c\    event = { "BufWritePre", "BufNewFile" },' ${user_home}/.config/nvim/lua/plugins/init.lua
 sed -i '/-- test/d' ${user_home}/.config/nvim/lua/plugins/init.lua
 sed -i '/-- { import/d' ${user_home}/.config/nvim/lua/plugins/init.lua
+sed -i '/-- These/d' ${user_home}/.config/nvim/lua/plugins/init.lua
 
 # Add todo-comments
 sed -i '0,/{/s|{|{\
