@@ -94,7 +94,7 @@ sed -i '/html = { "prettier" },/a\
         cpp = { "clang-format" },\
         sh = { "beautysh" },\
         json = { "jq" },\
-        jsonc = { "jq" },'${user_home}/.config/nvim/lua/configs/conform.lua
+        jsonc = { "jq" },' ${user_home}/.config/nvim/lua/configs/conform.lua
 sed -i 's/"html", "cssls"/&, "pyrefly", "clangd"/' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
 sed -i 's/onedark/catppuccin/' ${user_home}/.config/nvim/lua/chadrc.lua
 
@@ -103,8 +103,6 @@ sudo npm install -g tree-sitter-cli
 
 # Remove bash files
 sudo rm -f ${user_home}/.bash*
-sudo rm ${user_home}/.config/starship.toml
-sudo rm ${user_home}/.zcompdump
 
 # Exit and reboot
 echo "Rebooting in 5 seconds..."
