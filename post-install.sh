@@ -34,8 +34,12 @@ checkpoint "Are you sure that you want to continue?"
 # Change shell
 chsh -s /usr/bin/zsh
 
-# Fix NVChad configs and add python and c lsp and format
-sed -i '/-- event/c\    event = { "BufWritePre" },' ${user_home}/.config/nvim/lua/plugins/init.lua
+# plugins/init.lua ------------------------------------------------------------------------------------------------
+# clean plugins/init.lua and enable format on save
+sed -i '/-- event/c\    event = { "BufWritePre", "BufNewFile" },' ${user_home}/.config/nvim/lua/plugins/init.lua
+sed -i '/-- test/d' ${user_home}/.config/nvim/lua/plugins/init.lua
+sed -i '/-- { import/d' ${user_home}/.config/nvim/lua/plugins/init.lua
+
 # Add todo-comments
 sed -i '0,/{/s|{|{\
   {\
@@ -44,15 +48,17 @@ sed -i '0,/{/s|{|{\
     dependencies = { "nvim-lua/plenary.nvim" },\
     opts = { signs = false }\
   },|' ${user_home}/.config/nvim/lua/plugins/init.lua
+  
 # Add live-server
 sed -i '0,/{/s|{|{\
     {\
         "barrettruth/live-server.nvim",\
         cmd = { "LiveServer", "LiveServerStart", "LiveServerStop", "LiveServerToggle" },\
     },|' ${user_home}/.config/nvim/lua/plugins/init.lua
+
 # Add tree-sitter context
 sed -i '0,/{/s|{|{\
-  {\
+    {\
         "nvim-treesitter/nvim-treesitter-context",\
         event = "BufRead",\
         config = function()\
@@ -63,6 +69,7 @@ sed -i '0,/{/s|{|{\
             }\
         end,\
     },|' ${user_home}/.config/nvim/lua/plugins/init.lua
+
 # initialize whichkey to show on first space bar press
 sed -i '0,/{/s|{|{\
   {\
@@ -73,25 +80,16 @@ sed -i '0,/{/s|{|{\
             return {}\
         end,\
     },|' ${user_home}/.config/nvim/lua/plugins/init.lua
+
+# enable treesitter and add python, c, cpp
+sed -i 's/-- //' ${user_home}/.config/nvim/lua/plugins/init.lua
+sed -i 's/"html", "css"/&, "c", "cpp", "python"/' ${user_home}/.config/nvim/lua/plugins/init.lua
+
+# other nvim files -------------------------------------------------------------------------------------
 sed -i 's/-- //' ${user_home}/.config/nvim/lua/configs/conform.lua
-sed -i '/html = { "prettier" },/a\        python = { "ruff" },\n\        c = { "clang-format" },\n\        cpp = { "clang-format" },\n\        sh = { "shfmt" },' ${user_home}/.config/nvim/lua/configs/conform.lua
+sed -i '/html = { "prettier" },/a\        python = { "ruff-format" },\n\        c = { "clang-format" },\n\        cpp = { "clang-format" },\n\        sh = { "beautysh" },' ${user_home}/.config/nvim/lua/configs/conform.lua
 sed -i 's/"html", "cssls"/&, "pyrefly", "clangd"/' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
 sed -i 's/onedark/catppuccin/' ${user_home}/.config/nvim/lua/chadrc.lua
-sed -i '0,/{/s|{|{\
-  formatters = {\
-        ["clang-format"] = {\
-            prepend_args = { "--style={IndentWidth: 4, TabWidth: 4}" },\
-        },\
-        prettier = {\
-            prepend_args = { "--use-tabs", "false", "--tab-width", "4" },\
-        },\
-        stylua = {\
-            prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" },\
-        },\
-        shfmt = {\
-            prepend_args = { "-i", "4" },\
-        },\
-    },|' ${user_home}/.config/nvim/lua/configs/conform.lua
 
 # npm should be installed by now...need to double check later
 npm install -g tree-sitter-cli
