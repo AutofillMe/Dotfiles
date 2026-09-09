@@ -97,6 +97,7 @@ sed -i '/html = { "prettier" },/a\
         jsonc = { "jq" },' ${user_home}/.config/nvim/lua/configs/conform.lua
 sed -i 's/"html", "cssls"/&, "pyrefly", "clangd"/' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
 sed -i 's/onedark/catppuccin/' ${user_home}/.config/nvim/lua/chadrc.lua
+sed -i 's/indent_width = 2/indent_width = 4/' ${user_home}/.config/nvim/.stylua..toml
 
 # npm should be installed by now...need to double check later
 sudo npm install -g tree-sitter-cli
