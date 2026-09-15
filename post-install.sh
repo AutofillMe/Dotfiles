@@ -45,9 +45,9 @@ sed -i '/-- These/d' ${user_home}/.config/nvim/lua/plugins/init.lua
 sed -i '0,/{/s|{|{\
   {\
     "folke/todo-comments.nvim",\
-    event = "VimEnter",\
+    event = { "BufReadPost", "BufNewFile" },\
     dependencies = { "nvim-lua/plenary.nvim" },\
-    opts = { signs = false }\
+    opts = {}\
   },|' ${user_home}/.config/nvim/lua/plugins/init.lua
   
 # Add live-server
