@@ -89,7 +89,7 @@ sed -i 's/"html", "css"/&, "c", "cpp", "python"/' ${user_home}/.config/nvim/lua/
 # other nvim files -------------------------------------------------------------------------------------
 sed -i 's/-- //' ${user_home}/.config/nvim/lua/configs/conform.lua
 sed -i '/html = { "prettier" },/a\
-        python = { "ruff" },\
+        python = { "ruff_organize_imports", "ruff_format" },\
         c = { "clang-format" },\
         cpp = { "clang-format" },\
         sh = { "beautysh" },\
