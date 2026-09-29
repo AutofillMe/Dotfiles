@@ -17,6 +17,8 @@ map({ "n", "o" }, "<leader>d", [["_d]], { desc = "General delete letter to void"
 -- Auto-Tabbed move selected line(s)
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "General Smart move line(s) down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "General Smart move line(s) up" })
+map("v", "<Tab>", ">gv", { desc = "General Indent selection" })
+map("v", "<S-Tab>", "<gv", { desc = "General Unindent selection" })
 map("n", "n", "nzzzv", { desc = "General Search stay centered next" })
 map("n", "N", "Nzzzv", { desc = "General Search stay centered previous" })
 
