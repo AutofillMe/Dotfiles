@@ -72,5 +72,5 @@ swap() {
 
     tmp=$(mktemp) || return 1
 
-    mv "$file1" "$tmp" && mv "$file2" "$file1" && mv "$tmp" "$file2"
+    mv -- "$file1" "$tmp" && mv -- "$file2" "$file1" && mv -- "$tmp" "$file2"
 }
