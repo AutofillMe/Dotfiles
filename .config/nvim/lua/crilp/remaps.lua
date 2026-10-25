@@ -9,7 +9,7 @@ map("n", "Q", "@@")
 
 -- Blackhole
 map("n", "x", '"_x', { desc = "General Cut letter to void" })
-map({ "n", "o" }, "<leader>d", [["_d]], { desc = "General delete letter to void" })
+map({ "n", "v" }, "<leader>d", [["_d]], { desc = "General delete letter to void" })
 
 -- Ctrl + s to save work
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save" })
@@ -31,7 +31,7 @@ map("n", "<leader>Y", [["+Y]], { desc = "General Yank line to system buffer" })
 
 -- Cool tools from @ThePrimeagen
 map("n", "<leader>rr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "CMD Find and Replace" })
-map("n", "<leader>z", "<cmd>!chmod +x %<CR>", { silent = true, desc = "CMD chmod +x <file>" })
+map("n", "<leader>rx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "CMD chmod +x <file>" })
 
 -- goto definition split from @ProgrammingHeadache
 map("n", "gs", function()
@@ -48,3 +48,14 @@ map("n", "<leader>lst", "<cmd>LiveServerStop %<CR>", { silent = true, desc = "St
 map("n", "<leader>tc", function()
     require("treesitter-context").toggle()
 end, { desc = "Toggle Treesitter Context" })
+
+-- fix vsplit
+map("n", "<leader>v", function()
+    local width = vim.api.nvim_win_get_width(0)
+
+    require("nvchad.term").new { pos = "vsp" }
+
+    vim.schedule(function()
+        vim.cmd("vertical resize " .. math.floor(width / 2))
+    end)
+end, { desc = "Terminal new vertical term" })
