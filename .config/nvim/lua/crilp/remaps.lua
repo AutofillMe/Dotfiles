@@ -41,8 +41,8 @@ map("n", "gs", function()
 end, { desc = "LSP Goto Def and Split" })
 
 -- live-server
-map("n", "<leader>lss", "<cmd>LiveServerStart %<CR>", { silent = true, desc = "Start Live Server" })
-map("n", "<leader>lst", "<cmd>LiveServerStop %<CR>", { silent = true, desc = "Start Live Server" })
+map("n", "<leader>lss", "<cmd>LiveServerStart %<CR>", { silent = true, desc = "Live-server Start Live Server" })
+map("n", "<leader>lst", "<cmd>LiveServerStop %<CR>", { silent = true, desc = "Live-server Stop Live Server" })
 
 -- treesitter-context
 map("n", "<leader>tc", function()
