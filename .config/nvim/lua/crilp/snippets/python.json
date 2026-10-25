@@ -48,7 +48,7 @@
 			"        print(f\"Script finished at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} (Total time elapsed: {elapsed})\")",
 			"",
 			"if __name__ == \"__main__\":",
-			"    main()",
+			"    main()"
 		],
 		"description": "Python starter boilerplate with signal handling and argparse"
 	},
@@ -56,5 +56,5 @@
         "prefix": "#env",
         "body": "#!/usr/bin/env python$0",
         "description": "Shebang line for the first python in PATH"
-    },
+    }
 }
