@@ -1,4 +1,9 @@
 require("crilp.opts")
 require("crilp.remaps")
 require("crilp.autocmd")
-vim.g.vscode_snippets_path = vim.fn.stdpath("config") .. "/snippets"
+
+local snippets_path = vim.fn.stdpath("config") .. "/lua/custom/snippets"
+
+require("luasnip.loaders.from_vscode").load({
+  paths = { snippets_path },
+})
