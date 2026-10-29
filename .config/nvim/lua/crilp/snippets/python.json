@@ -2,6 +2,7 @@
 	"Python Default Boilerplate": {
 		"prefix": "pybase",
 		"body": [
+			"#!/usr/bin/env python3.15",
 			"import argparse",
 			"import signal",
 			"lazy from datetime import datetime",
@@ -25,7 +26,7 @@
 			"    parser.add_argument(",
 			"        \"--debug\",",
 			"        action=\"store_true\",",
-			"        help=\"Enable debug mode\"",
+			"        help=\"<optional: NOARGS> Enable debug mode\"",
 			"    )",
 			"",
 			"    return parser.parse_args()",
