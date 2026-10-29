@@ -95,6 +95,17 @@ sed -i '/html = { "prettier" },/a\
         sh = { "beautysh" },\
         json = { "jq" },\
         jsonc = { "jq" },' ${user_home}/.config/nvim/lua/configs/conform.lua
+sed -i '/defaults()/a\
+\
+vim.lsp.config("ruff", {\
+    init_options = {\
+        settings = {\
+            lint = {\
+                ignore = { "BLE001" },\
+            },\
+        },\
+    },\
+})' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
 sed -i 's/"html", "cssls"/&, "ruff", "clangd"/' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
 sed -i 's/onedark/catppuccin/' ${user_home}/.config/nvim/lua/chadrc.lua
 sed -i 's/indent_width = 2/indent_width = 4/' ${user_home}/.config/nvim/.stylua.toml
