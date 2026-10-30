@@ -15,6 +15,7 @@
 			"def signal_handler(sig, frame) -> None:",
 			"    print(\"\\nInterrupted by user. Exiting gracefully...\")",
 			"    if DEBUG:",
+			"        print(f\"Signal: {signal.Signals(sig).name}\")", 
 			"        print(f\"Function: {frame.f_code.co_name}\")",
 			"        print(f\"Line: {frame.f_lineno}\")",
 			"        print(f\"Local vars: {frame.f_locals}\")",
