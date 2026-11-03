@@ -74,3 +74,27 @@ swap() {
 
     mv -- "$file1" "$tmp" && mv -- "$file2" "$file1" && mv -- "$tmp" "$file2"
 }
+
+cl_copy() {
+    if [[ -f /proc/version ]] && grep -iq Microsoft /proc/version; then
+        cat | /mnt/c/Windows/System32/clip.exe
+    else
+        case "$(uname -s)" in
+            Linux*)     cat | xclip -selection clipboard ;;
+            Darwin*)    cat | pbcopy ;;
+            CYGWIN*)    cat > /dev/clipboard ;;
+        esac
+    fi
+}
+
+cl_paste() {
+    if [[ -f /proc/version ]] && grep -iq Microsoft /proc/version; then
+        /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe Get-Clipboard | sed 's/\r//'
+    else
+        case "$(uname -s)" in
+            Linux*)     xclip -selection clipboard -o ;;
+            Darwin*)    pbpaste ;;
+            CYGWIN*)    cat /dev/clipboard ;;
+        esac
+    fi
+}
