@@ -35,3 +35,10 @@ alias lf="y"
 
 # Print each PATH entry on a separate line (optionally pass -s to show blank lines)
 alias path='echo "$PATH" | tr ":" "\n"'
+
+# Global Aliases
+alias -g NE='2>/dev/null'
+alias -g DN='> /dev/null'
+alias -g NUL='>/dev/null 2>&1'
+alias -g JQ='| jq'
+alias -g C='| pbcopy'
