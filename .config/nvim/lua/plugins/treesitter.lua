@@ -2,6 +2,7 @@
 ---@return string
 local function gh(repo) return "https://github.com/" .. repo end
 
+-- Treesitter
 vim.pack.add { { src = gh "nvim-treesitter/nvim-treesitter", version = "main" } }
 
 local parsers =
@@ -56,6 +57,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- Text Objects
 vim.pack.add { gh "nvim-treesitter/nvim-treesitter-textobjects" }
 require("nvim-treesitter-textobjects").setup {
     select = {
@@ -66,4 +68,10 @@ require("nvim-treesitter-textobjects").setup {
             ["if"] = "@function.inner",
         },
     },
+}
+
+-- Treesitter Context
+vim.pack.add { gh "nvim-treesitter/nvim-treesitter-context" }
+require("treesitter-context").setup {
+    mode = 'topline',
 }
