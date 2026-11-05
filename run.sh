@@ -123,18 +123,10 @@ logout_delay() {
     echo "Done."
 }
 
-NVChad_install() {
-    echo "Installing NVChad"
+neovim_prep() {
+    echo "Prepping Neovim install..."
     # NVChad Starter Install
-    if git clone --single-branch -q https://github.com/NvChad/starter "$user_home"/.config/nvim; then
-        rm -rf "$user_home"/.config/nvim/.git
-    else
-        echo "Failed to clone $repo"
-        return 1
-    fi
-    # Add in custom maps and opts
-    echo 'require("crilp")' >>"$user_home"/.config/nvim/init.lua
-    mkdir -p "$user_home"/.config/nvim/lua/crilp
+    mkdir -p ~/.config/nvim/
     echo "Done."
 }
 
