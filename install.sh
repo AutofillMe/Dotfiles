@@ -160,3 +160,14 @@ for task_index in "${selected_tasks[@]}"; do
 done
 
 echo "Script completed.  Took ${SECONDS} seconds to complete."
+echo "Please run post-install.sh once in ghostty"
+echo "Exiting in 3 seconds..."
+echo "3..."
+sleep 1
+echo "2..."
+sleep 1
+echo "1..."
+sleep 1
+echo "Exiting..."
+sleep 1
+exit
