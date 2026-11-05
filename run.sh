@@ -175,6 +175,15 @@ cleanup() {
     # Select new defaults
     kcmshell6 componentchooser
 
-    # Final cleanup
-    echo "Done."
+    # Exit and reboot
+    echo "Rebooting in 3 seconds..."
+    echo "3..."
+    sleep 1
+    echo "2..."
+    sleep 1
+    echo "1..."
+    sleep 1
+    echo "Rebooting..."
+    sleep 1
+    reboot
 }
