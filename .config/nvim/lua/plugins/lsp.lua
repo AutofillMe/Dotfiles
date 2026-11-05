@@ -82,7 +82,17 @@ local servers = {
             },
         },
     },
-    ty = {},
+    ty = {
+        settings = {
+            ty = {
+                configuration = {
+                    environment = {
+                        ["python-version"] = "3.15",
+                    },
+                },
+            },
+        },
+    },
     jq = {},
     stylua = {}, -- Used to format Lua code
 
