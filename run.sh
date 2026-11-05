@@ -74,6 +74,7 @@ dnf_install() {
         fd-find
         tokei
         vlc
+        python3.15
     )
 
     sudo dnf install -y "${dnfInstall[@]}"
