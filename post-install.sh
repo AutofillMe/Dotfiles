@@ -40,5 +40,5 @@ sudo npm install -g tree-sitter-cli
 # Remove bash files
 sudo rm -f ${user_home}/.bash*
 
-ehco "Please exit and reopen Ghostty"
+echo "Please exit and reopen Ghostty"
 exit 0
