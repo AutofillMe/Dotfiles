@@ -34,82 +34,6 @@ checkpoint "Are you sure that you want to continue?"
 # Change shell
 chsh -s /usr/bin/zsh
 
-# plugins/init.lua ------------------------------------------------------------------------------------------------
-# clean plugins/init.lua and enable format on save
-sed -i '/-- event/c\    event = { "BufWritePre", "BufNewFile" },' ${user_home}/.config/nvim/lua/plugins/init.lua
-sed -i '/-- test/d' ${user_home}/.config/nvim/lua/plugins/init.lua
-sed -i '/-- { import/d' ${user_home}/.config/nvim/lua/plugins/init.lua
-sed -i '/-- These/d' ${user_home}/.config/nvim/lua/plugins/init.lua
-
-# Add todo-comments
-sed -i '0,/{/s|{|{\
-  {\
-    "folke/todo-comments.nvim",\
-    event = { "BufReadPost", "BufNewFile" },\
-    dependencies = { "nvim-lua/plenary.nvim" },\
-    opts = {}\
-  },|' ${user_home}/.config/nvim/lua/plugins/init.lua
-  
-# Add live-server
-sed -i '0,/{/s|{|{\
-    {\
-        "barrettruth/live-server.nvim",\
-        cmd = { "LiveServer", "LiveServerStart", "LiveServerStop", "LiveServerToggle" },\
-    },|' ${user_home}/.config/nvim/lua/plugins/init.lua
-
-# Add tree-sitter context
-sed -i '0,/{/s|{|{\
-    {\
-        "nvim-treesitter/nvim-treesitter-context",\
-        event = "BufRead",\
-        config = function()\
-            require("treesitter-context").setup {\
-                enable = true,\
-                max_lines = 5,\
-                mode = "cursor",\
-            }\
-        end,\
-    },|' ${user_home}/.config/nvim/lua/plugins/init.lua
-
-# initialize whichkey to show on first space bar press
-sed -i '0,/{/s|{|{\
-  {\
-        "folke/which-key.nvim",\
-        event = "VeryLazy",\
-        opts = function()\
-            dofile(vim.g.base46_cache .. "whichkey")\
-            return {}\
-        end,\
-    },|' ${user_home}/.config/nvim/lua/plugins/init.lua
-
-# enable treesitter and add python, c, cpp
-sed -i 's/-- //' ${user_home}/.config/nvim/lua/plugins/init.lua
-sed -i 's/"html", "css"/&, "c", "cpp", "python"/' ${user_home}/.config/nvim/lua/plugins/init.lua
-
-# other nvim files -------------------------------------------------------------------------------------
-sed -i 's/-- //' ${user_home}/.config/nvim/lua/configs/conform.lua
-sed -i '/html = { "prettier" },/a\
-        python = { "ruff_organize_imports", "ruff_format" },\
-        c = { "clang-format" },\
-        cpp = { "clang-format" },\
-        sh = { "beautysh" },\
-        json = { "jq" },\
-        jsonc = { "jq" },' ${user_home}/.config/nvim/lua/configs/conform.lua
-sed -i '/defaults()/a\
-\
-vim.lsp.config("ruff", {\
-    init_options = {\
-        settings = {\
-            lint = {\
-                ignore = { "BLE001" },\
-            },\
-        },\
-    },\
-})' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
-sed -i 's/"html", "cssls"/&, "ruff", "clangd", "ty"/' ${user_home}/.config/nvim/lua/configs/lspconfig.lua
-sed -i 's/onedark/catppuccin/' ${user_home}/.config/nvim/lua/chadrc.lua
-sed -i 's/indent_width = 2/indent_width = 4/' ${user_home}/.config/nvim/.stylua.toml
-
 # npm should be installed by now...need to double check later
 sudo npm install -g tree-sitter-cli
 
@@ -117,17 +41,13 @@ sudo npm install -g tree-sitter-cli
 sudo rm -f ${user_home}/.bash*
 
 # Exit and reboot
-echo "Rebooting in 5 seconds..."
-echo "5..."
-sleep 1
-echo "4..."
-sleep 1
+echo "Exiting in 3 seconds..."
 echo "3..."
 sleep 1
 echo "2..."
 sleep 1
 echo "1..."
 sleep 1
-echo "Rebooting..."
+echo "Exiting..."
 sleep 1
-reboot
+exit
