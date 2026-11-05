@@ -41,13 +41,13 @@ sudo npm install -g tree-sitter-cli
 sudo rm -f ${user_home}/.bash*
 
 # Exit and reboot
-echo "Exiting in 3 seconds..."
+echo "Rebooting in 3 seconds..."
 echo "3..."
 sleep 1
 echo "2..."
 sleep 1
 echo "1..."
 sleep 1
-echo "Exiting..."
+echo "Rebooting..."
 sleep 1
-exit
+reboot
