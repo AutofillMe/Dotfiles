@@ -40,14 +40,5 @@ sudo npm install -g tree-sitter-cli
 # Remove bash files
 sudo rm -f ${user_home}/.bash*
 
-# Exit and reboot
-echo "Rebooting in 3 seconds..."
-echo "3..."
-sleep 1
-echo "2..."
-sleep 1
-echo "1..."
-sleep 1
-echo "Rebooting..."
-sleep 1
-reboot
+ehco "Please exit and reopen Ghostty"
+exit 0
