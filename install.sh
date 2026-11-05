@@ -128,7 +128,7 @@ task_functions=(
     nerd_font_install
     font_check
     logout_delay
-    NVChad_install
+    neovim_prep
     tealdeer_update
     run_stow
     dnf_uninstall
