@@ -1,6 +1,8 @@
 ---@param repo string
 ---@return string
-local function gh(repo) return "https://github.com/" .. repo end
+local function gh(repo)
+    return "https://github.com/" .. repo
+end
 
 -- Tabout w/ neotab
 vim.pack.add { gh "kawre/neotab.nvim" }
@@ -33,6 +35,21 @@ vim.keymap.set("n", "<leader>m", require("treesj").toggle)
 vim.pack.add { gh "lukas-reineke/indent-blankline.nvim" }
 require("ibl").setup()
 
--- Todo comments yay!
+-- Todo comments
 vim.pack.add { gh "folke/todo-comments.nvim" }
 require("todo-comments").setup { signs = false }
+
+-- Live Server
+vim.pack.add { gh "barrettruth/live-server.nvim" }
+vim.keymap.set(
+    "n",
+    "<leader>lss",
+    "<cmd>LiveServerStart %<CR>",
+    { silent = true, desc = "Live-server Start Live Server" }
+)
+vim.keymap.set(
+    "n",
+    "<leader>lst",
+    "<cmd>LiveServerStop %<CR>",
+    { silent = true, desc = "Live-server Stop Live Server" }
+)
