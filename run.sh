@@ -176,6 +176,15 @@ cleanup() {
     # Select new defaults
     kcmshell6 componentchooser
 
+    # Change shell
+    chsh -s /usr/bin/zsh
+    
+    # npm should be installed by now...need to double check later
+    npm install -g tree-sitter-cli
+    
+    # Remove bash files
+    sudo rm -f ${user_home}/.bash*
+
     # Exit and reboot
     echo "Rebooting in 3 seconds..."
     echo "3..."
