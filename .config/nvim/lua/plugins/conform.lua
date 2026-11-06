@@ -1,8 +1,4 @@
----@param repo string
----@return string
-local function gh(repo) return "https://github.com/" .. repo end
-
-vim.pack.add { gh "stevearc/conform.nvim" }
+vim.pack.add { "https://github.com/stevearc/conform.nvim" }
 require("conform").setup {
     format_on_save = {
         timeout_ms = 500,
