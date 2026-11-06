@@ -1,16 +1,10 @@
----@param repo string
----@return string
-local function gh(repo)
-    return "https://github.com/" .. repo
-end
-
 -- Tabout w/ neotab
-vim.pack.add { gh "kawre/neotab.nvim" }
+vim.pack.add { "https://github.com/kawre/neotab.nvim" }
 ---@diagnostic disable-next-line: missing-parameter
 require("neotab").setup()
 
 -- Pretty little command line popup
-vim.pack.add { gh "rachartier/tiny-cmdline.nvim" }
+vim.pack.add { "https://github.com/rachartier/tiny-cmdline.nvim" }
 require("vim._core.ui2").enable {}
 
 vim.o.cmdheight = 0
@@ -25,22 +19,22 @@ require("tiny-cmdline").setup {
 }
 
 -- Treesj
-vim.pack.add { gh "wansmer/treesj" }
+vim.pack.add { "https://github.com/wansmer/treesj" }
 require("treesj").setup {
     use_default_keymaps = false,
 }
 vim.keymap.set("n", "<leader>m", require("treesj").toggle, { desc = "Toggle treesj" })
 
 -- Indent markers
-vim.pack.add { gh "lukas-reineke/indent-blankline.nvim" }
+vim.pack.add { "https://github.com/lukas-reineke/indent-blankline.nvim" }
 require("ibl").setup()
 
 -- Todo comments
-vim.pack.add { gh "folke/todo-comments.nvim" }
+vim.pack.add { "https://github.com/folke/todo-comments.nvim" }
 require("todo-comments").setup { signs = false }
 
 -- Live Server
-vim.pack.add { gh "barrettruth/live-server.nvim" }
+vim.pack.add { "https://github.com/barrettruth/live-server.nvim" }
 vim.keymap.set(
     "n",
     "<leader>lss",
