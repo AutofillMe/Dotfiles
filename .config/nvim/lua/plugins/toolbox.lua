@@ -29,7 +29,7 @@ vim.pack.add { gh "wansmer/treesj" }
 require("treesj").setup {
     use_default_keymaps = false,
 }
-vim.keymap.set("n", "<leader>m", require("treesj").toggle)
+vim.keymap.set("n", "<leader>m", require("treesj").toggle, { desc = "Toggle treesj" })
 
 -- Indent markers
 vim.pack.add { gh "lukas-reineke/indent-blankline.nvim" }
