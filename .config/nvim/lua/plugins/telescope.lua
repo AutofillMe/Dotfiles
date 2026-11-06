@@ -23,5 +23,5 @@ vim.keymap.set(
     "n",
     "<leader>fa",
     require("telescope.builtin").find_files { follow = true, no_ignore = true, hidden = true },
-    { desc = "telescope find all files" }
+    { desc = "Telescope find all files" }
 )
