@@ -1,3 +1,19 @@
+vim.api.nvim_create_user_command("PackUpdate", function(opts)
+    if opts.args == "" then
+        vim.pack.update()
+    else
+        vim.pack.update { opts.args }
+    end
+end, {
+    nargs = "?",
+    complete = function()
+        return vim.tbl_map(function(plugin)
+            return plugin.spec.name
+        end, vim.pack.get())
+    end,
+    desc = "Update all plugins or a specific plugin",
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking (copying) text",
     group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
