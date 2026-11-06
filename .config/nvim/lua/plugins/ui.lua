@@ -1,11 +1,5 @@
----@param repo string
----@return string
-local function gh(repo)
-    return "https://github.com/" .. repo
-end
-
 -- File Tree Picker
-vim.pack.add { gh "nvim-tree/nvim-tree.lua" }
+vim.pack.add { "https://github.com/nvim-tree/nvim-tree.lua" }
 require("nvim-tree").setup {
     disable_netrw = true,
     hijack_cursor = true,
@@ -39,7 +33,7 @@ require("nvim-tree").setup {
 vim.keymap.set("n", "<leader>a", vim.cmd.NvimTreeToggle, { desc = "nvimtree toggle window" })
 
 -- Tab/Buff Bar
-vim.pack.add { gh "romgrk/barbar.nvim" }
+vim.pack.add { "https://github.com/romgrk/barbar.nvim" }
 require("barbar").setup {
     sidebar_filetypes = {
         NvimTree = true,
@@ -58,7 +52,7 @@ vim.keymap.set("n", "<leader>bp", vim.cmd.BufferPick, { desc = "Pick a buffer" }
 vim.keymap.set("n", "<leader>bn", vim.cmd.BufferPin, { desc = "Pin/Unpin buffer" })
 
 -- which-key
-vim.pack.add { gh "folke/which-key.nvim" }
+vim.pack.add { "https://github.com/folke/which-key.nvim" }
 require("which-key").setup {
     delay = 0,
     icons = {
@@ -76,7 +70,7 @@ require("catppuccin").setup {
 vim.cmd.colorscheme "catppuccin-nvim"
 
 -- Status Line
-vim.pack.add { gh "nvim-lualine/lualine.nvim" }
+vim.pack.add { "https://github.com/nvim-lualine/lualine.nvim" }
 require("lualine").setup {
     sections = {
         lualine_a = { "mode" },
