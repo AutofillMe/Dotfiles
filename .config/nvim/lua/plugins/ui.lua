@@ -4,6 +4,7 @@ local function gh(repo)
     return "https://github.com/" .. repo
 end
 
+-- File Tree Picker
 vim.pack.add { gh "nvim-tree/nvim-tree.lua" }
 require("nvim-tree").setup {
     disable_netrw = true,
@@ -35,8 +36,9 @@ require("nvim-tree").setup {
         },
     },
 }
-vim.keymap.set("n", "<C-n>", vim.cmd.NvimTreeToggle, { desc = "nvimtree toggle window" })
+vim.keymap.set("n", "<leader>a", vim.cmd.NvimTreeToggle, { desc = "nvimtree toggle window" })
 
+-- Tab/Buff Bar
 vim.pack.add { gh "romgrk/barbar.nvim" }
 require("barbar").setup {
     sidebar_filetypes = {
@@ -55,6 +57,7 @@ vim.keymap.set("n", "<leader>x", vim.cmd.BufferClose, { desc = "Close current bu
 vim.keymap.set("n", "<leader>bp", vim.cmd.BufferPick, { desc = "Pick a buffer" })
 vim.keymap.set("n", "<leader>bn", vim.cmd.BufferPin, { desc = "Pin/Unpin buffer" })
 
+-- which-key
 vim.pack.add { gh "folke/which-key.nvim" }
 require("which-key").setup {
     delay = 0,
@@ -64,6 +67,7 @@ require("which-key").setup {
 }
 vim.keymap.set("n", "<leader>wk", vim.cmd.WhichKey, { desc = "which-key all keymaps" })
 
+-- Theme
 vim.pack.add { { src = "https://github.com/catppuccin/nvim", name = "catppuccin" } }
 require("catppuccin").setup {
     flavour = "mocha",
@@ -71,6 +75,7 @@ require("catppuccin").setup {
 }
 vim.cmd.colorscheme "catppuccin-nvim"
 
+-- Status Line
 vim.pack.add { gh "nvim-lualine/lualine.nvim" }
 require("lualine").setup {
     sections = {
