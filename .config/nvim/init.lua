@@ -46,3 +46,7 @@ require "plugins.cmp"
 
 -- Toolbox
 require "plugins.toolbox"
+
+-- Telescope
+require "plugins.telescope"
+
