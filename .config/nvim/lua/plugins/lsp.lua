@@ -1,8 +1,4 @@
----@param repo string
----@return string
-local function gh(repo) return "https://github.com/" .. repo end
-
-vim.pack.add { gh "j-hui/fidget.nvim" }
+vim.pack.add { "https://github.com/j-hui/fidget.nvim" }
 require("fidget").setup {}
 
 --  This function gets run when an LSP attaches to a particular buffer.
@@ -134,10 +130,10 @@ local servers = {
 }
 
 vim.pack.add {
-    gh "neovim/nvim-lspconfig",
-    gh "mason-org/mason.nvim",
-    gh "mason-org/mason-lspconfig.nvim",
-    gh "WhoIsSethDaniel/mason-tool-installer.nvim",
+    "https://github.com/neovim/nvim-lspconfig",
+    "https://github.com/mason-org/mason.nvim",
+    "https://github.com/mason-org/mason-lspconfig.nvim",
+    "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
 }
 
 require("mason").setup {}
