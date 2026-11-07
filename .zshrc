@@ -19,6 +19,9 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 
 # xdg-ninja fixes
+if [[ ! -d $XDG_CONFIG_HOME/gtk-2.0/gtkrc ]]; then
+   mkdir -p "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+fi
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
