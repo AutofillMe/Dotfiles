@@ -16,7 +16,7 @@ export EDITOR='nvim'
 
 # Rust Stuff
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-export CARGO_HOMR="$XDG_DATA_HOME"/cargo
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
 
 # xdg-ninja fixes
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
