@@ -180,10 +180,7 @@ cleanup() {
     chsh -s /usr/bin/zsh
     
     # npm should be installed by now...need to double check later
-    npm install -g tree-sitter-cli
-    
-    # Remove bash files
-    sudo rm -f ${user_home}/.bash*
+    # sudo npm install -g tree-sitter-cli
 
     # Exit and reboot
     echo "Rebooting in 3 seconds..."
@@ -196,4 +193,16 @@ cleanup() {
     echo "Rebooting..."
     sleep 1
     reboot
+}
+
+post_install() {
+    # install rust + tree-sitter-cli
+    curl https://sh.rustup.rs -sSf | sh
+    cargo install --locked tree-sitter-cli
+    
+    # Remove bash files
+    rm ${user_home}/.bash*
+
+    # Remove zcompdump
+    rm ${user_home}/.zcompdump
 }
