@@ -114,10 +114,10 @@ font_check() {
 logout_delay() {
     echo "Setting Logout Delay..."
     # Change logout timer from 30 seconds to 5 seconds
-    sudo sed -i.bak 's/property real timeout: *[0-9]\+/property real timeout: 5/' /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/logout/Logout.qml
+    sudo sed -i.bak 's/property real timeout: *[0-9]\+/property real timeout: 5/' /usr/share/plasma/shells/org.kde.plasma.desktop/contents/logout/Logout.qml
 
     # Make sure the file is as expected
-    if ! grep -q "property real timeout: 5" /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/logout/Logout.qml; then
+    if ! grep -q "property real timeout: 5" /usr/share/plasma/shells/org.kde.plasma.desktop/contents/logout/Logout.qml; then
         echo "Warning: logout delay change may not have applied."
     fi
 
@@ -205,4 +205,7 @@ post_install() {
 
     # Remove zcompdump
     rm ${user_home}/.zcompdump
+
+    # Move .gtkrc-2.0
+    mv ${user_home}/.gtkrc-2.0 "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc/.gtkrc-2.0
 }
