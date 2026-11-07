@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-script_version="1.6"
+script_version="2.1"
 
 validate_input() {
     local tasks=("$@")
@@ -133,10 +133,11 @@ task_functions=(
     run_stow
     dnf_uninstall
     cleanup
+    post_install
 )
 
 echo "Which tasks would you like to execute?"
-echo "Provide the input as a spaced list of numbers or just type 0 for all tasks."
+echo "Provide the input as a spaced list of numbers or just type 0 for all tasks. (Note: all_tasks does not run post_install)"
 max_index=0
 for task in "${task_functions[@]}"; do
     echo "${max_index}) ${task}"
@@ -160,7 +161,6 @@ for task_index in "${selected_tasks[@]}"; do
 done
 
 echo "Script completed.  Took ${SECONDS} seconds to complete."
-echo "Please run post-install.sh once in ghostty"
 echo "Exiting in 3 seconds..."
 echo "3..."
 sleep 1
@@ -170,4 +170,4 @@ echo "1..."
 sleep 1
 echo "Exiting..."
 sleep 1
-exit
+exit 0
