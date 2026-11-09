@@ -24,6 +24,8 @@ vim.opt.clipboard = "unnamedplus"
 
 -- File Handling
 vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
+vim.fn.mkdir(vim.opt.undodir:get(), "p")
 vim.opt.swapfile = false
 
 -- Search
