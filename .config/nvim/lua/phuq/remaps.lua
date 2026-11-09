@@ -34,7 +34,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Smart move line(s) up" })
 vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent selection" })
 vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Unindent selection" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Search stay centered next" })
-vim.keymap.set("n", "N", "Nzzzv", { desc "Search stay centered previous" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Search stay centered previous" })
 vim.keymap.set("n", "Y", "y$", { desc ="Yank to end of line" })
 
 -- Paste without replace
