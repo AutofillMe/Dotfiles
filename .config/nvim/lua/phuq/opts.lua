@@ -13,25 +13,22 @@ vim.opt.colorcolumn = "120"
 vim.opt.mouse = ""
 
 -- Indentation
-vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.autoindent = true
-vim.opt.smartindent = true
+vim.opt.expandtab = true
 vim.opt.breakindent = true
 
 -- Clipboard
-vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
+vim.opt.clipboard = "unnamedplus"
 
--- Persistent undo
+-- File Handling
 vim.opt.undofile = true
+vim.opt.swapfile = false
 
 -- Search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
 vim.opt.inccommand = "split"
 
 -- Appearance
