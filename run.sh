@@ -197,8 +197,9 @@ cleanup() {
 
 post_install() {
     # install rust + tree-sitter-cli
-    curl https://sh.rustup.rs -sSf | sh -s -- -y
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -sSf | sh -s -- -y
     cargo install --locked tree-sitter-cli
+    cargo install --locked dysk
 
     # Remove bash files
     rm ${user_home}/.bash*
