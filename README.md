@@ -47,3 +47,6 @@ git clone https://github.com/AutofillMe/Dotfiles.git ~/.dotfiles
 - [ ] Disable Mouse Shake
 - [ ] Breeze Dark Theme
 - [ ] Add kzones
+
+# AI Use
+![[0rwx.com](https://0rwx.com/)](https://github.com/NamtaoProductions/0rwx.com/blob/main/static/AI-R-dark.png) https://0rwx.com/
