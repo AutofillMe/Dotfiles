@@ -25,8 +25,8 @@ end, { desc = "Term Open terminal to the right" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Term Exit terminal mode" })
 vim.keymap.set("n", "<A-k>", ":resize +2<CR>", { desc = "Increase window height" })
 vim.keymap.set("n", "<A-j>", ":resize -2<CR>", { desc = "Decrease window height" })
-vim.keymap.set("n", "<A-h>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<A-l>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+vim.keymap.set("n", "<A-l>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<A-h>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
 -- File Navigation
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Smart move line(s) down" })
