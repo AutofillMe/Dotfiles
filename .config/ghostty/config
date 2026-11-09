@@ -1,5 +1,5 @@
 shell-integration = zsh
 theme = Catppuccin-Mocha.conf
-font-family = "NotoSans NF Reg"
+font-family = "CaskaydiaCove Nerd Font"
 confirm-close-surface = false
 shell-integration-features = ssh-env,ssh-terminfo
