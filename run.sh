@@ -84,7 +84,7 @@ dnf_install() {
 nerd_font_install() {
     echo "Installing Nerd Font..."
     # Install Noto Nerdfont
-    curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip -o "$user_home"/Downloads/font.zip
+    curl -fL --retry 3 https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip -o "$user_home"/Downloads/font.zip
     echo "Unzipping file..."
     unzip -q "$user_home"/Downloads/font.zip -d "$user_home"/Downloads/font/
     sudo mkdir -p /usr/share/fonts/nerd-font/
