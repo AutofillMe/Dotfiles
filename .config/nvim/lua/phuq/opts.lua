@@ -23,9 +23,10 @@ vim.opt.breakindent = true
 vim.opt.clipboard = "unnamedplus"
 
 -- File Handling
+local undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
-vim.fn.mkdir(vim.opt.undodir:get(), "p")
+vim.opt.undodir = undodir
+vim.fn.mkdir(undodir, "p")
 vim.opt.swapfile = false
 
 -- Search
