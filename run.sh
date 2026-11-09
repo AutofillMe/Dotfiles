@@ -84,14 +84,14 @@ dnf_install() {
 nerd_font_install() {
     echo "Installing Nerd Font..."
     # Install Noto Nerdfont
-    curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.zip -o "$user_home"/Downloads/Noto.zip
+    curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/latest/CascadiaCode.zip -o "$user_home"/Downloads/font.zip
     echo "Unzipping file..."
-    unzip -q "$user_home"/Downloads/Noto.zip -d "$user_home"/Downloads/Nerd-Noto/
-    sudo mkdir -p /usr/share/fonts/nerds-noto/
-    sudo mv "$user_home"/Downloads/Nerd-Noto/*.ttf /usr/share/fonts/nerds-noto/
+    unzip -q "$user_home"/Downloads/font.zip -d "$user_home"/Downloads/font/
+    sudo mkdir -p /usr/share/fonts/nerd-font/
+    sudo mv "$user_home"/Downloads/font/*.ttf /usr/share/fonts/nerd-font/
 
-    rm -vf "$user_home"/Downloads/Noto.zip
-    rm -rvf "$user_home"/Downloads/Nerd-Noto/
+    rm -vf "$user_home"/Downloads/font.zip
+    rm -rvf "$user_home"/Downloads/font/
     echo "Done."
 }
 
