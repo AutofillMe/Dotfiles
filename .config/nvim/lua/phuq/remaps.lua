@@ -1,12 +1,12 @@
 vim.keymap.set("n", ";", ":")
 
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "General Clear all highlights" })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear all highlights" })
 
 -- General Navigation
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "General Switch window left" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "General Switch window right" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "General Switch window down" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "General Switch window up" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Switch window left" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Switch window right" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Switch window down" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Switch window up" })
 
 -- Terminal stuff
 vim.keymap.set("n", "<leader>h", function()
@@ -24,16 +24,17 @@ end, { desc = "Term Open terminal to the right" })
 
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Term Exit terminal mode" })
 
--- Auto-Tabbed move selected line(s)
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "General Smart move line(s) down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "General Smart move line(s) up" })
-vim.keymap.set("v", "<Tab>", ">gv", { desc = "General Indent selection" })
-vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "General Unindent selection" })
-vim.keymap.set("n", "n", "nzzzv", { desc = "General Search stay centered next" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "General Search stay centered previous" })
+-- File Navigation
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Smart move line(s) down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Smart move line(s) up" })
+vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent selection" })
+vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Unindent selection" })
+vim.keymap.set("n", "n", "nzzzv", { desc = "Search stay centered next" })
+vim.keymap.set("n", "N", "Nzzzv", { desc "Search stay centered previous" })
+vim.keymap.set("n", "Y", "y$", { desc ="Yank to end of line" })
 
 -- Paste without replace
-vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "General Paste without replace" })
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without replace" })
 
 -- Disable select mode
 vim.keymap.set({ "n", "v" }, "gh", "<nop>")
@@ -43,8 +44,8 @@ vim.keymap.set({ "n", "v" }, "gH", "<nop>")
 vim.keymap.set("n", "Q", "@@")
 
 -- Blackhole
-vim.keymap.set("n", "x", '"_x', { desc = "General Cut letter to void" })
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "General delete letter to void" })
+vim.keymap.set("n", "x", '"_x', { desc = "Cut letter to void" })
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete letter to void" })
 
 -- Cool tools from @ThePrimeagen
 vim.keymap.set(
@@ -56,8 +57,8 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>rx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "CMD chmod +x <file>" })
 
 -- Comment out stuff
-vim.keymap.set("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
-vim.keymap.set("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
+vim.keymap.set("n", "<leader>/", "gcc", { desc = "Toggle comment", remap = true })
+vim.keymap.set("v", "<leader>/", "gc", { desc = "Toggle comment", remap = true })
 
 -- goto definition split from @ProgrammingHeadache
 vim.keymap.set("n", "gs", function()
