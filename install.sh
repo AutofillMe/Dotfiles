@@ -110,7 +110,7 @@ exec 2> >(tee >(awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush() }' >>
 
 # MAIN SCRIPT -----------------------------------------------------------------------------------------------
 # Make sure this is running on Nobara
-echo "This is a custom script for use in Nobara Linux (Fedora).  I cannot guarantee it will work in other distros."
+echo "This is a custom script for use in Fedora Linux 44 KDE.  I cannot guarantee it will work in other distros."
 
 if ! command -v dnf &>/dev/null; then
     echo "Could not find command: dnf.  This will break many of the tasks in this script."
