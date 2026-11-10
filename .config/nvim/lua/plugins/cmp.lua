@@ -30,6 +30,8 @@ require("blink.cmp").setup {
     },
 
     snippets = { preset = "luasnip" },
-    fuzzy = { implementation = "lua" },
+    fuzzy = { implementation = "prefer_rust" },
     signature = { enabled = true },
 }
+
+vim.pack.add({ 'https://github.com/saghen/blink.lib' })
