@@ -225,7 +225,9 @@ post_install() {
 
     # Goodbye stuff I dont want
     sudo dnf remove kwrite kmines kmahjongg kmail konsole firefox -y
-    flatpak uninstall kpatience
+    flatpak uninstall org.kde.kpat
 
     # Uhh I forgot the file names later tm
+    rm ~/.config/konsolerc
+    rm ~/.config/konsolesshconfig
 }
