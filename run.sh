@@ -155,23 +155,22 @@ dnf_uninstall() {
     echo "Uninstalling Junk..."
     # Uninstall programs I dont want or have alternatives to
     dnfRemove=(
-        brave-browser
-        starship
         neochat
         kate
         spectacle
         plasma-systemmonitor
+        firefox
     )
 
-    sudo dnf remove -y "${dnfRemove[@]}" >&3
+    sudo dnf remove -y "${dnfRemove[@]}"
 }
 
 cleanup() {
     echo "Running final cleanup..."
 
     # Install flatpaks to replace removed packages
-    flatpak install --user app.zen_browser.zen -y
-    flatpak install --user io.missioncenter.MissionCenter -y
+    flatpak install app.zen_browser.zen -y
+    flatpak install io.missioncenter.MissionCenter -y
 
     # Select new defaults
     kcmshell6 componentchooser
@@ -213,4 +212,9 @@ post_install() {
 
     # Move .gtkrc-2.0
     mv ${user_home}/.gtkrc-2.0 "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc/.gtkrc-2.0
+
+    # Goodbye Konsole
+    sudo dnf remove konsole -y
+
+    # Uhh I forgot the file names later tm
 }
