@@ -78,6 +78,7 @@ dnf_install() {
         sddm
         sddm-kcm
         sddm-wayland-plasma
+        fastfetch
     )
 
     sudo dnf install -y "${dnfInstall[@]}"
@@ -143,9 +144,8 @@ tealdeer_update() {
 }
 
 run_stow() {
-    # Ask before stowing
-    checkpoint "Ready for GNU Stow?"
     echo # Added to add newline for log file clarity
+    echo "Stowing..."
 
     # Clone my dotfiles
     cd "$user_home"/.dotfiles
