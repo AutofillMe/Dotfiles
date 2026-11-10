@@ -75,6 +75,9 @@ dnf_install() {
         tokei
         vlc
         python3.15
+        sddm
+        sddm-kcm
+        sddm-wayland-plasma
     )
 
     sudo dnf install -y "${dnfInstall[@]}"
@@ -159,7 +162,6 @@ dnf_uninstall() {
         kate
         spectacle
         plasma-systemmonitor
-        firefox
     )
 
     sudo dnf remove -y "${dnfRemove[@]}"
@@ -183,6 +185,14 @@ cleanup() {
 
     # Disable mouse shake
     echo -e '\n[Plugins]\nshakecursorEnabled=false\n' >> ~/.config/kwinrc
+
+    # Enable Numlock by default
+    echo -e '\n[Keyboard]\nNumLock=0\n' >> ~/.config/kcminputrc
+    sudo sed -i 's/^#Numlock=none$/Numlock=on/' /etc/sddm.conf\
+
+    # Change plasma to sddm
+    sudo systemctl disable plasmalogin.service
+    sudo systemctl enable --force sddm.service
 
     # Exit and reboot
     echo "Rebooting in 3 seconds..."
@@ -213,8 +223,9 @@ post_install() {
     # Move .gtkrc-2.0
     mv ${user_home}/.gtkrc-2.0 "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc/.gtkrc-2.0
 
-    # Goodbye Konsole
-    sudo dnf remove konsole -y
+    # Goodbye stuff I dont want
+    sudo dnf remove kwrite kmines kmahjongg kmail konsole firefox -y
+    flatpak uninstall kpatience
 
     # Uhh I forgot the file names later tm
 }
