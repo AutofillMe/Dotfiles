@@ -178,9 +178,12 @@ cleanup() {
 
     # Change shell
     chsh -s /usr/bin/zsh
-    
-    # npm should be installed by now...need to double check later
-    # sudo npm install -g tree-sitter-cli
+
+    # Disable bouncing KDE cursor
+    echo -e '\n[BusyCursorSettings]\nBouncing=false\n\n[FeedbackStyle]\nBusyCursor=false' >> ~/.config/klaunchrc
+
+    # Disable mouse shake
+    echo -e '\n[Plugins]\nshakecursorEnabled=false\n' >> ~/.config/kwinrc
 
     # Exit and reboot
     echo "Rebooting in 3 seconds..."
