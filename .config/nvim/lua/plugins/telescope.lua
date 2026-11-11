@@ -1,4 +1,8 @@
-vim.pack.add {
+local add = function(plugin)
+    vim.pack.add(plugin, { confirm = false })
+end
+
+add {
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/nvim-telescope/telescope.nvim",
     "https://github.com/nvim-telescope/telescope-ui-select.nvim",
