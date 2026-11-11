@@ -1,4 +1,8 @@
-vim.pack.add { "https://github.com/stevearc/conform.nvim" }
+local add = function(plugin)
+    vim.pack.add(plugin, { confirm = false })
+end
+
+add { "https://github.com/stevearc/conform.nvim" }
 require("conform").setup {
     format_on_save = {
         timeout_ms = 500,
