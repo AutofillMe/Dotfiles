@@ -1,5 +1,9 @@
-vim.pack.add { { src = "https://github.com/L3MON4D3/LuaSnip", version = vim.version.range "2.*" } }
-vim.pack.add { "https://github.com/rafamadriz/friendly-snippets" }
+local add = function(plugin)
+    vim.pack.add(plugin, { confirm = false })
+end
+
+add { { src = "https://github.com/L3MON4D3/LuaSnip", version = vim.version.range "2.*" } }
+add { "https://github.com/rafamadriz/friendly-snippets" }
 require("luasnip").setup {}
 require("luasnip.loaders.from_vscode").lazy_load {
     paths = {
@@ -8,7 +12,7 @@ require("luasnip.loaders.from_vscode").lazy_load {
     },
 }
 
-vim.pack.add { { src = "https://github.com/saghen/blink.cmp", version = vim.version.range "1.*" } }
+add { { src = "https://github.com/saghen/blink.cmp", version = vim.version.range "1.*" } }
 require("blink.cmp").setup {
     keymap = {
         preset = "default",
@@ -34,4 +38,4 @@ require("blink.cmp").setup {
     signature = { enabled = true },
 }
 
-vim.pack.add({ 'https://github.com/saghen/blink.lib' })
+add({ 'https://github.com/saghen/blink.lib' })
