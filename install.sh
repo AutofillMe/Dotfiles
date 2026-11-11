@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-script_version="2.2"
+script_version="2.3"
 
 validate_input() {
     local tasks=("$@")
@@ -124,7 +124,7 @@ echo
 task_functions=(
     all_tasks
     copr_install
-    dnf_install
+    install_packages
     nerd_font_install
     font_check
     logout_delay
