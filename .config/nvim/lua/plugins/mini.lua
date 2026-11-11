@@ -1,4 +1,8 @@
-vim.pack.add { "https://github.com/nvim-mini/mini.nvim" }
+local add = function(plugin)
+    vim.pack.add(plugin, { confirm = false })
+end
+
+add { "https://github.com/nvim-mini/mini.nvim" }
 if vim.g.have_nerd_font then
     require("mini.icons").setup()
     -- Used for backwards compatibility with plugins that require `nvim-web-devicons` (e.g. telescope.nvim)
