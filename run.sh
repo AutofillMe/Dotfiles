@@ -34,7 +34,6 @@ all_tasks() {
     neovim_prep
     tealdeer_update
     run_stow
-    dnf_uninstall
     cleanup
 }
 
@@ -66,7 +65,6 @@ dnf_install() {
         ghostty
         yazi
         mpv
-        btop
         flameshot
         lolcat
         figlet
@@ -154,19 +152,6 @@ run_stow() {
     echo "Done."
 }
 
-dnf_uninstall() {
-    echo "Uninstalling Junk..."
-    # Uninstall programs I dont want or have alternatives to
-    dnfRemove=(
-        neochat
-        kate
-        spectacle
-        plasma-systemmonitor
-    )
-
-    sudo dnf remove -y "${dnfRemove[@]}"
-}
-
 cleanup() {
     echo "Running final cleanup..."
 
@@ -224,10 +209,23 @@ post_install() {
     mv ${user_home}/.gtkrc-2.0 "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc/.gtkrc-2.0
 
     # Goodbye stuff I dont want
-    sudo dnf remove kwrite kmines kmahjongg kmail konsole firefox -y
-    flatpak uninstall org.kde.kpat
+    dnfRemove=(
+        neochat
+        kate
+        spectacle
+        plasma-systemmonitor
+        kwrite
+        kmines
+        kmahjongg
+        kmail
+        konsole
+        firefox
+        kpat
+    )
+    
+    sudo dnf remove -y "${dnfRemove[@]}"
 
-    # Uhh I forgot the file names later tm
+    # Remove useless configs
     rm ~/.config/konsolerc
     rm ~/.config/konsolesshconfig
 }
