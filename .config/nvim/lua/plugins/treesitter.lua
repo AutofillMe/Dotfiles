@@ -1,5 +1,9 @@
+local add = function(plugin)
+    vim.pack.add(plugin, { confirm = false })
+end
+
 -- Treesitter
-vim.pack.add { { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" } }
+add { { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" } }
 
 local parsers =
     { "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "markdown_inline", "query", "vim", "vimdoc", "python" }
@@ -54,7 +58,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Text Objects
-vim.pack.add { "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" }
+add { "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" }
 require("nvim-treesitter-textobjects").setup {
     select = {
         enable = true,
@@ -67,7 +71,7 @@ require("nvim-treesitter-textobjects").setup {
 }
 
 -- Treesitter Context
-vim.pack.add { "https://github.com/nvim-treesitter/nvim-treesitter-context" }
+add { "https://github.com/nvim-treesitter/nvim-treesitter-context" }
 require("treesitter-context").setup {
     mode = 'topline',
 }
