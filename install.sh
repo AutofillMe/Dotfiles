@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-script_version="2.1"
+script_version="2.2"
 
 validate_input() {
     local tasks=("$@")
@@ -131,7 +131,6 @@ task_functions=(
     neovim_prep
     tealdeer_update
     run_stow
-    dnf_uninstall
     cleanup
     post_install
 )
