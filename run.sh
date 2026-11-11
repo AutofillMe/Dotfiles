@@ -27,7 +27,7 @@ all_tasks() {
     echo "Running all tasks..."
     sleep 2
     copr_install
-    dnf_install
+    install_packages
     nerd_font_install
     font_check
     logout_delay
@@ -45,9 +45,10 @@ copr_install() {
     echo "Done."
 }
 
-dnf_install() {
+install_packages() {
     echo "Installing Packages..."
-    # Install cli tools and packages
+    
+    # Install cli tools and packages via dnf
     dnfInstall=(
         fzf
         speedtest-cli
@@ -79,7 +80,19 @@ dnf_install() {
     )
 
     sudo dnf install -y "${dnfInstall[@]}"
-    echo "Done"
+
+    # Install cli tools and packages via cargo
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -sSf | sh -s -- -y
+    source "$CARGO_HOME"/env
+    cargoInstall=(
+        tree-sitter-cli
+        dysk
+        tealdeer
+    )
+    
+    cargo install --locked "${cargoInstall[@]}"
+    
+    echo "Done."
 }
 
 nerd_font_install() {
@@ -192,17 +205,6 @@ cleanup() {
 }
 
 post_install() {
-    # install rust + tree-sitter-cli
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -sSf | sh -s -- -y
-    source "$CARGO_HOME"/env
-    cargoInstall=(
-        tree-sitter-cli
-        dysk
-        tealdeer
-    )
-    
-    cargo install --locked "${cargoInstall[@]}"
-
     # Remove bash files
     rm ${user_home}/.bash*
 
