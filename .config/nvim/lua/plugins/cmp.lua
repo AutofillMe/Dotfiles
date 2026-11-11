@@ -38,4 +38,4 @@ require("blink.cmp").setup {
     signature = { enabled = true },
 }
 
-add({ 'https://github.com/saghen/blink.lib' })
+add { "https://github.com/saghen/blink.lib" }
