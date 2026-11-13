@@ -42,3 +42,6 @@ alias -g DN='> /dev/null'
 alias -g NUL='>/dev/null 2>&1'
 alias -g JQ='| jq'
 alias -g C='| cl_copy'
+
+# Cargo
+alias cargo-update-all='cargo install $(cargo install --list | rg "^[a-z0-9_-]+ v[0-9.]+:$" | cut -f1 -d " ")'
