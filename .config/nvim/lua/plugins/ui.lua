@@ -51,9 +51,17 @@ require("barbar").setup {
 }
 vim.keymap.set("n", "<Tab>", vim.cmd.BufferNext, { desc = "Next Buffer" })
 vim.keymap.set("n", "<S-Tab>", vim.cmd.BufferPrevious, { desc = "Previous Buffer" })
-vim.keymap.set("n", "<leader>x", vim.cmd.BufferClose, { desc = "Close current buffer" })
 vim.keymap.set("n", "<leader>bp", vim.cmd.BufferPick, { desc = "Pick a buffer" })
 vim.keymap.set("n", "<leader>bn", vim.cmd.BufferPin, { desc = "Pin/Unpin buffer" })
+vim.keymap.set("n", "<leader>x", function()
+    if vim.bo.buftype == "terminal" then
+        vim.cmd "bdelete!"
+    elseif vim.bo.buftype == "nofile" then
+        vim.cmd "close"
+    else
+        vim.cmd "BufferClose"
+    end
+end, { desc = "Close Window" })
 
 -- which-key
 add { "https://github.com/folke/which-key.nvim" }
