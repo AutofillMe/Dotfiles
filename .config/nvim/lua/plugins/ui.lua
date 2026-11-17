@@ -51,8 +51,9 @@ require("barbar").setup {
 }
 vim.keymap.set("n", "<Tab>", vim.cmd.BufferNext, { desc = "Next Buffer" })
 vim.keymap.set("n", "<S-Tab>", vim.cmd.BufferPrevious, { desc = "Previous Buffer" })
-vim.keymap.set("n", "<leader>bp", vim.cmd.BufferPick, { desc = "Pick a buffer" })
-vim.keymap.set("n", "<leader>bn", vim.cmd.BufferPin, { desc = "Pin/Unpin buffer" })
+vim.keymap.set("n", "<leader>bp", vim.cmd.BufferPick, { desc = "[B]uffer [P]ick" })
+vim.keymap.set("n", "<leader>bn", vim.cmd.BufferPin, { desc = "[B]uffer Pi[N]/Unpi[N]" })
+vim.keymap.set("n", "<leader>br", vim.cmd.BufferRestore, { desc = "[B]uffer [R]estore" })
 vim.keymap.set("n", "<leader>x", function()
     if vim.bo.buftype == "terminal" then
         vim.cmd "bdelete!"
@@ -71,7 +72,7 @@ require("which-key").setup {
         mappings = vim.g.have_nerd_font,
     },
 }
-vim.keymap.set("n", "<leader>wk", vim.cmd.WhichKey, { desc = "which-key all keymaps" })
+vim.keymap.set("n", "<leader>wk", vim.cmd.WhichKey, { desc = "[w]hich-[k]ey all keymaps" })
 
 -- Theme
 add { { src = "https://github.com/catppuccin/nvim", name = "catppuccin" } }
