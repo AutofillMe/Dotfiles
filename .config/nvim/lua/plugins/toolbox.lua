@@ -43,11 +43,11 @@ vim.keymap.set(
     "n",
     "<leader>lss",
     "<cmd>LiveServerStart %<CR>",
-    { silent = true, desc = "Live-server Start Live Server" }
+    { silent = true, desc = "[L]ive [S]erver Start" }
 )
 vim.keymap.set(
     "n",
     "<leader>lst",
     "<cmd>LiveServerStop %<CR>",
-    { silent = true, desc = "Live-server Stop Live Server" }
+    { silent = true, desc = "[L]ive [S]erver Stop" }
 )
