@@ -21,10 +21,10 @@ pcall(require("telescope").load_extension, "fzf")
 pcall(require("telescope").load_extension, "ui-select")
 vim.keymap.set("n", "<leader>ff", function()
     require("telescope.builtin").find_files()
-end, { desc = "Telescope Find Files" })
+end, { desc = "Telescope [F]ind [F]iles" })
 vim.keymap.set("n", "<leader>fn", function()
     require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config", follow = true }
-end, { desc = "Telescope find Neovim files" })
+end, { desc = "Telescope [F]ind [N]eovim Files" })
 vim.keymap.set("n", "<leader>fa", function()
     require("telescope.builtin").find_files { follow = true, no_ignore = true, hidden = true }
-end, { desc = "telescope find all files" })
+end, { desc = "telescope [F]ind [A]ll Files" })
