@@ -1,9 +1,9 @@
 -- Enable faster startup by caching compiled Lua modules
 vim.loader.enable()
 
-require "phuq.opts"
-require "phuq.remaps"
-require "phuq.autocmd"
+require "opts"
+require "remaps"
+require "autocmd"
 
 vim.diagnostic.config {
     update_in_insert = false,
@@ -49,4 +49,3 @@ require "plugins.toolbox"
 
 -- Telescope
 require "plugins.telescope"
-
