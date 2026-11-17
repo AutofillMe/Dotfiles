@@ -14,13 +14,13 @@ vim.keymap.set("n", "<leader>h", function()
     vim.cmd "terminal"
     vim.cmd("resize " .. math.floor(vim.o.lines / 3))
     vim.cmd "startinsert"
-end, { desc = "Term Open terminal in horizontal split" })
+end, { desc = "Term Open terminal in [H]orizontal split" })
 
 vim.keymap.set("n", "<leader>v", function()
     vim.cmd "vsplit"
     vim.cmd "terminal"
     vim.cmd "startinsert"
-end, { desc = "Term Open terminal to the right" })
+end, { desc = "Term Open terminal in [V]ertical split" })
 
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Term Exit terminal mode" })
 vim.keymap.set("n", "<A-k>", ":resize +2<CR>", { desc = "Increase window height" })
@@ -69,4 +69,4 @@ vim.keymap.set("n", "gs", function()
     vim.cmd "vsplit"
     vim.cmd "wincmd l"
     vim.lsp.buf.definition()
-end, { desc = "LSP Goto Def and Split" })
+end, { desc = "LSP [G]oto Def and [S]plit" })
