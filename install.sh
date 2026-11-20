@@ -35,6 +35,26 @@ show_help() {
 
 trap "echo 'Script interrupted. Exiting...'; exit 1" INT
 
+#----------------------------------------------------------
+# Set up logging
+#----------------------------------------------------------
+log_dir="$HOME/.cache/script-logs"
+mkdir -p "$log_dir"
+# Keep only the last 5 log files
+ls -t "$log_dir"/*.log 2>/dev/null | tail -n +6 | xargs -r rm --
+# Make log file
+timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+log_file="$log_dir/$timestamp.log"
+# Save original stdout/stderr for logging
+exec 3>&1 4>&2
+# Redirect stdout
+exec > >(tee >(awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush() }' >> "$log_file") >&3)
+# Redirect stderr
+exec 2> >(tee >(awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush() }' >> "$log_file") >&4)
+
+#----------------------------------------------------------
+# Main script start
+#----------------------------------------------------------
 while getopts ":hv-:" opt; do
     case "${opt}" in
         h)
@@ -90,21 +110,7 @@ source "$HOME/.dotfiles/run.sh" || {
     echo "Failed to source $HOME/.dotfiles/run.sh" >&2
     exit 1
 }
-
-# Set up logging
-log_dir="$HOME/.cache/script-logs"
-mkdir -p "$log_dir"
-# Keep only the last 5 log files
-ls -t "$log_dir"/*.log 2>/dev/null | tail -n +6 | xargs -r rm --
-# Make log file
-timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
-log_file="$log_dir/$timestamp.log"
-# Save original stdout/stderr for logging
-exec 3>&1 4>&2
-# Redirect stdout
-exec > >(tee >(awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush() }' >> "$log_file") >&3)
-# Redirect stderr
-exec 2> >(tee >(awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush() }' >> "$log_file") >&4)
+run_version
 
 
 # MAIN SCRIPT -----------------------------------------------------------------------------------------------
