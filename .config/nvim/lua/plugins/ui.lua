@@ -102,3 +102,47 @@ require("lualine").setup {
         lualine_z = {},
     },
 }
+
+-- Harpoon (maybe later?)
+-- vim.pack.add {
+--     "https://github.com/nvim-lua/plenary.nvim",
+--     {
+--         src = "https://github.com/ThePrimeagen/harpoon",
+--         version = "harpoon2",
+--     },
+-- }
+-- local harpoon = require "harpoon"
+-- harpoon:setup()
+--
+-- vim.keymap.set("n", "<leader>ha", function()
+--     harpoon:list():add()
+-- end, { desc = "[H]arpoon [A]dd file" })
+-- vim.keymap.set("n", "<leader>hr", function()
+-- harpoon:list():remove()
+-- end, { desc = "[H]arpoon [R]emove file" })
+-- -- EITHER HARPOON BASIC
+-- -- vim.keymap.set("n", "<leader>zt", function()
+-- --     harpoon.ui:toggle_quick_menu(harpoon:list())
+-- -- end, { desc = "[H]arpoon [T]oggle view" })
+-- -- basic telescope configuration
+-- --
+-- -- OR FANCY TELESCOPE
+-- local conf = require("telescope.config").values
+-- local function toggle_telescope(harpoon_files)
+--     local file_paths = {}
+--     for _, item in ipairs(harpoon_files.items) do
+--         table.insert(file_paths, item.value)
+--     end
+--
+--     require("telescope.pickers").new({}, {
+--         prompt_title = "Harpoon",
+--         finder = require("telescope.finders").new_table({
+--             results = file_paths,
+--         }),
+--         previewer = conf.file_previewer({}),
+--         sorter = conf.generic_sorter({}),
+--     }):find()
+-- end
+--
+-- vim.keymap.set("n", "<leader>ht", function() toggle_telescope(harpoon:list()) end,
+--     { desc = "Open harpoon window" })
