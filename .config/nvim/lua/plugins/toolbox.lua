@@ -3,12 +3,12 @@ local add = function(plugin)
 end
 
 -- Tabout w/ neotab
-add { "kawre/neotab.nvim" }
+add "kawre/neotab.nvim"
 ---@diagnostic disable-next-line: missing-parameter
 require("neotab").setup()
 
 -- Pretty little command line popup
-add { "rachartier/tiny-cmdline.nvim" }
+add "rachartier/tiny-cmdline.nvim"
 require("vim._core.ui2").enable {}
 
 vim.o.cmdheight = 0
@@ -23,22 +23,22 @@ require("tiny-cmdline").setup {
 }
 
 -- Treesj
-add { "wansmer/treesj" }
+add "wansmer/treesj"
 require("treesj").setup {
     use_default_keymaps = false,
 }
 vim.keymap.set("n", "<leader>m", require("treesj").toggle, { desc = "Toggle treesj" })
 
 -- Indent markers
-add { "lukas-reineke/indent-blankline.nvim" }
+add "lukas-reineke/indent-blankline.nvim"
 require("ibl").setup()
 
 -- Todo comments
-add { "folke/todo-comments.nvim" }
+add "folke/todo-comments.nvim"
 require("todo-comments").setup { signs = false }
 
 -- Live Server
-add { "barrettruth/live-server.nvim" }
+add "barrettruth/live-server.nvim"
 vim.keymap.set(
     "n",
     "<leader>lss",
@@ -53,7 +53,7 @@ vim.keymap.set(
 )
 
 -- Generate Annotations
-add { "danymat/neogen" }
+add "danymat/neogen"
 require("neogen").setup {}
 vim.keymap.set("n", "<Leader>nf", function()
     require("neogen").generate()
