@@ -83,7 +83,7 @@ install_packages() {
 
     # Install cli tools and packages via cargo
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -sSf | sh -s -- -y
-    source "$user_home"/.cargo/env
+    source "$HOME"/.cargo/env
     cargoInstall=(
         tree-sitter-cli
         dysk
@@ -97,15 +97,20 @@ install_packages() {
 
 nerd_font_install() {
     echo "Installing Nerd Font..."
-    # Install Noto Nerdfont
-    curl -fL --retry 3 https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip -o "$user_home"/Downloads/font.zip
+    # Install Nerdfont
+    myFont="FiraCode"
+    curl -fL --retry 3 https://github.com/ryanoasis/nerd-fonts/releases/latest/download/"$myFont".zip -o "$HOME"/Downloads/font.zip
     echo "Unzipping file..."
-    unzip -q "$user_home"/Downloads/font.zip -d "$user_home"/Downloads/font/
+    unzip -q "$HOME"/Downloads/font.zip -d "$HOME"/Downloads/font/
     sudo mkdir -p /usr/share/fonts/nerd-font/
-    sudo mv "$user_home"/Downloads/font/*.ttf /usr/share/fonts/nerd-font/
+    sudo mv "$HOME"/Downloads/font/*.ttf /usr/share/fonts/nerd-font/
 
-    rm -vf "$user_home"/Downloads/font.zip
-    rm -rvf "$user_home"/Downloads/font/
+    # Set Ghostty font to selected NF
+    sed -i "s/^font-family.*/font-family=\"$myFont\" Nerd Font/" "$HOME"/.dotfiles/.config/ghostty/config
+
+    # Cleanup
+    rm -vf "$HOME"/Downloads/font.zip
+    rm -rvf "$HOME"/Downloads/font/
     echo "Done."
 }
 
@@ -158,9 +163,9 @@ run_stow() {
     echo "Stowing..."
 
     # Clone my dotfiles
-    cd "$user_home"/.dotfiles
+    cd "$HOME"/.dotfiles
     stow .
-    cd "$user_home"
+    cd "$HOME"
     echo "Done."
 }
 
@@ -206,13 +211,13 @@ cleanup() {
 
 post_install() {
     # Remove bash files
-    rm ${user_home}/.bash*
+    rm ${HOME}/.bash*
 
     # Remove zcompdump
-    rm ${user_home}/.zcompdump
+    rm ${HOME}/.zcompdump
 
     # Move .gtkrc-2.0
-    mv ${user_home}/.gtkrc-2.0 "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc/.gtkrc-2.0
+    mv ${HOME}/.gtkrc-2.0 "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc/.gtkrc-2.0
 
     # Goodbye stuff I dont want
     dnfRemove=(
