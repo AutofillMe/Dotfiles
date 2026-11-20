@@ -60,3 +60,15 @@ vim.api.nvim_create_autocmd("PackChanged", {
         end
     end,
 })
+
+-- Use treesitter based folding when applicable
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(args)
+    if pcall(vim.treesitter.start, args.buf) then
+      vim.wo[0][0].foldmethod = "expr"
+      vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    else
+      vim.wo[0][0].foldmethod = "indent"
+    end
+  end,
+})
