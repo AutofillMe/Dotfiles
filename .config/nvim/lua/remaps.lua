@@ -49,7 +49,7 @@ vim.keymap.set("n", "Q", "@@")
 
 -- Blackhole
 vim.keymap.set("n", "x", '"_x', { desc = "Cut letter to void" })
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete letter to void" })
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete selection to void" })
 
 -- Cool tools from @ThePrimeagen
 vim.keymap.set(
