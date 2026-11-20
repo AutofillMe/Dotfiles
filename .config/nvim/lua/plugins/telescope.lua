@@ -1,13 +1,13 @@
 local add = function(plugin)
-    vim.pack.add(plugin, { confirm = false })
+    vim.pack.add('https://github.com/' .. plugin, { confirm = false })
 end
 
 add {
-    "https://github.com/nvim-lua/plenary.nvim",
-    "https://github.com/nvim-telescope/telescope.nvim",
-    "https://github.com/nvim-telescope/telescope-ui-select.nvim",
-    "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
-    "https://github.com/stevearc/aerial.nvim",
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
+    "nvim-telescope/telescope-ui-select.nvim",
+    "nvim-telescope/telescope-fzf-native.nvim",
+    "stevearc/aerial.nvim",
 }
 
 require("aerial").setup {}
@@ -18,11 +18,11 @@ require("telescope").setup {
         aerial = {},
     },
 }
-require("telescope").load_extension "aerial"
 
 -- Enable Telescope extensions if they are installed
 pcall(require("telescope").load_extension, "fzf")
 pcall(require("telescope").load_extension, "ui-select")
+pcall(require("telescope").load_extension, "aerial")
 vim.keymap.set("n", "<leader>ff", function()
     require("telescope.builtin").find_files()
 end, { desc = "Telescope [F]ind [F]iles" })
