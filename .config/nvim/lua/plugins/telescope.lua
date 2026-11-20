@@ -1,13 +1,13 @@
 local add = function(plugin)
-    vim.pack.add('https://github.com/' .. plugin, { confirm = false })
+    vim.pack.add(plugin, { confirm = false })
 end
 
 add {
-    "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
-    "nvim-telescope/telescope-ui-select.nvim",
-    "nvim-telescope/telescope-fzf-native.nvim",
-    "stevearc/aerial.nvim",
+    "https://github.com/nvim-lua/plenary.nvim",
+    "https://github.com/nvim-telescope/telescope.nvim",
+    "https://github.com/nvim-telescope/telescope-ui-select.nvim",
+    "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
+    "https://github.com/stevearc/aerial.nvim",
 }
 
 require("aerial").setup {}
