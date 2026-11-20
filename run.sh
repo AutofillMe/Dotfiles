@@ -4,6 +4,10 @@
 # Stores functions used in install.sh
 #----------------------------------------------------------
 
+run_version() {
+    echo "run.sh version 1.0"
+}
+
 confirm() {
     printf "%s" "${1:-Are you sure? [Y/N]} "
     read -r ans
@@ -82,6 +86,9 @@ install_packages() {
     sudo dnf install -y "${dnfInstall[@]}"
 
     # Install cli tools and packages via cargo
+    export XDG_DATA_HOME="$HOME"/.local/share
+    export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+    export CARGO_HOME="$XDG_DATA_HOME"/cargo
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -sSf | sh -s -- -y
     source "$HOME"/.cargo/env
     cargoInstall=(
@@ -210,6 +217,8 @@ cleanup() {
 }
 
 post_install() {
+    echo "Running post install stuff..."
+    
     # Remove bash files
     rm ${HOME}/.bash*
 
