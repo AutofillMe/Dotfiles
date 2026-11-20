@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-script_version="2.3"
+script_version="2.4"
 
 validate_input() {
     local tasks=("$@")
@@ -82,18 +82,17 @@ if [ "$EUID" -eq 0 ]; then
 fi
 
 # Set user home directory and validates by printing to terminal
-user_home=$HOME
 echo "Running as user: $USER"
-echo "Home directory: $user_home"
+echo "Home directory: $HOME"
 
 # Source all functions
-source "$user_home/.dotfiles/run.sh" || {
-    echo "Failed to source $user_home/.dotfiles/run.sh" >&2
+source "$HOME/.dotfiles/run.sh" || {
+    echo "Failed to source $HOME/.dotfiles/run.sh" >&2
     exit 1
 }
 
 # Set up logging
-log_dir="$user_home/.cache/script-logs"
+log_dir="$HOME/.cache/script-logs"
 mkdir -p "$log_dir"
 # Keep only the last 5 log files
 ls -t "$log_dir"/*.log 2>/dev/null | tail -n +6 | xargs -r rm --
