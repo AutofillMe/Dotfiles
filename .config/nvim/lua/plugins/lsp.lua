@@ -79,6 +79,7 @@ local servers = {
                 lint = {
                     ignore = { "BLE001" },
                 },
+                showSyntaxErrors = false,
             },
         },
     },
