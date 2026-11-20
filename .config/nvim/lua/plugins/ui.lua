@@ -59,6 +59,8 @@ vim.keymap.set("n", "<leader>x", function()
         vim.cmd "bdelete!"
     elseif vim.bo.buftype == "nofile" then
         vim.cmd "close"
+    elseif vim.bo.buftype == "quickfix" then
+        vim.cmd "close"
     else
         vim.cmd "BufferClose"
     end
@@ -101,6 +103,13 @@ require("lualine").setup {
         lualine_y = {},
         lualine_z = {},
     },
+    extensions = {
+        "nvim-tree",
+        "quickfix",
+        "aerial",
+        "man",
+        "mason",
+    }
 }
 
 -- Harpoon (maybe later?)
