@@ -31,6 +31,9 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 -- mini.nvim (run first, since icon support is in mini.nvim)
 require "plugins.mini"
 
+-- Telescope
+require "plugins.telescope"
+
 -- UI
 require "plugins.ui"
 
@@ -46,6 +49,3 @@ require "plugins.cmp"
 
 -- Toolbox
 require "plugins.toolbox"
-
--- Telescope
-require "plugins.telescope"
