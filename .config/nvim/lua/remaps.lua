@@ -70,3 +70,7 @@ vim.keymap.set("n", "gs", function()
     vim.cmd "wincmd l"
     vim.lsp.buf.definition()
 end, { desc = "LSP [G]oto Def and [S]plit" })
+
+-- Treesitter context aware incremental selection
+vim.keymap.set("x", "v", "an", { remap = true, desc = "Expand treesitter selection" })
+vim.keymap.set("x", "<BS>", "in", { remap = true, desc = "Shrink treesitter selection" })
