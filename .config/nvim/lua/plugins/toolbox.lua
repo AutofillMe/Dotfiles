@@ -1,5 +1,5 @@
 local add = function(plugin)
-    vim.pack.add('https://github.com/' .. plugin, { confirm = false })
+    vim.pack.add { 'https://github.com/' .. plugin, { confirm = false } }
 end
 
 -- Tabout w/ neotab
